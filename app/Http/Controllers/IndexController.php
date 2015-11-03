@@ -118,7 +118,7 @@ class IndexController extends Controller
                 'name'                 => 'required|min:5|max:255',
                 'email'                => 'required|email|max:255',
                 'message'              => 'required|min:5|max:255',
-                // 'g-recaptcha-response' => 'required|recaptcha',
+                'g-recaptcha-response' => 'required|recaptcha',
             ];      
 
             $validator = \Validator::make($request->all(), $rules, $messages);
@@ -133,8 +133,9 @@ class IndexController extends Controller
                 'email'    => $request->get('email'),
                 'umessage' => $request->get('message')
             ], function($message) {
-                $message->to('jorge.cortes@gmail.com', 'Admin')
-                    ->subject('TODOParrot Feedback');
+                $message->from('cambalacheo.oficial@gmail.com');
+                $message->to('cambalacheo.oficial@gmail.com', 'Admin')
+                    ->subject('Contacto cambalacheo');
             });
 
             return redirect('contact')
