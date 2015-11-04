@@ -13,7 +13,7 @@ class IndexController extends Controller
 
     public function index()
     {
-        $main_article_list_limit = Config::get('main_article_list_limit');
+        $main_article_list_limit = Config::get('constants.main_article_list_limit');
 
         $articles = \App\Article::with('category', 'user.state')
             ->where('status', ARTICLE_STATUS_OPEN)
@@ -27,7 +27,7 @@ class IndexController extends Controller
     {
         $category_id = $request->category_id;
 
-        $main_article_list_limit = Config::get('main_article_list_limit');
+        $main_article_list_limit = Config::get('constants.main_article_list_limit');
 
         $category = \App\Category::find($category_id);
 
@@ -44,7 +44,7 @@ class IndexController extends Controller
     {
         $condition_id = $request->condition_id;
 
-        $main_article_list_limit = Config::get('main_article_list_limit');
+        $main_article_list_limit = Config::get('constants.main_article_list_limit');
 
         $conditions = \Config::get('constants.conditions');
 
@@ -61,7 +61,7 @@ class IndexController extends Controller
         $state_id = $request->state_id;
         $city_id  = $request->city_id;
 
-        $main_article_list_limit = Config::get('main_article_list_limit');
+        $main_article_list_limit = Config::get('constants.main_article_list_limit');
 
         $location = \App\State::join('cities', 'cities.state_id', '=', 'states.id')
             ->select('states.short', 'cities.name')
