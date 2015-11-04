@@ -3,6 +3,12 @@
         Options -MultiViews
     </IfModule>
 
+    <IfModule mod_headers.c>
+        <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css)$">
+            Header set Access-Control-Allow-Origin "*"
+        </FilesMatch>
+    </IfModule>
+
     RewriteEngine On
 
     # Redirect Trailing Slashes If Not A Folder...
