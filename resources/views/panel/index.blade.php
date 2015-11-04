@@ -38,7 +38,7 @@
                 <tbody>
                     @forelse ($received_offers as $offer)
                     <tr>   
-                        <td class="text-center"><img src="/image/article/{{ $offer->article_id }}/thumbnail" class="img-rounded"/></td>
+                        <td class="text-center"><img src="{{ Cdn::url('/image/article/' . $offer->article_id . '/thumbnail', 'image') }}" class="img-rounded"/></td>
                         <td>{{ $offer->title }}</td>
                         <td>{{ $offer->description }}</td>  
                         <td class="text-center">
@@ -76,7 +76,7 @@
                 <tbody>
                     @forelse ($received_questions as $question)
                     <tr>   
-                        <td class="text-center"><img src="/image/article/{{ $question->article_id }}/thumbnail" class="img-rounded"/></td>
+                        <td class="text-center"><img src="{{ Cdn::url('/image/article/' . $question->article_id . '/thumbnail', 'image') }}" class="img-rounded"/></td>
                         <td>{{ $question->title }}</td>
                         <td>{{ $question->description }}</td>  
                         <td class="text-center">

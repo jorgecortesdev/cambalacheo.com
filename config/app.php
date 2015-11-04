@@ -149,6 +149,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         App\Providers\ComposerServiceProvider::class,
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
+        App\Providers\CdnServiceProvider::class,
 
     ],
 
@@ -204,6 +205,7 @@ return [
         'Image'     => Intervention\Image\Facades\Image::class,
         'Carbon'    => Carbon\Carbon::class,
         'Recaptcha' => Greggilbert\Recaptcha\Facades\Recaptcha::class,
+        'Cdn'       => App\Facades\Cdn::class,
 
     ],
 

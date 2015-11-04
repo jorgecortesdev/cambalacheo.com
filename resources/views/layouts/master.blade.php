@@ -10,13 +10,13 @@
         <title>Cambalacheo - @yield('page_title')</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="/css/bootstrap.min.css" rel="stylesheet">
+        <link href="{{ Cdn::url('/css/bootstrap.min.css') }}" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="/css/style.css" rel="stylesheet">
+        <link href="{{ Cdn::url('/css/style.css') }}" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="{{ Cdn::url('/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
         <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>

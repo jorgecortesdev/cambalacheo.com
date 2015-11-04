@@ -4,7 +4,7 @@
 			@forelse ($articles as $article)
 			<tr>
 				<td>
-					<img class="img-rounded" src="/image/article/{{ $article->id }}/list" alt="Placeholder">
+					<img class="img-rounded" src="{{ Cdn::url('/image/article/' . $article->id . '/list', 'image') }}" alt="Placeholder">
 				</td>
 				<td>
 					<h5><a href="/trades/{{ $article->id }}">{{ $article->title }}</a></h5>

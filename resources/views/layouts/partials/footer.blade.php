@@ -13,7 +13,7 @@
 </footer>
 
 <!-- jQuery -->
-<script src="/js/jquery-1.11.3.min.js"></script>
+<script src="{{ Cdn::url('/js/jquery-1.11.3.min.js') }}"></script>
 
 <!-- Bootstrap Core JavaScript -->
-<script src="/js/bootstrap.min.js"></script>
+<script src="{{ Cdn::url('/js/bootstrap.min.js') }}"></script>

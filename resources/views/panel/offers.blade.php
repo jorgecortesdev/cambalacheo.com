@@ -18,7 +18,7 @@
     <tbody>
         @forelse ($offers as $offer)
         <tr>   
-            <td class="text-center"><img src="/image/article/{{ $offer->id }}/thumbnail" class="img-rounded"/></td>
+            <td class="text-center"><img src="{{ Cdn::url('/image/article/' . $offer->id . '/thumbnail', 'image') }}" class="img-rounded"/></td>
             <td>{{ $offer->title }}</td>
             <td>{{ $offer->description }}</td>  
             <td class="text-center">

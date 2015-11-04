@@ -8,7 +8,7 @@
 
 <div class="row summary">
     <div class="col-md-2">
-        <img class="img-rounded" src="/image/article/{{ $article->id }}/list" alt="">
+        <img class="img-rounded" src="{{ Cdn::url('/image/article/' . $article->id . '/list', 'image') }}" alt="">
     </div>
     <div class="col-md-10">
         <dl class="dl-horizontal">

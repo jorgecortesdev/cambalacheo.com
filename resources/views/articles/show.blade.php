@@ -3,7 +3,7 @@
 @section('page_title', $article->title)
 
 @section('custom_css')
-<link href="/css/bootstrap-lightbox.min.css" rel="stylesheet">
+<link href="{{ Cdn::url('/css/bootstrap-lightbox.min.css') }}" rel="stylesheet">
 @endsection
 
 @section('content')
@@ -14,7 +14,7 @@
 <div class="row">
 	<div class="col-md-4">
 		<a href="#" data-toggle="modal" data-target="#lightbox">
-            <img src="/image/article/{{ $article->id }}/profile/1" alt="" class="img-rounded">				
+            <img src="{{ Cdn::url('/image/article/' . $article->id . '/profile/1', 'image') }}" alt="" class="img-rounded">				
         </a>
 	</div>
 	<div class="col-md-8">
@@ -75,7 +75,7 @@
 	<div class="col-md-12">
 		@foreach ($images as $index)
         <a href="#" data-toggle="modal" data-target="#lightbox">
-            <img src="/image/article/{{ $article->id }}/thumbnail/{{ $index }}" alt="" class="img-rounded">
+            <img src="{{ Cdn::url('/image/article/' . $article->id . '/thumbnail/' . $index, 'image') }}" alt="" class="img-rounded">
         </a>
 		@endforeach
 	</div>
@@ -305,7 +305,7 @@
 								@foreach($chunk as $article)
 								<div class="col-sm-3">
 									<a href="/trades/{{ $article->id }}">
-										<img src="/image/article/{{ $article->id }}/carousel" class="img-rounded">
+										<img src="{{ Cdn::url('/image/article/' . $article->id . '/carousel', 'image') }}" class="img-rounded">
 										 <div class="carousel-caption">
 		          							<span class="small">{{ $article->title }}</span>
 		      							</div>
@@ -331,7 +331,7 @@
 @endsection
 
 @section('scripts')
-    <script src="/js/bootstrap-lightbox.min.js"></script>
+    <script src="{{ Cdn::url('/js/bootstrap-lightbox.min.js') }}"></script>
 
 	<script type="text/javascript">
 		$(document).ready(function() {
