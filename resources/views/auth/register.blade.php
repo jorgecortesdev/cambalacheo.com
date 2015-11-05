@@ -2,8 +2,24 @@
 
 @section('page_title', 'Registrar')
 
-@section('content')
+@section('footer')
+<script src="{{ Cdn::url('/js/user.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('select#state').change(function() {
+            var state_id = $(this).val();
+            loadCities(state_id, true);
+        });
+    });
 
+    @if (count($errors) > 0)
+        $('select#state').trigger('change');
+    @endif
+</script>
+@endsection
+
+
+@section('content')
 <h4 class="h-top">Registrar</h4>
 
 <br>
@@ -76,31 +92,4 @@
 
 {!! Form::close() !!}
 
-@endsection
-
-@section('scripts')
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('select#state').change(function() {
-                var state_id = $(this).val();
-                loadCitites(state_id);
-            });
-
-            // $('select#state').trigger('change');
-        });
-
-        function loadCitites(state_id) {
-            $.ajax({
-                url: '/citites/' + state_id
-            }).done(function(cities) {
-                var select = $('select#city');
-                select.empty();
-                select.append('<option value="">-- Seleccionar --</option>');
-                $.each(cities.cities, function(i, item) {
-                    select.append('<option value="' + item.id + '">' + item.name + '</option>');
-                });
-                select.prop('disabled', false);
-            });            
-        }
-    </script>
 @endsection

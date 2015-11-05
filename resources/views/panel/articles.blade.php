@@ -2,6 +2,10 @@
 
 @section('page_title', 'Mis artículos')
 
+@section('footer')
+<script type="text/javascript" src="{{ Cdn::url('/js/article.js') }}"></script>
+@endsection
+
 @section('content')
 
 <h4>Mis artículos</h4>
@@ -80,15 +84,4 @@
     </div>
 </div>
 
-@endsection
-
-@section('scripts')
-<script type="text/javascript">
-    $('#removeModal').on('show.bs.modal', function(event) {
-        var button = $(event.relatedTarget);
-        var article_id = button.data('id');
-        var modal = $(this);
-        modal.find("input:hidden[name='article_id']").val(article_id);
-    });
-</script>
 @endsection

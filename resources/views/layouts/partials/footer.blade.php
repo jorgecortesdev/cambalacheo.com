@@ -1,4 +1,3 @@
-
 <footer class="footer">
     <div class="container text-center links">
         <ul class="list-inline">
