@@ -11,25 +11,22 @@
 <br>
 <div class="row">
     <div class="col-md-12">
-        <ul class="nav nav-pills nav-stacked">
-            <li role="presentation" @if ($menu_active == 'index') class="active" @endif>
-            <a href="/panel"><i class="fa fa-th"></i> Mi panel</a>
-            </li>
-            <li role="presentation" @if ($menu_active == 'articles') class="active" @endif>
-            <a href="/panel/articles"><i class="fa fa-repeat"></i> Mis artículos <span class="badge">{{ $number_articles }}</span></a>
-            </li>
-            <li role="presentation" @if ($menu_active == 'offers') class="active" @endif>
-            <a href="/panel/offers"><i class="fa fa-check"></i> Ofertas enviadas<span class="badge">{{ $number_offers }}</span></a>
-            </li>
-            <li role="presentation" @if ($menu_active == 'questions') class="active" @endif>
-            <a href="/panel/questions"><i class="fa fa-question"></i></i> Preguntas enviadas<span class="badge">{{ $number_questions }}</span></a>
-            </li>
-            <li role="presentation" @if ($menu_active == 'profile') class="active" @endif>
-            <a href="/panel/profile"><i class="fa fa-user"></i> Editar perfil</a>
-            </li>
-            <li role="presentation" @if ($menu_active == 'create') class="active" @endif>
-            <a href="/panel/article/create"><i class="fa fa-plus"></i> Publicar artículo</a>
-            </li>
-        </ul>
+        <div class="list-group">
+            <a href="/panel" class="list-group-item  @if ($menu_active == 'articles') active @endif">
+                <i class="fa fa-th"></i> Panel
+            </a>
+            <a href="/panel/offers" class="list-group-item  @if ($menu_active == 'offers') active @endif">
+                <i class="fa fa-check"></i> Ofertas
+            </a>
+            <a href="/panel/questions" class="list-group-item  @if ($menu_active == 'questions') active @endif">
+                <i class="fa fa-question"></i></i> Preguntas
+            </a>
+            <a href="/panel/profile" class="list-group-item  @if ($menu_active == 'profile') active @endif">
+                <i class="fa fa-user"></i> Editar perfil
+            </a>
+            <a href="/panel/article/create" class="list-group-item  @if ($menu_active == 'create') active @endif">
+                <i class="fa fa-plus"></i> Publicar artículo
+            </a>
+        </div>
     </div>
 </div>

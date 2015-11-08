@@ -23,7 +23,7 @@ Route::post('contact',                       'IndexController@contact');
 
 // Panel routes
 Route::get('panel',           'PanelController@index');
-Route::get('panel/articles',  'PanelController@articles');
+Route::get('home',            'PanelController@index');
 Route::get('panel/offers',    'PanelController@offers');
 Route::get('panel/questions', 'PanelController@questions');
 

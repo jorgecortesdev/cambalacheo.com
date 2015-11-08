@@ -94,7 +94,7 @@ class ArticleController extends Controller
             );
         }
 
-        return redirect('/panel/articles');
+        return redirect('/panel');
     }
 
     /**
@@ -247,7 +247,7 @@ class ArticleController extends Controller
             $article->save();
         }
 
-        return redirect('/panel/articles');
+        return redirect('/panel');
     }
 
     /**

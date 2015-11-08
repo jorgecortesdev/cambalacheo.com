@@ -3,12 +3,17 @@
 @section('page_title', 'Registrar')
 
 @section('footer')
+<script src="{{ Cdn::url('/js/jquery.simplyCountable.js') }}"></script>
 <script src="{{ Cdn::url('/js/user.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('select#state').change(function() {
             var state_id = $(this).val();
             loadCities(state_id, true);
+        });
+
+        $('#register-button').on('click', function () {
+            var $btn = $(this).button('loading');
         });
     });
 
@@ -31,10 +36,13 @@ ofertar a cambalaches ya abiertos.</p>
 <div class="row">
     <div class="col-md-12">
         <div class="well">
-            {!! Form::open(['url' => '/auth/register']) !!}
+            {!! Form::open(['url' => '/auth/register', 'class' => 'form-counter']) !!}
                 <div class="form-group @if ($errors->has('name')) has-error @endif">
                     {!! Form::label('name', 'Nombre', ['class' => 'control-label']) !!}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                    <div class="input-counter">
+                        {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                        <div class="small"><span id="counter-name"></span>/255</div>
+                    </div>
                     @if ($errors->has('name'))
                     <span class="help-block">* {{ $errors->first('name') }}</span>
                     @endif
@@ -42,7 +50,10 @@ ofertar a cambalaches ya abiertos.</p>
 
                 <div class="form-group @if ($errors->has('email')) has-error @endif">
                     {!! Form::label('email', 'Correo', ['class' => 'control-label']) !!}
-                    {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
+                    <div class="input-counter">
+                        {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
+                        <div class="small"><span id="counter-email"></span>/255</div>
+                    </div>
                     @if ($errors->has('email'))
                     <span class="help-block">* {{ $errors->first('email') }}</span>
                     @endif
@@ -50,7 +61,10 @@ ofertar a cambalaches ya abiertos.</p>
 
                 <div class="form-group @if ($errors->has('password')) has-error @endif">
                     {!! Form::label('password', 'Contraseña', ['class' => 'control-label']) !!}
-                    {!! Form::password('password', ['class' => 'form-control']) !!}
+                    <div class="input-counter">
+                        {!! Form::password('password', ['class' => 'form-control']) !!}
+                        <div class="small"><span id="counter-password"></span>/60</div>
+                    </div>
                     @if ($errors->has('password'))
                     <span class="help-block">* {{ $errors->first('password') }}</span>
                     @endif
@@ -58,7 +72,10 @@ ofertar a cambalaches ya abiertos.</p>
 
                 <div class="form-group @if ($errors->has('password')) has-error @endif">
                     {!! Form::label('password', 'Confirmar Contraseña', ['class' => 'control-label']) !!}
-                    {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                    <div class="input-counter">
+                        {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                        <div class="small"><span id="counter-confirmation"></span>/60</div>
+                    </div>
                     @if ($errors->has('password'))
                     <span class="help-block">* {{ $errors->first('password') }}</span>
                     @endif
@@ -94,7 +111,12 @@ ofertar a cambalaches ya abiertos.</p>
                 </div>
 
                 <br>
-                {!! Form::button('Registrar', ['class' => 'btn btn-lg btn-primary btn-block', 'type' => 'submit']) !!}
+                {!! Form::button('Registrar', [
+                    'class'             => 'btn btn-lg btn-primary btn-block',
+                    'type'              => 'submit',
+                    'data-loading-text' => '<i class="fa fa-cog fa-spin"></i> Enviando...',
+                    'id'                => 'register-button'
+                ]) !!}
             {!! Form::close() !!}
         </div>
     </div>

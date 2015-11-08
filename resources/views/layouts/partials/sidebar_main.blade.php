@@ -1,12 +1,12 @@
 <h4>Búsqueda</h4>
 <div class="well well-sm">
-        {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
-        <div class="input-group">
-            {!! Form::text('q', null, ['class' => 'form-control', 'placeholder' => 'Busca por...']) !!}
-            <span class="input-group-btn">
-                {!! Form::button('<i class="fa fa-search"></i>', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
-            </span>
-        </div>
+    {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
+    <div class="input-group">
+        {!! Form::text('q', null, ['class' => 'form-control', 'placeholder' => 'Busca por...']) !!}
+        <span class="input-group-btn">
+            {!! Form::button('<i class="fa fa-search"></i>', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
+        </span>
+    </div>
     {!! Form::close() !!}
 </div>
 
