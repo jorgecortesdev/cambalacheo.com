@@ -3,6 +3,7 @@
 @section('page_title', 'Publicar artículo')
 
 @section('footer')
+<script src="{{ Cdn::url('/js/jquery.simplyCountable.js') }}"></script>
 <script src="{{ Cdn::url('/js/create-article.js') }}"></script>
 @endsection
 

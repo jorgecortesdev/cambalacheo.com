@@ -59,7 +59,6 @@
 
         <!-- Jquery plugins -->
         <script src="{{ Cdn::url('/js/jquery.lazyload.min.js') }}"></script>
-        <script src="{{ Cdn::url('/js/jquery.simplyCountable.js') }}"></script>
 
         @yield('footer')
 
