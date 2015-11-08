@@ -17,20 +17,9 @@ class PanelMenuComposer
     {
         $user_id = Auth::user()->id;
 
-        $number_articles = Article::where([
-            'user_id' => $user_id, 
-            'status'  => ARTICLE_STATUS_OPEN,
-        ])->count();
-
-        $offer = new Offer;
-        $number_offers = $offer->userOffersCount($user_id);
-
-        $question = new Question;
-        $number_questions = $question->userQuestionsCount($user_id);
-
         $uri = Route::current()->getUri();
         if ($uri == 'panel') {
-            $menu_active = 'index';
+            $menu_active = 'articles';
         } else {
             $menu_active = substr(
                 $uri,
@@ -39,11 +28,6 @@ class PanelMenuComposer
             );
         }
 
-        $view->with([
-            'number_articles'  => $number_articles,
-            'number_offers'    => $number_offers,
-            'number_questions' => $number_questions,
-            'menu_active'      => $menu_active,
-        ]);
+        $view->with(['menu_active' => $menu_active]);
     }
 }

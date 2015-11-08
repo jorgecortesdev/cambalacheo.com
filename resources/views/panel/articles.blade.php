@@ -8,48 +8,116 @@
 
 @section('content')
 
-<h4>Mis artículos</h4>
+<h2>Artículos</h2>
+<p>Aquí puedes ver un listado de los artículos que has publicado.</p>
 
-<table class="table table-stripped">
-    <thead>
-        <tr>
-            <th class="text-center">Imágen</th>
-            <th class="text-center">Artículo</th>
-            <th class="text-center">Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @forelse ($articles as $article)
-        <tr>
-            <td class="text-center">
-                <img
-                    class="img-rounded lazy"
-                    data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $article->images->first()->id . '/thumbnail', 'image') }}"
-                    src="{{ Cdn::url('/image/article/default/thumbnail.gif') }}"
-                />
-            </td>
-            <td>{{ $article->title }}</td>
-            <td class="text-center">
-                <ul class="list-inline">
-                    <li><a href="/trades/{{ $article->id }}"><i class="fa fa-eye"></i> Ver</a></li>
-                    <li><a href="/panel/articles/edit/{{ $article->id }}"><i class="fa fa-edit"></i> Editar</a></li>
-                    <li><a href="#" data-id="{{ $article->id }}" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i> Remover</a></li>
-                </ul>
-            </td>
-        </tr>
-        @empty
-        <tr>
-            <td colspan="4" class="text-center">
-                <span>No hay artículos</span>
-            </td>
-        </tr>
-        @endforelse
+<hr>
 
-    </tbody>
-</table>
+<div>
+    <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#active" role="tab" data-toggle="tab">Activos <span class="badge">{{ $articles_active_counter }}</span></a>
+        </li>
+        <li role="presentation">
+            <a href="#permuted" role="tab" data-toggle="tab">Permutados <span class="badge">{{ $articles_permuted_counter}} </span></a>
+        </li>
+    </ul>
 
-<div class="row">
-    <div class="col-md-12 text-center">{!! $articles->render() !!}</div>
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active" id="active">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Imágen</th>
+                                <th class="text-center">Artículo</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($articles_active as $article)
+                            <tr>
+                                <td class="text-center">
+                                    <img
+                                        class="img-rounded lazy"
+                                        data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $article->images->first()->id . '/thumbnail', 'image') }}"
+                                        src="{{ Cdn::url('/image/article/default/thumbnail.gif') }}"
+                                    />
+                                </td>
+                                <td>{{ $article->title }}</td>
+                                <td class="text-center">
+                                    <ul class="list-inline">
+                                        <li><a href="/trades/{{ $article->id }}"><i class="fa fa-eye"></i> Ver</a></li>
+                                        <li><a href="/panel/articles/edit/{{ $article->id }}"><i class="fa fa-edit"></i> Editar</a></li>
+                                        <li><a href="#" data-id="{{ $article->id }}" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i> Remover</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    <span>No hay artículos</span>
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-12 text-center">{!! $articles_active->render() !!}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div role="tabpanel" class="tab-pane fade in active" id="permuted">
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Imágen</th>
+                                <th class="text-center">Artículo</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($articles_permuted as $article)
+                            <tr>
+                                <td class="text-center">
+                                    <img
+                                        class="img-rounded lazy"
+                                        data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $article->images->first()->id . '/thumbnail', 'image') }}"
+                                        src="{{ Cdn::url('/image/article/default/thumbnail.gif') }}"
+                                    />
+                                </td>
+                                <td>{{ $article->title }}</td>
+                                <td class="text-center">
+                                    <ul class="list-inline">
+                                        <li><a href="/trades/{{ $article->id }}"><i class="fa fa-eye"></i> Ver</a></li>
+                                        <li><a href="/panel/articles/edit/{{ $article->id }}"><i class="fa fa-edit"></i> Editar</a></li>
+                                        <li><a href="#" data-id="{{ $article->id }}" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i> Remover</a></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    <span>No hay artículos</span>
+                                </td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-12 text-center">{!! $articles_permuted->render() !!}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <!-- Modal -->

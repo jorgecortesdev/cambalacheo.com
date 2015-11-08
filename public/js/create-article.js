@@ -4,10 +4,11 @@ $(document).ready(function() {
         maxCount: 255,
         countDirection: 'up',
         onOverCount: function(count, contable, counter) {
-            counter.parents().eq(3).addClass("has-error");
+            counter.parents().eq(2).addClass("has-error");
+            console.log(counter.parents().eq(2));
         },
         onSafeCount: function(count, countable, counter) {
-            counter.parents().eq(3).removeClass("has-error");
+            counter.parents().eq(2).removeClass("has-error");
         }
     });
 
@@ -16,10 +17,10 @@ $(document).ready(function() {
         maxCount: 255,
         countDirection: 'up',
         onOverCount: function(count, contable, counter) {
-            counter.parents().eq(3).addClass("has-error");
+            counter.parents().eq(2).addClass("has-error");
         },
         onSafeCount: function(count, countable, counter) {
-            counter.parents().eq(3).removeClass("has-error");
+            counter.parents().eq(2).removeClass("has-error");
         }
     });
 
@@ -28,10 +29,10 @@ $(document).ready(function() {
         maxCount: 255,
         countDirection: 'up',
         onOverCount: function(count, contable, counter) {
-            counter.parents().eq(3).addClass("has-error");
+            counter.parents().eq(2).addClass("has-error");
         },
         onSafeCount: function(count, countable, counter) {
-            counter.parents().eq(3).removeClass("has-error");
+            counter.parents().eq(2).removeClass("has-error");
         }
     });
 });

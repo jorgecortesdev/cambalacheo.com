@@ -84,7 +84,7 @@
                 {{--*/
                     $article_status_class = 'bg-info';
                     switch($article->status) {
-                        case ARTICLE_STATUS_EXCHANGE:
+                        case ARTICLE_STATUS_PERMUTED:
                             $article_status_class = 'bg-success';
                             break;
                         case ARTICLE_STATUS_CLOSE_ADMIN:
