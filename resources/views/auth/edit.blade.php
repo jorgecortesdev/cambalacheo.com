@@ -13,13 +13,16 @@
             loadCities(state_id, false);
         });
 
+        $('#edit-profile-button').on('click', function () {
+            var $btn = $(this).button('loading');
+        });
+
         @if (count($errors) > 0)
             $('select#state').trigger('change');
         @endif
     });
 </script>
 @endsection
-
 
 @section('content')
 <h2>Editar perfil</h2>
@@ -105,7 +108,12 @@
                 </div>
 
                 <br>
-                {!! Form::button('Guardar', ['class' => 'btn btn-lg btn-primary btn-block', 'type' => 'submit']) !!}
+                {!! Form::button('Guardar', [
+                    'class'             => 'btn btn-lg btn-primary btn-block',
+                    'type'              => 'submit',
+                    'data-loading-text' => '<i class="fa fa-cog fa-spin"></i> Enviando...',
+                    'id'                => 'edit-profile-button'
+                ]) !!}
             {!! Form::close() !!}
         </div>
     </div>

@@ -5,6 +5,13 @@
 @section('footer')
 <script src="{{ Cdn::url('/js/jquery.simplyCountable.js') }}"></script>
 <script src="{{ Cdn::url('/js/create-article.js') }}"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#create-article-button').on('click', function () {
+            var $btn = $(this).button('loading');
+        });
+    });
+</script>
 @endsection
 
 
@@ -99,7 +106,12 @@
                 </div>
 
                 <br>
-                {!! Form::button('Agregar', ['class' => 'btn btn-lg btn-primary btn-block', 'type' => 'submit']) !!}
+                {!! Form::button('Agregar', [
+                    'class'             => 'btn btn-lg btn-primary btn-block',
+                    'type'              => 'submit',
+                    'data-loading-text' => '<i class="fa fa-cog fa-spin"></i> Enviando...',
+                    'id'                => 'create-article-button'
+                ]) !!}
             {!! Form::close() !!}
         </div>
     </div>

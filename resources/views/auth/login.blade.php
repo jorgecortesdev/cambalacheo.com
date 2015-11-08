@@ -2,6 +2,16 @@
 
 @section('page_title', 'Entrar')
 
+@section('footer')
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#login-button').on('click', function () {
+            var $btn = $(this).button('loading');
+        });
+    });
+</script>
+@endsection
+
 @section('content')
 {!! Breadcrumbs::render('home') !!}
 
@@ -34,7 +44,12 @@
                     </label>
                 </div>
                 <br>
-                {!! Form::submit('Entrar', ['class' => 'btn btn-lg btn-primary btn-block']) !!}
+                {!! Form::button('Entrar', [
+                    'class'             => 'btn btn-lg btn-primary btn-block',
+                    'type'              => 'submit',
+                    'data-loading-text' => '<i class="fa fa-cog fa-spin"></i> Enviando...',
+                    'id'                => 'login-button'
+                ]) !!}
             {!! Form::close() !!}
         </div>
     </div>
