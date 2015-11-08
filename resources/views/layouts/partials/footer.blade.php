@@ -1,18 +1,16 @@
-<footer class="footer">
-    <div class="container text-center links">
-        <ul class="list-inline">
-            <li><a href="/about">Acerca de</a></li>
-            <li><a href="/contact">Contacto</a></li>
-            <li><a href="#terminos">Términos del servicio</a></li>
-        </ul>
+<div class="container footer">
+    <div class="footer-content">
+        <div class="row">
+            <div class="col-xs-6">
+                <img src="{{ Cdn::url('/img/logo-sm-blue.png') }}">
+            </div>
+            <div class="col-xs-6 text-right">
+                <a href="/about" class="btn btn-link">Acerca de</a>
+                <span class="bar">|</span>
+                <a href="/contact" class="btn btn-link">Contáctanos</a>
+                <span class="bar">|</span>
+                <a href="#terminos" class="btn btn-link">Términos del servicio</a>
+            </div>
+        </div>
     </div>
-    <div class="container copy">
-        <span>&copy; {{ date('Y') }} Cambalacheo.com</span>
-    </div>
-</footer>
-
-<!-- jQuery -->
-<script src="{{ Cdn::url('/js/jquery-1.11.3.min.js') }}"></script>
-
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ Cdn::url('/js/bootstrap.min.js') }}"></script>
+</div>

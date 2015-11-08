@@ -30,20 +30,31 @@ class Article extends Model
     	return $this->hasMany('App\Question')->where('parent_id', 0);
     }
 
+    public function images()
+    {
+        return $this->hasMany('App\Image');
+    }
+
     public function receivedOffers($user_id)
     {
-        return $this->leftJoin('offers', 'articles.id', '=', 'offers.article_id')
+        return $this->select('articles.*', 'offers.description')
+            ->with('images')
+            ->leftJoin('offers', 'articles.id', '=', 'offers.article_id')
             ->where([
                 'articles.user_id' => $user_id,
                 'articles.status'  => ARTICLE_STATUS_OPEN,
                 'offers.status' => OFFER_STATUS_OPEN,
                 'offers.parent_id' => 0
-            ])->orderBy('offers.created_at', 'desc')->get();
+            ])
+
+            ->orderBy('offers.created_at', 'desc')->get();
     }
 
     public function receivedQuestions($user_id)
     {
-        return $this->leftJoin('questions', 'articles.id', '=', 'questions.article_id')
+        return $this->select('articles.*', 'questions.description')
+            ->with('images')
+            ->leftJoin('questions', 'articles.id', '=', 'questions.article_id')
             ->where([
                 'articles.user_id' => $user_id,
                 'articles.status'  => ARTICLE_STATUS_OPEN,

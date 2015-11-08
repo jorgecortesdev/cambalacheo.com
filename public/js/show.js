@@ -1,32 +1,14 @@
 $(document).ready(function() {
-    $('#myCarousel').carousel({
-        interval: false
+    $('#main-carousel').on('slid.bs.carousel', function(e) {
+        var carouselData = $(this).data('bs.carousel');
+        var currentIndex = carouselData.getItemIndex(carouselData.$element.find('.item.active'));
+        $('#main-carousel-thumbs ul li').removeClass('active');
+        $('#main-carousel-thumbs ul li[data-slide-to="'+currentIndex+'"]').addClass('active');
     });
 
-    var $lightbox = $('#lightbox');
-    
-    $('[data-target="#lightbox"]').on('click', function(event) {
-        var $img = $(this).find('img'), 
-            src = $img.attr('src'),
-            alt = $img.attr('alt'),
-            css = {
-                'maxWidth': $(window).width() - 100,
-                'maxHeight': $(window).height() - 100
-            };
-
-        src = src.replace('profile', 'original').replace('thumbnail', 'original');
-
-        $lightbox.find('.close').addClass('hidden');
-        $lightbox.find('img').attr('src', src);
-        $lightbox.find('img').attr('alt', alt);
-        $lightbox.find('img').css(css);
-    });
-    
-    $lightbox.on('shown.bs.modal', function (e) {
-        var $img = $lightbox.find('img');
-            
-        $lightbox.find('.modal-dialog').css({'width': $img.width()});
-        $lightbox.find('.close').removeClass('hidden');
+    $('#main-carousel-thumbs ul li').on('click', function() {
+        $('#main-carousel-thumbs ul li').removeClass('active');
+        $(this).addClass('active');
     });
 
     $('.replay').click(function() {
@@ -34,7 +16,7 @@ $(document).ready(function() {
         $('.send').hide();
         $('.replay').show();
 
-        var frm = $(this).data('form'); 
+        var frm = $(this).data('form');
         $("#" + frm).show();
         $("#" + frm).find('input:text:visible:first').focus();
 
@@ -46,7 +28,7 @@ $(document).ready(function() {
     });
 
     $('.send').click(function() {
-        var frm = $(this).data('form'); 
+        var frm = $(this).data('form');
         $("#" + frm).submit();
         return false;
     });

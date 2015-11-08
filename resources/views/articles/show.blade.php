@@ -2,95 +2,134 @@
 
 @section('page_title', $article->title)
 
-@section('header')
-<link href="{{ Cdn::url('/css/bootstrap-lightbox.min.css') }}" rel="stylesheet">
-@endsection
-
 @section('footer')
-<script src="{{ Cdn::url('/js/bootstrap-lightbox.min.js') }}"></script>
+<script src="{{ Cdn::url('/js/jquery.slides.min.js') }}"></script>
 <script src="{{ Cdn::url('/js/show.js') }}"></script>
 @endsection
 
 
 @section('content')
-<h3 class="h-top">{{ $article->title }}</h3>
+{!! Breadcrumbs::render('category', $article->category) !!}
+
+<h2>{{ $article->title }}</h2>
 
 {{-- Article information --}}
 <div class="row">
-	<div class="col-md-4">
-		<a href="#" data-toggle="modal" data-target="#lightbox">
-            <img src="{{ Cdn::url('/image/article/' . $article->id . '/profile/1', 'image') }}" alt="" class="img-rounded">				
-        </a>
-	</div>
-	<div class="col-md-8">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<dl class="dl-horizontal">
-					<dt>Publicado por</dt>
-					<dd>{{ $article->user->name }}</dd>
+    <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="main-carousel" class="carousel slide" data-ride="carousel">
+                    <ol class="carousel-indicators">
+                        @foreach ($images as $index => $image)
+                        <li data-target="#main-carousel" data-slide-to="{{ $index }}" @if ($index == 0) class="active" @endif></li>
+                        @endforeach
+                    </ol>
+                    <div class="carousel-inner">
+                        @foreach ($images as $index => $image)
+                        <div class="item @if ($index == 0) active @endif">
+                            <img
+                                class="img-responsive lazy"
+                                data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $image->id . '/original', 'image') }}"
+                                src="{{ Cdn::url('/image/article/default/original.gif') }}"
+                            />
+                        </div>
+                        @endforeach
+                    </div>
+                    <a class="left carousel-control" href="#main-carousel" role="button" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                    <a class="right carousel-control" href="#main-carousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+                </div>
+            </div>
+        </div>
 
-					<dt>Fecha</dt>
-					<dd>{{ $article->created_at->format('d/m/Y') }}</dd>
-
-					<dt>Categoría</dt>
-					<dd>{{ $article->category->name }}</dd>
-
-					<dt>Condición</dt>
-					<dd>{{ $article_conditions[$article->condition_id] }}</dd>
-
-                    <dt>Ubicación</dt>
-                    <dd>{{ $article->user->city->name }}, {{ $article->user->state->short }}</dd>
-					{{--*/ 
-						$article_status_class = 'bg-info'; 
-						switch($article->status) {
-							case ARTICLE_STATUS_EXCHANGE:
-								$article_status_class = 'bg-success';
-								break;
-							case ARTICLE_STATUS_CLOSE_ADMIN:
-								$article_status_class = 'bg-danger';
-								break;
-							case ARTICLE_STATUS_CLOSE_USER:
-								$article_status_class = 'bg-warning';
-								break;
-						}
-					/*--}}
-					<dt>Cambalacheo</dt>					
-					<dd class="{{ $article_status_class }} article-status text-center">{{ $article_status[$article->status] }}</dd>
-				</dl>				
-			</div>
-		</div>
-				
-	</div>
-</div>
-{{-- Article images --}}
-<div id="lightbox" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <button type="button" class="close hidden" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
-        <div class="modal-content">
-            <div class="modal-body">
-                <img src="" alt="" />
+        <div class="row hidden-xs">
+            <div class="col-md-12">
+                <div id="main-carousel-thumbs">
+                    <ul class="list-inline">
+                        @foreach ($images as $index => $image)
+                        <li data-target="#main-carousel" data-slide-to="{{ $index }}" @if ($index == 0) class="active" @endif>
+                            <img
+                                class="img-responsive lazy"
+                                data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $image->id . '/thumbnail', 'image') }}"
+                                src="{{ Cdn::url('/image/article/default/thumbnail.gif') }}"
+                            />
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <table class="table table-condensed table-hover">
+            <thead>
+                <tr><th colspan="2">Detalle:</th>
+            </tr></thead>
+            <tbody style="font-size: 12px;">
+                <tr>
+                    <td>Fecha</td>
+                    <td>{{ $article->created_at->format('d/m/Y') }}</td>
+                </tr>
+                <tr>
+                    <td>Categoría</td>
+                    <td>{{ $article->category->name }}</td>
+                </tr>
+                <tr>
+                    <td>Condición</td>
+                    <td>{{ $article_conditions[$article->condition_id] }}</td>
+                </tr>
+                <tr>
+                    <td>Ubicación</td>
+                    <td>{{ $article->user->city->name }}, {{ $article->user->state->short }}</td>
+                </tr>
+                {{--*/
+                    $article_status_class = 'bg-info';
+                    switch($article->status) {
+                        case ARTICLE_STATUS_EXCHANGE:
+                            $article_status_class = 'bg-success';
+                            break;
+                        case ARTICLE_STATUS_CLOSE_ADMIN:
+                            $article_status_class = 'bg-danger';
+                            break;
+                        case ARTICLE_STATUS_CLOSE_USER:
+                            $article_status_class = 'bg-warning';
+                            break;
+                    }
+                /*--}}
+                <tr>
+                    <td>Estado</td>
+                    <td class="{{ $article_status_class }} article-status text-center">{{ $article_status[$article->status] }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-md-12">
+                <div style="padding: 5px; font-weight: bold;">Propietario:</div>
+                <div class="well">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <img class="avatar" src="{{ Gravatar::src($article->user->email, 50) }}" alt="avatar">
+                        </div>
+                        <div class="col-sm-8">
+                            <h4 style="margin-top: 0"><a href="#">{{ $article->user->name }}</a></h4>
+                            <span title="Seller's rating: 4/5">
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star"></span>
+                                <span class="glyphicon glyphicon-star-empty"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-@if (count($images) > 0)
-<br>
-<div class="row">
-	<div class="col-md-12">
-		@foreach ($images as $index)
-        <a href="#" data-toggle="modal" data-target="#lightbox">
-            <img src="{{ Cdn::url('/image/article/' . $article->id . '/thumbnail/' . $index, 'image') }}" alt="" class="img-rounded">
-        </a>
-		@endforeach
-	</div>
-</div>
-@endif
-
 {{-- Article description --}}
 <div class="row">
 	<div class="col-md-12">
-		<h5><strong>Descripción:</strong></h5>
+		<h4>Descripción:</h4>
 		<p class="text-muted">{{ $article->description }}</p>
 	</div>
 </div>
@@ -98,10 +137,12 @@
 {{-- Article trade --}}
 <div class="row">
 	<div class="col-md-12">
-		<h5><strong>Cambio por:</strong></h5>
-		<p class="text-muted">{{ $article->request }}</p>		
+		<h4>Cambalacheo por:</h4>
+		<p class="text-muted">{{ $article->request }}</p>
 	</div>
 </div>
+
+<br>
 
 {{-- Article questions --}}
 <div class="row">
@@ -142,7 +183,7 @@
                                     </div>
                                     <p>{{ $replay->description }}</p>
                                 </div>
-                            </li> 
+                            </li>
                             @endforeach
                         </ul>
                         @endif
@@ -160,7 +201,7 @@
                             --><div class="col-md-2 vcenter">
                                 <a class="pull-right replay" data-form="form-{{ $article->id }}-{{ $question->id }}" href="#"><i class="fa fa-reply"></i> Responder</a>
                                 <a class="send" style="display: none" data-form="form-{{ $article->id }}-{{ $question->id }}" href="#"><i class="fa fa-paper-plane"></i> Enviar</a>
-                                
+
                             </div>
                         </div>
             			@endif
@@ -177,7 +218,7 @@
 					</div>
 				</div>
 				@endif
-						
+
 			</div>
 		</div>
 
@@ -198,8 +239,8 @@
 				@if (count($article->offers) > 0)
                 <ul class="comments-list">
 					@foreach ($article->offers as $offer)
-					{{--*/ 
-						$offer_status_class = ''; 
+					{{--*/
+						$offer_status_class = '';
 						$offer_message = '';
 						switch($offer->status) {
 							case OFFER_STATUS_REJECTED:
@@ -237,11 +278,11 @@
                                     </div>
                                     <p>{{ $replay->description }}</p>
                                 </div>
-                            </li> 
+                            </li>
                             @endforeach
                         </ul>
                         @endif
-                    </li>                    
+                    </li>
                     <li class="comment-replay">
                     	@if ($logged_user_id == $article->user->id || $logged_user_id == $offer->user_id)
                     	<div class="row">
@@ -291,45 +332,4 @@
 	</div>
 </div>
 
-{{-- More articles in category --}}
-@if (count($more_articles) > 0)
-<div class="row">
-	<div class="col-md-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title">Más en esta categoría</h4>
-			</div>
-			<div class="panel-body">
-				<div id="myCarousel" class="carousel slide">
-					<!-- Carousel items -->
-					{{--*/ $isFirst = true; /*--}}
-					<div class="carousel-inner">
-						@foreach($more_articles as $chunk)
-						<div class="item{{{ $isFirst ? ' active' : '' }}}">
-							<div class="row">
-								@foreach($chunk as $article)
-								<div class="col-sm-3">
-									<a href="/trades/{{ $article->id }}">
-										<img src="{{ Cdn::url('/image/article/' . $article->id . '/carousel', 'image') }}" class="img-rounded">
-										 <div class="carousel-caption">
-		          							<span class="small">{{ $article->title }}</span>
-		      							</div>
-									</a>
-								</div>
-								@endforeach
-							</div><!--/row-->
-						</div>
-						{{--*/ $isFirst = false; /*--}}
-						@endforeach
-					</div>
-					<!--/carousel-inner-->
-					<a class="left carousel-control" href="#myCarousel" data-slide="prev"><i class="glyphicon glyphicon-chevron-left"></i></a>
-					<a class="right carousel-control" href="#myCarousel" data-slide="next"><i class="glyphicon glyphicon-chevron-right"></i></a>
-				</div>				
-			</div>
-		</div>
-
-	</div>
-</div>
-@endif
 @endsection

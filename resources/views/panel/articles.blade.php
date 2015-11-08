@@ -20,8 +20,14 @@
     </thead>
     <tbody>
         @forelse ($articles as $article)
-        <tr>   
-            <td class="text-center"><img src="{{ Cdn::url('/image/article/' . $article->id . '/thumbnail', 'image') }}" class="img-rounded"/></td>
+        <tr>
+            <td class="text-center">
+                <img
+                    class="img-rounded lazy"
+                    data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $article->images->first()->id . '/thumbnail', 'image') }}"
+                    src="{{ Cdn::url('/image/article/default/thumbnail.gif') }}"
+                />
+            </td>
             <td>{{ $article->title }}</td>
             <td class="text-center">
                 <ul class="list-inline">
@@ -65,10 +71,10 @@
                             {!! Form::label('reasons', 'Razón', ['class' => 'col-xs-2 control-label']) !!}
                             <div class="col-xs-10">
                                 {!! Form::select(
-                                    'status', 
-                                    ['' => '-- Seleccionar --'] + $reasons, 
-                                    null, 
-                                    ['class' => 'form-control']) 
+                                    'status',
+                                    ['' => '-- Seleccionar --'] + $reasons,
+                                    null,
+                                    ['class' => 'form-control'])
                                 !!}
                             </div>
                         </div>

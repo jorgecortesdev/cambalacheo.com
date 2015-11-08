@@ -44,7 +44,8 @@ Route::get('auth/register',  'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 // Images routes
-Route::get('image/article/{image_id}/{image_size}/{number?}', 'ImageController@getArticleImage');
+Route::get('image/article/{article_id}/{image_id}/{image_size}', 'ImageController@getArticleImage');
+Route::get('image/article/default/{image_size}.gif', 'ImageController@getDefault');
 
 // Article routes
 Route::get('panel/article/create',             'ArticleController@create');
@@ -56,8 +57,6 @@ Route::put('panel/articles/edit/{article_id}', [
     'uses' => 'ArticleController@update'
 ]);
 Route::post('panel/articles/update_status', 'ArticleController@change_status');
-
-// Route::resource('articles',        'ArticleController');
 
 // Questions routes
 Route::get('trades/question/{article_id}', 'QuestionController@create');

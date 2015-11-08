@@ -2,13 +2,15 @@
 
 @section('page_title', 'Hacer oferta')
 
+
 @section('content')
+{!! Breadcrumbs::render('article', $article) !!}
 
 <h4>Hacer oferta</h4>
 
 <div class="row summary">
     <div class="col-md-2">
-        <img class="img-rounded" src="{{ Cdn::url('/image/article/' . $article->id . '/list', 'image') }}" alt="">
+        <img class="img-rounded" src="{{ Cdn::url('/image/article/' . $article->id . '/' . $article->images->first()->id . '/list', 'image') }}" alt="">
     </div>
     <div class="col-md-10">
         <dl class="dl-horizontal">

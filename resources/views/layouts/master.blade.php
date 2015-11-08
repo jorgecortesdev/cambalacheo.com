@@ -30,28 +30,50 @@
 
     <body>
         <div id="main" class="container">
-            @include('layouts.partials.navigation')
-        
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="col-md-3">
-                        @if (strpos(Route::current()->getUri(), 'panel') !== false) 
-                            @include('layouts.partials.sidebar_panel')
-                        @else 
-                            @include('layouts.partials.sidebar_main')
-                        @endif
-                    </div>
 
-                    <div class="col-md-9">
-                        @yield('content')
-                    </div>
+            @include('layouts.partials.navigation')
+
+            <div class="row">
+                <div class="col-lg-3 content-left">
+                    @if (strpos(Route::current()->getUri(), 'panel') !== false)
+                        @include('layouts.partials.sidebar_panel')
+                    @else
+                        @include('layouts.partials.sidebar_main')
+                    @endif
+                </div>
+
+                <div class="col-lg-9 content-right">
+                    @yield('content')
                 </div>
             </div>
 
+            @include('layouts.partials.footer')
+
         </div> <!-- /container -->
 
-        @include('layouts.partials.footer')
+        <!-- jQuery -->
+        <script src="{{ Cdn::url('/js/jquery-1.11.3.min.js') }}"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="{{ Cdn::url('/js/bootstrap.min.js') }}"></script>
+
+        <!-- Jquery plugins -->
+        <script src="{{ Cdn::url('/js/jquery.lazyload.min.js') }}"></script>
 
         @yield('footer')
+
+        <script type="text/javascript">
+            $(function() {
+                $("img.lazy").lazyload({
+                    event: "sporty",
+                    effect: "fadeIn"
+                });
+            });
+            $(window).bind("load", function() {
+                var timeout = setTimeout(function() {
+                    $("img.lazy").trigger("sporty")
+                }, 250);
+            });
+        </script>
     </body>
 </html>
