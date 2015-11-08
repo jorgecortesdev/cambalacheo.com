@@ -13,7 +13,7 @@
     <div class="col-md-12">
         <div class="list-group">
             <a href="/panel" class="list-group-item  @if ($menu_active == 'articles') active @endif">
-                <i class="fa fa-th"></i> Artículos<span class="badge"></span>
+                <i class="fa fa-th"></i> Panel
             </a>
             <a href="/panel/offers" class="list-group-item  @if ($menu_active == 'offers') active @endif">
                 <i class="fa fa-check"></i> Ofertas

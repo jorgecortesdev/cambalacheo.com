@@ -15,19 +15,7 @@ class PanelController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
-    {
-        $user_id = Auth::user()->id;
-
-        $article = new \App\Article;
-        $received_offers = $article->receivedOffers($user_id);
-
-        $received_questions = $article->receivedQuestions($user_id);
-
-    	return view('panel.index', compact('received_offers', 'received_questions'));
-    }
-
-    public function articles(Request $request)
+    public function index(Request $request)
     {
         $user_id = Auth::user()->id;
 
@@ -59,7 +47,7 @@ class PanelController extends Controller
             ARTICLE_STATUS_CLOSE_USER    => 'Solo deseo removerlo'
         ];
 
-        return view('panel.articles', compact(
+        return view('panel.index', compact(
             'articles_active',
             'articles_active_counter',
             'articles_permuted',

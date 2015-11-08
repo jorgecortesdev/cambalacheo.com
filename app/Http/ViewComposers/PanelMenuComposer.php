@@ -15,10 +15,8 @@ class PanelMenuComposer
 {
     public function compose(View $view)
     {
-        $user_id = Auth::user()->id;
-
         $uri = Route::current()->getUri();
-        if ($uri == 'panel') {
+        if ($uri == 'panel' || $uri == 'home') {
             $menu_active = 'articles';
         } else {
             $menu_active = substr(

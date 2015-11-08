@@ -35,7 +35,7 @@
 
             <div class="row">
                 <div class="col-lg-3 content-left">
-                    @if (strpos(Route::current()->getUri(), 'panel') !== false)
+                    @if (strpos(Route::current()->getUri(), 'panel') !== false || strpos(Route::current()->getUri(), 'home') !== false)
                         @include('layouts.partials.sidebar_panel')
                     @else
                         @include('layouts.partials.sidebar_main')
