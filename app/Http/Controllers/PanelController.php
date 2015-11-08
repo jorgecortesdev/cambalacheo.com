@@ -21,6 +21,7 @@ class PanelController extends Controller
 
         $article = new \App\Article;
         $received_offers = $article->receivedOffers($user_id);
+
         $received_questions = $article->receivedQuestions($user_id);
 
     	return view('panel.index', compact('received_offers', 'received_questions'));
@@ -36,8 +37,8 @@ class PanelController extends Controller
             ->paginate(10);
 
         $reasons = [
-            ARTICLE_STATUS_EXCHANGE_USER => 'Ya lo cambie', 
-            ARTICLE_STATUS_RETIRED_USER  => 'No lo voy a cambiar', 
+            ARTICLE_STATUS_EXCHANGE_USER => 'Ya lo cambie',
+            ARTICLE_STATUS_RETIRED_USER  => 'No lo voy a cambiar',
             ARTICLE_STATUS_CLOSE_USER    => 'Solo deseo removerlo'
         ];
 
@@ -48,8 +49,9 @@ class PanelController extends Controller
     {
         $user_id = Auth::user()->id;
 
-        $offers = \App\Offer::join('articles', 'articles.id', '=', 'offers.article_id')
-            ->select('offers.description', 'articles.id', 'articles.title')
+        $offers = \App\Article::select('offers.description', 'articles.id', 'articles.title')
+            ->with('images')
+            ->join('offers', 'articles.id', '=', 'offers.article_id')
             ->where([
                 'offers.user_id'   => $user_id,
                 'offers.status'    => OFFER_STATUS_OPEN,
@@ -65,8 +67,9 @@ class PanelController extends Controller
     {
         $user_id = Auth::user()->id;
 
-        $questions = \App\Question::join('articles', 'articles.id', '=', 'questions.article_id')
-            ->select('questions.description', 'articles.id', 'articles.title')
+        $questions = \App\Article::select('questions.description', 'articles.id', 'articles.title')
+            ->with('images')
+            ->join('questions', 'articles.id', '=', 'questions.article_id')
             ->where([
                 'questions.user_id'   => $user_id,
                 'questions.status'    => QUESTION_STATUS_OPEN,

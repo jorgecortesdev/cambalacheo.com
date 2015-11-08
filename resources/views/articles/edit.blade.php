@@ -2,9 +2,12 @@
 
 @section('page_title', 'Publicar artículo')
 
-@section('content')
+@section('footer')
+<script src="{{ Cdn::url('/js/edit-article.js') }}"></script>
+@endsection
 
-<h4>Publicar artículo</h4>
+@section('content')
+<h4>Editar artículo</h4>
 
 <br>
 
@@ -25,10 +28,10 @@
         {!! Form::label('category', 'Categoría', ['class' => 'col-xs-2 control-label']) !!}
         <div class="col-xs-10">
             {!! Form::select(
-                'category_id', 
-                ['' => '-- Seleccionar --'] + $categories->toArray(), 
-                null, 
-                ['class' => 'form-control']) 
+                'category_id',
+                ['' => '-- Seleccionar --'] + $categories->toArray(),
+                null,
+                ['class' => 'form-control'])
             !!}
             @if ($errors->has('category_id'))
             <span class="help-block">* {{ $errors->first('category_id') }}</span>
@@ -40,10 +43,10 @@
         {!! Form::label('condition', 'Condición', ['class' => 'col-xs-2 control-label']) !!}
         <div class="col-xs-10">
             {!! Form::select(
-                'condition_id', 
-                ['' => '--Seleccionar --'] + $conditions, 
-                null, 
-                ['class' => 'form-control']) 
+                'condition_id',
+                ['' => '--Seleccionar --'] + $conditions,
+                null,
+                ['class' => 'form-control'])
             !!}
             @if ($errors->has('condition_id'))
             <span class="help-block">* {{ $errors->first('condition_id') }}</span>
@@ -71,10 +74,35 @@
         </div>
     </div>
 
+    <br>
+    <div class="row xs-hidden">
+        <div class="col-xs-offset-2 col-xs-10">
+            <ul class="list-inline">
+                @foreach ($article->images as $image)
+                <li>
+                    <div class="text-center">
+                        <div class="myImageWrapper">
+                            <img data-image-id="{{ $image->id }}" src="{{ Cdn::url('/image/article/' . $article->id . '/' . $image->id . '/list', 'image') }}" class="img-thumbnail myImage">
+                        </div>
+                        <br>
+                        <a class="remove-image" href="#"><span><i class="fa fa-trash"></i> Remover</span></a>
+                    </div>
+                </li>
+                @endforeach
+            </ul>
+        </div>
+    </div>
+    <div class="row xs-hidden">
+        <div class="col-xs-offset-2 col-xs-10">
+            <span class="help-block">* Para remover una imágen, presiona "Remover", al finalizar presiona el botón "Guardar".</span>
+        </div>
+    </div>
+    <br>
+
     {{--*/ $image_error_message = ''; /*--}}
     @foreach ($errors->toArray() as $key => $error)
         @if (strpos($key, 'image') !== false)
-            {{--*/ 
+            {{--*/
                 $image_error_message = array_shift($error);
                 break;
             /*--}}
@@ -94,7 +122,7 @@
     <div class="form-group">
         <div class="col-xs-offset-2 col-xs-10">
             <ul class="list-inline pull-right">
-                <li>{!! Form::button('Agregar', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}</li>
+                <li>{!! Form::button('Guardar', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}</li>
                 <li><a class="btn btn-primary" href="{{ URL::previous() }}">Cancelar</a></li>
             </ul>
         </div>

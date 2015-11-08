@@ -64,7 +64,7 @@ class ArticleController extends Controller
             $rules['image.' . $index]               = 'required|image';
             $messages['image.' . $index . '.image'] = 'Una de las imagenes no es válida.';
         }
-        
+
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
@@ -79,11 +79,19 @@ class ArticleController extends Controller
         $article->user_id = $user_id;
         $article->save();
 
-        foreach($image_files as $key => $file) {
-         Storage::disk('local')->put(
-             $article->id . "-" . ++$key,
-             File::get($file)
-         );
+        foreach($image_files as $file) {
+
+            $image = $article->images()->create([
+                'article_id' => $article->id,
+                'file_size'  => $file->getClientSize(),
+                'file_mime'  => $file->getClientMimeType(),
+                'user_id'    => $article->user_id,
+            ]);
+
+            Storage::disk('local')->put(
+                'articles/images' . '/' . $article->id . '/' . $image->id,
+                File::get($file)
+            );
         }
 
         return redirect('/panel/articles');
@@ -103,21 +111,9 @@ class ArticleController extends Controller
 
         $article_status = Config::get('constants.status_article');
 
-        $category_id = $article->category_id;
         $article_id = $article->id;
 
-        $more_articles = Article::where('category_id', $category_id)
-            ->where('id', '!=', $article_id)
-            ->where('status', ARTICLE_STATUS_OPEN)
-            ->get()
-            ->chunk(4);
-
-        $images = array();
-        for ($i = 2; $i < 6; $i++) {
-            if (Storage::exists($article_id . "-{$i}")) {
-                $images[] = $i;
-            }
-        }
+        $images = $article->images;
 
         $logged_user_id = false;
         if (Auth::check()) {
@@ -125,12 +121,11 @@ class ArticleController extends Controller
         }
 
         return view(
-            'articles.show', 
+            'articles.show',
             compact(
-                'article', 
-                'article_conditions', 
-                'article_status', 
-                'more_articles', 
+                'article',
+                'article_conditions',
+                'article_status',
                 'images',
                 'logged_user_id'
             )
@@ -179,6 +174,22 @@ class ArticleController extends Controller
             'request'      => 'required|min:5|max:255',
         ];
 
+        $remove_images = $request->input('remove_images', []);
+
+        $article = Article::find($article_id);
+
+        $images_counter = $article->images->count();
+
+        // Upload the image if there are any
+        $image_files = $request->file('image');
+
+        if ($article->images->count() < 1 || $images_counter == count($remove_images)) {
+            foreach (range(0, count($image_files) - 1) as $index) {
+                $rules['image.' . $index]               = 'required|image';
+                $messages['image.' . $index . '.image'] = 'Una de las imagenes no es válida.';
+            }
+        }
+
         $validator = Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
@@ -186,16 +197,41 @@ class ArticleController extends Controller
                 ->withErrors($validator)
                 ->withInput();
         }
-        
-        $data                 = $request->all();
-        $article              = Article::find($article_id);
-        $article->title       = $data['title'];
-        $article->category_id = (int) $data['category_id'];
+
+        $data                  = $request->all();
+        $article->title        = $data['title'];
+        $article->category_id  = (int) $data['category_id'];
         $article->condition_id = (int) $data['condition_id'];
         $article->description  = $data['description'];
         $article->request      = $data['request'];
-
         $article->save();
+
+        // Guardar nuevas imagenes
+        foreach($image_files as $file) {
+            if (empty($file)) {
+                continue;
+            }
+            $image = $article->images()->create([
+                'article_id' => $article->id,
+                'file_size'  => $file->getClientSize(),
+                'file_mime'  => $file->getClientMimeType(),
+                'user_id'    => $article->user_id,
+            ]);
+
+            Storage::disk('local')->put(
+                'articles/images' . '/' . $article->id . '/' . $image->id,
+                File::get($file)
+            );
+        }
+
+        // Remover imagenes
+        foreach ($remove_images as $image_id) {
+            if (empty($image_id)) {
+                continue;
+            }
+            \App\Image::destroy($image_id);
+            Storage::delete('articles/images' . '/' . $article->id . '/' . $image_id);
+        }
 
         return redirect($request->redirects_to);
     }

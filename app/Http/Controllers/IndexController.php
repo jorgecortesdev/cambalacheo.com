@@ -20,9 +20,12 @@ class IndexController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate($main_article_list_limit);
 
-        return view('index', compact('articles'));
+        $featured_articles = \App\Article::orderBy(\DB::raw('RAND()'))->take(4)->get();
+
+        return view('index', compact('articles', 'featured_articles'));
     }
 
+    // TODO: Ajustar categorias, condiciones y ubicacion al nuevo diseño
     public function category(Request $request)
     {
         $category_id = $request->category_id;
@@ -39,7 +42,7 @@ class IndexController extends Controller
         return view('index', compact('articles', 'category'));
     }
 
-   
+
     public function condition(Request $request)
     {
         $condition_id = $request->condition_id;
@@ -94,7 +97,7 @@ class IndexController extends Controller
 
         $articles = \App\Article::where('title', 'LIKE', '%'.$query.'%')
             ->orWhere('description', 'LIKE', '%'.$query.'%')
-            ->get();
+            ->paginate($main_article_list_limit);
 
         return view('index', compact('articles', 'query'));
     }
@@ -119,7 +122,7 @@ class IndexController extends Controller
                 'email'                => 'required|email|max:255',
                 'message'              => 'required|min:5|max:255',
                 'g-recaptcha-response' => 'required|recaptcha',
-            ];      
+            ];
 
             $validator = \Validator::make($request->all(), $rules, $messages);
 

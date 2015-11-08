@@ -16,14 +16,20 @@
         </tr>
     </thead>
     <tbody>
-        @forelse ($offers as $offer)
-        <tr>   
-            <td class="text-center"><img src="{{ Cdn::url('/image/article/' . $offer->id . '/thumbnail', 'image') }}" class="img-rounded"/></td>
-            <td>{{ $offer->title }}</td>
-            <td>{{ $offer->description }}</td>  
+        @forelse ($offers as $article)
+        <tr>
+            <td class="text-center">
+                <img
+                    class="img-rounded lazy"
+                    data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $article->images->first()->id . '/thumbnail', 'image') }}"
+                    src="{{ Cdn::url('/image/article/default/thumbnail.gif') }}"
+                />
+            </td>
+            <td>{{ $article->title }}</td>
+            <td>{{ $article->description }}</td>
             <td class="text-center">
                 <ul class="list-inline">
-                    <li><a href="/trades/{{ $offer->id }}"><i class="fa fa-eye"></i> Ver</a></li>
+                    <li><a href="/trades/{{ $article->id }}"><i class="fa fa-eye"></i> Ver</a></li>
                 </ul>
             </td>
         </tr>
