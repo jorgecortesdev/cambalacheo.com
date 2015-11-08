@@ -71,7 +71,7 @@
             </div>
         </div>
 
-        <div role="tabpanel" class="tab-pane fade in active" id="permuted">
+        <div role="tabpanel" class="tab-pane fade" id="permuted">
             <div class="row">
                 <div class="col-md-12">
                     <table class="table table-hover table-striped">
