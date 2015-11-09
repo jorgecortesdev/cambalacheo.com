@@ -11,6 +11,10 @@ use App\Http\Controllers\Controller;
 
 class ImageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('image.cache.headers');
+    }
 
     public function getArticleImage($article_id, $image_id, $image_size)
     {
@@ -50,7 +54,26 @@ class ImageController extends Controller
                 break;
         }
 
-        return $img->response();
+        $mime_type = $img->mime();
+        $extension = 'png';
+        switch ($mime_type) {
+            case 'image/jpeg':
+                $extension = 'jpg';
+                break;
+            case 'image/gif':
+                $extension = 'gif';
+                break;
+            default:
+                $extension = 'png';
+                $mime_type = 'png';
+                break;
+        }
+
+        $response = \Response::make($img->encode($extension));
+        $response->header('Content-Type', $mime_type);
+        $response->header('Content-Length', $img->filesize());
+
+        return $response;
     }
 
     public function getDefault($image_size)
