@@ -8,7 +8,7 @@ class Cdn
 {
     protected $cdns = array();
 
-    public function url($asset, $type = '')
+    public function asset($asset, $type = '')
     {
         $cdns = Config::get('cdn');
 
@@ -29,7 +29,12 @@ class Cdn
         return asset($asset);
     }
 
-    private function cdnPath($cdn, $asset) 
+    public function image($image, $size)
+    {
+        return sprintf('/image/article/%d/%d/%s.png', $image->article_id, $image->id, $size);
+    }
+
+    private function cdnPath($cdn, $asset)
     {
         if (empty($cdn)) {
             return asset($asset);

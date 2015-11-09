@@ -8,8 +8,8 @@
 					<a href="/trades/{{ $article->id }}">
 						<img
 							class="img-rounded lazy"
-							data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $images->first()->id . '/list', 'image') }}"
-							src="{{ Cdn::url('/image/article/default/list.gif') }}"
+							data-original="{{ Cdn::image($images->first(), 'list') }}"
+							src="{{ Cdn::asset('/image/article/default/list.gif') }}"
 						/>
 						<span class="photo-counter">{{ $images->count() }} Foto(s)</span>
 					</a>

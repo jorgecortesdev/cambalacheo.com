@@ -3,8 +3,8 @@
 @section('page_title', $article->title)
 
 @section('footer')
-<script src="{{ Cdn::url('/js/jquery.slides.min.js') }}"></script>
-<script src="{{ Cdn::url('/js/show.js') }}"></script>
+<script src="{{ Cdn::asset('/js/jquery.slides.min.js') }}"></script>
+<script src="{{ Cdn::asset('/js/show.js') }}"></script>
 @endsection
 
 
@@ -29,8 +29,8 @@
                         <div class="item @if ($index == 0) active @endif">
                             <img
                                 class="img-responsive lazy"
-                                data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $image->id . '/original', 'image') }}"
-                                src="{{ Cdn::url('/image/article/default/original.gif') }}"
+                                data-original="{{ Cdn::image($image, 'original') }}"
+                                src="{{ Cdn::asset('/image/article/default/original.gif') }}"
                             />
                         </div>
                         @endforeach
@@ -49,8 +49,8 @@
                         <li data-target="#main-carousel" data-slide-to="{{ $index }}" @if ($index == 0) class="active" @endif>
                             <img
                                 class="img-responsive lazy"
-                                data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $image->id . '/thumbnail', 'image') }}"
-                                src="{{ Cdn::url('/image/article/default/thumbnail.gif') }}"
+                                data-original="{{ Cdn::image($image, 'thumbnail') }}"
+                                src="{{ Cdn::asset('/image/article/default/thumbnail.gif') }}"
                             />
                         </li>
                         @endforeach

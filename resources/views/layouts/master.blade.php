@@ -10,13 +10,13 @@
         <title>Cambalacheo - @yield('page_title')</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="{{ Cdn::url('/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ Cdn::asset('/css/bootstrap.min.css') }}" rel="stylesheet">
 
         <!-- Custom styles for this template -->
-        <link href="{{ Cdn::url('/css/style.css') }}" rel="stylesheet">
+        <link href="{{ Cdn::asset('/css/style.css') }}" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="{{ Cdn::url('/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+        <link href="{{ Cdn::asset('/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
 
         @yield('header')
 
@@ -52,13 +52,13 @@
         </div> <!-- /container -->
 
         <!-- jQuery -->
-        <script src="{{ Cdn::url('/js/jquery-1.11.3.min.js') }}"></script>
+        <script src="{{ Cdn::asset('/js/jquery-1.11.3.min.js') }}"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="{{ Cdn::url('/js/bootstrap.min.js') }}"></script>
+        <script src="{{ Cdn::asset('/js/bootstrap.min.js') }}"></script>
 
         <!-- Jquery plugins -->
-        <script src="{{ Cdn::url('/js/jquery.lazyload.min.js') }}"></script>
+        <script src="{{ Cdn::asset('/js/jquery.lazyload.min.js') }}"></script>
 
         @yield('footer')
 

@@ -53,6 +53,7 @@ class ImageController extends Controller
                 break;
         }
 
+        $img->encode('png');
         header('Content-Length: ' . $img->filesize());
 
         return $img->response();

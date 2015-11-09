@@ -44,7 +44,7 @@ Route::get('auth/register',  'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 // Images routes
-Route::get('image/article/{article_id}/{image_id}/{image_size}', 'ImageController@getArticleImage');
+Route::get('image/article/{article_id}/{image_id}/{image_size}.png', 'ImageController@getArticleImage');
 Route::get('image/article/default/{image_size}.gif', 'ImageController@getDefault');
 
 // Article routes
