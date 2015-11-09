@@ -27,7 +27,6 @@ class ImageController extends Controller
         }
 
         $img = Image::make($image_filename);
-
         switch ($image_size) {
             case 'thumbnail':
                 $img = $img->fit(50, 50, function ($constraint) {
@@ -54,26 +53,9 @@ class ImageController extends Controller
                 break;
         }
 
-        $mime_type = $img->mime();
-        $extension = 'png';
-        switch ($mime_type) {
-            case 'image/jpeg':
-                $extension = 'jpg';
-                break;
-            case 'image/gif':
-                $extension = 'gif';
-                break;
-            default:
-                $extension = 'png';
-                $mime_type = 'png';
-                break;
-        }
+        header('Content-Length: ' . $img->filesize());
 
-        $response = \Response::make($img->encode($extension));
-        $response->header('Content-Type', $mime_type);
-        $response->header('Content-Length', $img->filesize());
-
-        return $response;
+        return $img->response();
     }
 
     public function getDefault($image_size)
