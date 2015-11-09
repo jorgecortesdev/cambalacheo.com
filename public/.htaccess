@@ -4,25 +4,28 @@
     </IfModule>
 
     ExpiresActive On
-    ExpiresByType image/png  "access plus 1 year"
-    ExpiresByType image/gif  "access plus 1 year"
-    ExpiresByType image/jpeg "access plus 1 year"
 
     # 1 WEEK
-    <FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
-        Header set Cache-Control "max-age=604800, public"
+    ExpiresByType image/png  A604800
+    ExpiresByType image/gif  A604800
+    ExpiresByType image/jpeg A604800
+    <FilesMatch "\.(jpg|jpeg|png|gif)$">
+        Header set Cache-Control "max-age=604800"
+        Header append Cache-Control "public"
     </FilesMatch>
 
     # 3 HOUR
+    ExpiresByType application/javascript   A10800
+    ExpiresByType application/x-javascript A10800
+    ExpiresByType text/css                 A10800
     <FilesMatch "\.(js|css)$">
         Header set Cache-Control "max-age=10800"
+        Header append Cache-Control "public"
     </FilesMatch>
 
-    <IfModule mod_headers.c>
-        <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css)$">
-            Header set Access-Control-Allow-Origin "*"
-        </FilesMatch>
-    </IfModule>
+    <FilesMatch "\.(ttf|ttc|otf|eot|woff|woff2|font.css|css)$">
+        Header set Access-Control-Allow-Origin "*"
+    </FilesMatch>
 
     RewriteEngine On
 
