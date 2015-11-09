@@ -11,6 +11,10 @@ use App\Http\Controllers\Controller;
 
 class ImageController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('image.cache.headers');
+    }
 
     public function getArticleImage($article_id, $image_id, $image_size)
     {
@@ -23,7 +27,6 @@ class ImageController extends Controller
         }
 
         $img = Image::make($image_filename);
-
         switch ($image_size) {
             case 'thumbnail':
                 $img = $img->fit(50, 50, function ($constraint) {
@@ -49,6 +52,8 @@ class ImageController extends Controller
                 # code...
                 break;
         }
+
+        header('Content-Length: ' . $img->filesize());
 
         return $img->response();
     }
