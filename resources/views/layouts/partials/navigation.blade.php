@@ -1,4 +1,4 @@
-<div class="logo"><a href="/"><img src="{{ Cdn::url('/img/logo-md-blue.png') }}"></a></div>
+<div class="logo"><a href="/"><img src="{{ Cdn::asset('/img/logo-md-blue.png') }}"></a></div>
 <nav class="navbar navbar-default" role="navigation">
     <div class="collapse navbar-collapse">
         <a href="/panel/article/create" class="btn btn-success navbar-btn navbar-left add-classified-btn" role="button">Publicar artículo</a>
@@ -11,6 +11,6 @@
             <li @if ($menu_active == 'login') class="active" @endif><a href="/auth/login"><i class="fa fa-sign-in"></i> Entrar</a></li>
             <li @if ($menu_active == 'register') class="active" @endif><a href="/auth/register"><i class="fa fa-user-plus"></i> Registrar</a></li>
             @endif
-        </ul>   
+        </ul>
     </div>
 </nav>

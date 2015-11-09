@@ -3,7 +3,7 @@
 @section('page_title', 'Mis artículos')
 
 @section('footer')
-<script type="text/javascript" src="{{ Cdn::url('/js/article.js') }}"></script>
+<script type="text/javascript" src="{{ Cdn::asset('/js/article.js') }}"></script>
 @endsection
 
 @section('content')
@@ -42,8 +42,8 @@
                                 <td class="text-center">
                                     <img
                                         class="img-rounded lazy"
-                                        data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $article->images->first()->id . '/thumbnail', 'image') }}"
-                                        src="{{ Cdn::url('/image/article/default/thumbnail.gif') }}"
+                                        data-original="{{ Cdn::image($article->images->first(), 'thumbnail') }}"
+                                        src="{{ Cdn::asset('/image/article/default/thumbnail.gif') }}"
                                     />
                                 </td>
                                 <td>{{ $article->title }}</td>
@@ -88,8 +88,8 @@
                                 <td class="text-center">
                                     <img
                                         class="img-rounded lazy"
-                                        data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $article->images->first()->id . '/thumbnail', 'image') }}"
-                                        src="{{ Cdn::url('/image/article/default/thumbnail.gif') }}"
+                                        data-original="{{ Cdn::image($article->images->first(), 'thumbnail') }}"
+                                        src="{{ Cdn::asset('/image/article/default/thumbnail.gif') }}"
                                     />
                                 </td>
                                 <td>{{ $article->title }}</td>

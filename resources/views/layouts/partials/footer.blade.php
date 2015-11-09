@@ -2,7 +2,7 @@
     <div class="footer-content">
         <div class="row">
             <div class="col-xs-6">
-                <img src="{{ Cdn::url('/img/logo-sm-blue.png') }}">
+                <img src="{{ Cdn::asset('/img/logo-sm-blue.png') }}">
             </div>
             <div class="col-xs-6 text-right">
                 <a href="/about" class="btn btn-link">Acerca de</a>

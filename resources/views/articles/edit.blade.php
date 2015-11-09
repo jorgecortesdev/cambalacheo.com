@@ -3,8 +3,8 @@
 @section('page_title', 'Publicar artículo')
 
 @section('footer')
-<script src="{{ Cdn::url('/js/jquery.simplyCountable.js') }}"></script>
-<script src="{{ Cdn::url('/js/edit-article.js') }}"></script>
+<script src="{{ Cdn::asset('/js/jquery.simplyCountable.js') }}"></script>
+<script src="{{ Cdn::asset('/js/edit-article.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#edit-article-button').on('click', function () {
@@ -96,7 +96,7 @@
                             <li>
                                 <div class="text-center">
                                     <div class="myImageWrapper">
-                                        <img data-image-id="{{ $image->id }}" src="{{ Cdn::url('/image/article/' . $article->id . '/' . $image->id . '/list', 'image') }}" class="img-thumbnail myImage">
+                                        <img data-image-id="{{ $image->id }}" src="{{ Cdn::image($image, 'list') }}" class="img-thumbnail myImage">
                                     </div>
                                     <br>
                                     <a class="remove-image" href="#"><span><i class="fa fa-trash"></i> Remover</span></a>

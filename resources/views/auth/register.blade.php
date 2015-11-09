@@ -3,8 +3,8 @@
 @section('page_title', 'Registrar')
 
 @section('footer')
-<script src="{{ Cdn::url('/js/jquery.simplyCountable.js') }}"></script>
-<script src="{{ Cdn::url('/js/user.js') }}"></script>
+<script src="{{ Cdn::asset('/js/jquery.simplyCountable.js') }}"></script>
+<script src="{{ Cdn::asset('/js/user.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         $('select#state').change(function() {

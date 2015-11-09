@@ -26,8 +26,8 @@
             <a href="/trades/{{ $article->id }}">
                 <img
                     class="lazy"
-                    data-original="{{ Cdn::url('/image/article/' . $article->id . '/' . $article->images->first()->id . '/profile', 'image') }}"
-                    src="{{ Cdn::url('/image/article/default/profile.gif') }}"
+                    data-original="{{ Cdn::image($article->images->first(), 'profile') }}"
+                    src="{{ Cdn::asset('/image/article/default/profile.gif') }}"
                 />
             </a>
             <div class="caption">
