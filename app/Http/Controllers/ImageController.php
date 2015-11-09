@@ -49,14 +49,23 @@ class ImageController extends Controller
                 });
                 break;
             default:
-                # code...
+                $img = $img->fit(600, 600, function ($constraint) {
+                    $constraint->upsize();
+                });
                 break;
         }
 
-        $img->encode('png');
-        header('Content-Length: ' . $img->filesize());
+        $img->encode('png', 90);
 
-        return $img->response();
+        $data   = $img->getEncoded();
+        $length = strlen($data);
+
+        $response = \Response::make($data);
+        $response->header('Content-Type', 'image/png');
+        $response->header('Content-Length', $length);
+        $response->header('Last-Modified', gmdate('D, d M Y H:i:s T', filemtime($image_filename)));
+
+        return $response;
     }
 
     public function getDefault($image_size)

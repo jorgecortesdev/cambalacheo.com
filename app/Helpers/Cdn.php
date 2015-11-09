@@ -8,17 +8,13 @@ class Cdn
 {
     protected $cdns = array();
 
-    public function asset($asset, $type = '')
+    public function asset($asset)
     {
         $cdns = Config::get('cdn');
 
         $assetName = basename($asset);
         $assetName = explode("?", $assetName);
         $assetName = $assetName[0];
-
-        if (!empty($type) && !empty($cdns[$type])) {
-            return $this->cdnPath($cdns[$type]['host'], $asset);
-        }
 
         foreach ($cdns as $types) {
             if (preg_match('/^.*\.(' . $types['files'] . ')$/i', $assetName)) {
@@ -31,7 +27,7 @@ class Cdn
 
     public function image($image, $size)
     {
-        return sprintf('/image/article/%d/%d/%s.png', $image->article_id, $image->id, $size);
+        return $this->asset(sprintf('/image/article/%d/%d/%s.png', $image->article_id, $image->id, $size));
     }
 
     private function cdnPath($cdn, $asset)

@@ -28,6 +28,10 @@ class ImageCacheHeadersMiddleware
             $response->setEtag($etag);
         }
 
+        $response->header('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + (60 * 60 * 24)));
+        $response->header('Cache-Control', 'public, max-age=604800', true);
+        $response->header('Pragma', 'cache');
+
         return $response;
     }
 }
