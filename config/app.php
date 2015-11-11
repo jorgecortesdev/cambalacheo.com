@@ -151,6 +151,7 @@ return [
         Greggilbert\Recaptcha\RecaptchaServiceProvider::class,
         App\Providers\CdnServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
+        Ipunkt\LaravelAnalytics\AnalyticsServiceProvider::class,
 
     ],
 
@@ -208,6 +209,7 @@ return [
         'Recaptcha'   => Greggilbert\Recaptcha\Facades\Recaptcha::class,
         'Cdn'         => App\Facades\Cdn::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
+        'Analytics'   => Ipunkt\LaravelAnalytics\AnalyticsFacade::class,
     ],
 
     'site_email'      => env('MAIL_FROM', ''),
