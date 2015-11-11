@@ -20,6 +20,11 @@ class Offer extends Model
     	return $this->belongsTo('App\User');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo('App\Offer', 'parent_id');
+    }
+
     public function replays()
     {
         return $this->hasMany('App\Offer', 'parent_id');

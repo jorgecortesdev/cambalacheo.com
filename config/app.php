@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => 'http://' . env('SITE_URL', 'localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -210,4 +210,6 @@ return [
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
     ],
 
+    'site_email'      => env('MAIL_FROM', ''),
+    'site_email_name' => env('MAIL_NAME', ''),
 ];

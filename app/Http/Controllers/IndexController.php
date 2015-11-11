@@ -131,18 +131,10 @@ class IndexController extends Controller
                     ->withErrors($validator);
             }
 
-            \Mail::send('emails.contact', [
-                'name'     => $request->get('name'),
-                'email'    => $request->get('email'),
-                'umessage' => $request->get('message')
-            ], function($message) {
-                $message->from('cambalacheo.oficial@gmail.com');
-                $message->to('cambalacheo.oficial@gmail.com', 'Admin')
-                    ->subject('Contacto cambalacheo');
-            });
+            $data = $request->only('name', 'email', 'message');
+            $this->dispatch(new \App\Jobs\SendContactEmail($data));
 
-            return redirect('contact')
-                ->with('message', 'Mensaje enviado');
+            return back()->with('message', 'Mensaje enviado');
         }
 
         return view('contact');

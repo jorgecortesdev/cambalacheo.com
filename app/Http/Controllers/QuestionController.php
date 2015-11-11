@@ -33,6 +33,8 @@ class QuestionController extends Controller
             $question = new Question($request->all());
             $question->user_id = Auth::user()->id;
             $question->save();
+
+            $this->dispatch(new \App\Jobs\SendQuestionReplayEmail($question));
         }
         return redirect('trades/' . $request->article_id);
     }
@@ -40,9 +42,9 @@ class QuestionController extends Controller
     public function store(Request $request)
     {
         $messages = [
-            'required' => 'Este campo es requerido.',
-            'description.max'   => 'No debe ser mayor a :max caracteres.',
-            'description.min'   => 'No debe ser menor a :min caracteres.',
+            'required'        => 'Este campo es requerido.',
+            'description.max' => 'No debe ser mayor a :max caracteres.',
+            'description.min' => 'No debe ser menor a :min caracteres.',
         ];
         $rules = [
             'description' => 'required|min:10|max:255',
@@ -59,6 +61,8 @@ class QuestionController extends Controller
         $question = new Question($request->all());
         $question->user_id = Auth::user()->id;
         $question->save();
+
+        $this->dispatch(new \App\Jobs\SendQuestionEmail($question));
 
         return redirect('trades/' . $question->article_id);
     }

@@ -31,9 +31,12 @@ class OfferController extends Controller
         ];
         $validator = \Validator::make($request->all(), $rules);
         if (!$validator->fails()) {
-            $question = new Offer($request->all());
-            $question->user_id = Auth::user()->id;
-            $question->save();
+            $offer = new Offer($request->all());
+            $offer->user_id = Auth::user()->id;
+            $offer->save();
+
+            $job  = (new \App\Jobs\SendOfferReplayEmail($offer))->onQueue('emails');
+            $this->dispatch($job);
         }
         return redirect('trades/' . $request->article_id);
     }
@@ -43,6 +46,9 @@ class OfferController extends Controller
         $offer = new Offer($request->all());
         $offer->user_id = Auth::user()->id;
         $offer->save();
+
+        $job  = (new \App\Jobs\SendOfferEmail($offer))->onQueue('emails');
+        $this->dispatch($job);
 
         return redirect('trades/' . $offer->article_id);
     }
@@ -55,6 +61,9 @@ class OfferController extends Controller
         if ($owner_user_id == $logged_user_id) {
             $offer->status = OFFER_STATUS_REJECTED;
             $offer->save();
+
+            $job  = (new \App\Jobs\SendOfferRejectedEmail($offer))->onQueue('emails');
+            $this->dispatch($job);
         }
         return redirect('trades/' . $offer->article_id);
     }
@@ -66,10 +75,13 @@ class OfferController extends Controller
         $owner_user_id = $article->user_id;
         $logged_user_id = Auth::user()->id;
         if ($owner_user_id == $logged_user_id) {
-            $article->status = ARTICLE_STATUS_EXCHANGE;
+            $article->status = ARTICLE_STATUS_PERMUTED;
             $article->save();
             $offer->status = OFFER_STATUS_ACCEPTED;
             $offer->save();
+
+            $job  = (new \App\Jobs\SendOfferAcceptedEmail($offer))->onQueue('emails');
+            $this->dispatch($job);
         }
         return redirect('trades/' . $offer->article_id);
     }

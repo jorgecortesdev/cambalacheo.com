@@ -69,13 +69,17 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
+        $user = User::create([
+            'name'     => $data['name'],
+            'email'    => $data['email'],
             'password' => bcrypt($data['password']),
             'state_id' => $data['state_id'],
-            'city_id' => $data['city_id']
+            'city_id'  => $data['city_id']
         ]);
+
+        $this->dispatch(new \App\Jobs\SendRegistrationEmail($user, $data['password']));
+
+        return $user;
     }
 
     /**
