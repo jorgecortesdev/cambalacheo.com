@@ -28,7 +28,7 @@
         <![endif]-->
     </head>
 
-    <body>
+    <body>{!! Analytics::render() !!}
         <div id="main" class="container">
 
             @include('layouts.partials.navigation')
