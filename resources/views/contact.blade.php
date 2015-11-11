@@ -2,6 +2,16 @@
 
 @section('page_title', 'Contacto')
 
+@section('footer')
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#send-contact-button').on('click', function () {
+            var $btn = $(this).button('loading');
+        });
+    });
+</script>
+@endsection
+
 @section('content')
 {!! Breadcrumbs::render('home') !!}
 
@@ -53,7 +63,12 @@ la forma siguiente y mandanos un mensaje.</p>
                 </div>
 
                 <br>
-                {!! Form::button('Enviar', ['class' => 'btn btn-lg btn-primary btn-block', 'type' => 'submit']) !!}
+                {!! Form::button('Enviar', [
+                    'class'             => 'btn btn-lg btn-primary btn-block',
+                    'type'              => 'submit',
+                    'data-loading-text' => '<i class="fa fa-cog fa-spin"></i> Enviando...',
+                    'id'                => 'send-contact-button'
+                ]) !!}
             {!! Form::close() !!}
         </div>
     </div>

@@ -2,6 +2,21 @@
 
 @section('page_title', 'Mis preguntas')
 
+@section('footer')
+<script type="text/javascript">
+    $(document).ready(function() {
+        var hash = document.location.hash;
+        if (hash) {
+            $('.nav-tabs a[href=' + hash + ']').tab('show');
+        }
+        // Change hash for page-reload
+        $('.nav-tabs a').on('shown.bs.tab', function (e) {
+            window.location.hash = e.target.hash;
+        });
+    });
+</script>
+@endsection
+
 @section('content')
 
 <h2>Preguntas</h2>

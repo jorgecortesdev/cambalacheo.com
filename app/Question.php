@@ -20,6 +20,11 @@ class Question extends Model
     	return $this->belongsTo('App\User');
     }
 
+    public function parent()
+    {
+        return $this->belongsTo('App\Question', 'parent_id');
+    }
+
     public function replays()
     {
         return $this->hasMany('App\Question', 'parent_id');
