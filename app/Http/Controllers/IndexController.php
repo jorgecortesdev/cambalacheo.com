@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Event;
 use Config;
-
+use App\Http\Requests\ContactRequest;
+use App\Http\Requests\SearchRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -25,7 +27,6 @@ class IndexController extends Controller
         return view('index', compact('articles', 'featured_articles'));
     }
 
-    // TODO: Ajustar categorias, condiciones y ubicacion al nuevo diseño
     public function category(Request $request)
     {
         $category_id = $request->category_id;
@@ -80,25 +81,10 @@ class IndexController extends Controller
         return view('index', compact('articles', 'location'));
     }
 
-    public function search(Request $request)
+    public function search(SearchRequest $request)
     {
-        $validator = \Validator::make($request->all(), [
-            'q' => 'min:3|max:25'
-
-        ]);
-        if ($validator->fails()) {
-            $articles = new \Illuminate\Database\Eloquent\Collection;
-            return view('index', compact('articles'));
-        }
-
         $query = $request->q;
-
-        $main_article_list_limit = Config::get('main_article_list_limit');
-
-        $articles = \App\Article::where('title', 'LIKE', '%'.$query.'%')
-            ->orWhere('description', 'LIKE', '%'.$query.'%')
-            ->paginate($main_article_list_limit);
-
+        $articles = \App\Article::search($query);
         return view('index', compact('articles', 'query'));
     }
 
@@ -107,33 +93,11 @@ class IndexController extends Controller
         return view('about');
     }
 
-    public function contact(Request $request)
+    public function contact(ContactRequest $request)
     {
         if ($request->isMethod('post')) {
-            $messages = [
-                'required' => 'Este campo es requerido.',
-                'max'      => 'No debe ser mayor a :max caracteres.',
-                'min'      => 'No debe ser menor a :min caracteres.',
-                'recaptcha'=> 'Indicanos que eres humano.'
-            ];
-
-            $rules = [
-                'name'                 => 'required|min:5|max:255',
-                'email'                => 'required|email|max:255',
-                'message'              => 'required|min:5|max:255',
-                'g-recaptcha-response' => 'required|recaptcha',
-            ];
-
-            $validator = \Validator::make($request->all(), $rules, $messages);
-
-            if ($validator->fails()) {
-                return redirect('contact')
-                    ->withErrors($validator);
-            }
-
             $data = $request->only('name', 'email', 'message');
-            $this->dispatch(new \App\Jobs\SendContactEmail($data));
-
+            Event::fire(new \App\Events\ContactSent($data));
             return back()->with('message', 'Mensaje enviado');
         }
 
