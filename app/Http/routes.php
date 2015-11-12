@@ -75,3 +75,11 @@ Route::get('cities/{state_id}', function($state_id) {
     $cities = \App\City::select('id', 'name')->where('state_id', $state_id)->get()->toArray();
     return Response::json(compact('cities'));
 });
+
+// Password reset link request routes...
+Route::get('password/email', 'Auth\PasswordController@getEmail');
+Route::post('password/email', 'Auth\PasswordController@postEmail');
+
+// Password reset routes...
+Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
+Route::post('password/reset', 'Auth\PasswordController@postReset');
