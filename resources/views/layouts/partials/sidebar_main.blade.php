@@ -1,12 +1,17 @@
 <h4>Búsqueda</h4>
 <div class="well well-sm">
     {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
-    <div class="input-group">
+    <div class="input-group @if ($errors->has('q')) has-error @endif">
         {!! Form::text('q', null, ['class' => 'form-control', 'placeholder' => 'Busca por...']) !!}
         <span class="input-group-btn">
             {!! Form::button('<i class="fa fa-search"></i>', ['class' => 'btn btn-primary', 'type' => 'submit']) !!}
         </span>
     </div>
+    @if ($errors->has('q'))
+    <div class="form-group has-error">
+        <span class="form-group help-block">* {{ $errors->first('q') }}</span>
+    </div>
+    @endif
     {!! Form::close() !!}
 </div>
 

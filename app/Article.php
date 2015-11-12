@@ -62,4 +62,12 @@ class Article extends Model
                 'questions.parent_id' => 0
             ])->orderBy('questions.created_at', 'desc')->get();
     }
+
+    public function scopeSearch($query, $q)
+    {
+        $main_article_list_limit = \Config::get('main_article_list_limit');
+        return $query->where('title', 'LIKE', '%' . $q . '%')
+            ->orWhere('description', 'LIKE', '%' . $q . '%')
+            ->paginate($main_article_list_limit);
+    }
 }
