@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
-@section('page_title', 'Entrar')
+@section('page_title', 'Restablecer contraseña')
 
 @section('footer')
 <script type="text/javascript">
-    $(document).ready(function () {
-        $('#login-button').on('click', function () {
+    $(document).ready(function() {
+        $('#reset-button').on('click', function () {
             var $btn = $(this).button('loading');
         });
     });
@@ -15,15 +15,17 @@
 @section('content')
 {!! Breadcrumbs::render('home') !!}
 
-<h2>Entrar</h2>
-<p>Introduce tus datos para entrar en el sitio. Si aún no estas registrado, puedes hacerlo totalmente <strong>gratis</strong> <a href="/auth/register">aquí</a>.</p>
+<h2>Restablecer contraseña</h2>
+<p>Introduce los datos solicitados, recuerda anotar tu contraseña en algún lugar seguro.</p>
 
 <hr>
 
 <div class="row">
     <div class="col-md-12">
         <div class="well">
-            {!! Form::open(['url' => '/auth/login']) !!}
+            {!! Form::open(['url' => '/password/reset']) !!}
+                {!! Form::hidden('token', $token) !!}
+
                 <div class="form-group @if ($errors->has('email')) has-error @endif">
                     {!! Form::label('email', 'Correo', ['class' => 'control-label']) !!}
                     {!! Form::email('email', null, ['class' => 'form-control']) !!}
@@ -31,6 +33,7 @@
                     <span class="help-block">* {{ $errors->first('email') }}</span>
                     @endif
                 </div>
+
                 <div class="form-group @if ($errors->has('password')) has-error @endif">
                     {!! Form::label('password', 'Contraseña', ['class' => 'control-label']) !!}
                     {!! Form::password('password', ['class' => 'form-control']) !!}
@@ -38,27 +41,25 @@
                     <span class="help-block">* {{ $errors->first('password') }}</span>
                     @endif
                 </div>
-                <div class="checkbox">
-                    <label>
-                        {!! Form::checkbox('remember', 'Remember Me') !!} No cerrar sesión
-                    </label>
+
+                <div class="form-group @if ($errors->has('password')) has-error @endif">
+                    {!! Form::label('password', 'Confirmar Contraseña', ['class' => 'control-label']) !!}
+                    {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                    @if ($errors->has('password'))
+                    <span class="help-block">* {{ $errors->first('password') }}</span>
+                    @endif
                 </div>
+
                 <br>
-                {!! Form::button('Entrar', [
+                {!! Form::button('Restablecer', [
                     'class'             => 'btn btn-lg btn-primary btn-block',
                     'type'              => 'submit',
                     'data-loading-text' => '<i class="fa fa-cog fa-spin"></i> Enviando...',
-                    'id'                => 'login-button'
+                    'id'                => 'reset-button'
                 ]) !!}
             {!! Form::close() !!}
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12 text-center">
-        <a href="/password/email">&iquest;Olvidaste tu contraseña?</a>
-    </div>
-</div>
 
 @endsection
-
