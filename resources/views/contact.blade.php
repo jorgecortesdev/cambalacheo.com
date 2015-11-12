@@ -3,6 +3,8 @@
 @section('page_title', 'Contacto')
 
 @section('footer')
+<script src="{{ Cdn::asset('/js/jquery.simplyCountable.js') }}"></script>
+<script src="{{ Cdn::asset('/js/contact.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#send-contact-button').on('click', function () {
@@ -30,10 +32,13 @@ la forma siguiente y mandanos un mensaje.</p>
 <div class="row">
     <div class="col-md-12">
         <div class="well">
-            {!! Form::open(['url' => 'contact']) !!}
+            {!! Form::open(['url' => 'contact', 'class' => 'form-counter']) !!}
                 <div class="form-group @if ($errors->has('name')) has-error @endif">
                     {!! Form::label('name', 'Nombre', ['class' => 'control-label']) !!}
-                    {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                    <div class="input-counter">
+                        {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                        <div class="small"><span id="counter-name"></span>/255</div>
+                    </div>
                     @if ($errors->has('name'))
                     <span class="help-block">* {{ $errors->first('name') }}</span>
                     @endif
@@ -41,7 +46,10 @@ la forma siguiente y mandanos un mensaje.</p>
 
                 <div class="form-group @if ($errors->has('email')) has-error @endif">
                     {!! Form::label('email', 'Correo', ['class' => 'control-label']) !!}
-                    {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
+                    <div class="input-counter">
+                        {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
+                        <div class="small"><span id="counter-email"></span>/255</div>
+                    </div>
                     @if ($errors->has('email'))
                     <span class="help-block">* {{ $errors->first('email') }}</span>
                     @endif
@@ -49,7 +57,10 @@ la forma siguiente y mandanos un mensaje.</p>
 
                 <div class="form-group @if ($errors->has('message')) has-error @endif">
                     {!! Form::label('message', 'Mensaje', ['class' => 'control-label']) !!}
-                    {!! Form::textarea('message', null, ['class' => 'form-control', 'rows' => 5]) !!}
+                    <div class="input-counter">
+                        {!! Form::textarea('message', null, ['class' => 'form-control', 'rows' => 5]) !!}
+                        <div class="small"><span id="counter-message"></span>/255</div>
+                    </div>
                     @if ($errors->has('message'))
                     <span class="help-block">* {{ $errors->first('message') }}</span>
                     @endif
