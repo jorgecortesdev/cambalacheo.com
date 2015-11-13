@@ -59,9 +59,7 @@ class OfferController extends Controller
         if ($owner_user_id == $logged_user_id) {
             $offer->status = OFFER_STATUS_REJECTED;
             $offer->save();
-
-            $job  = (new \App\Jobs\SendOfferRejectedEmail($offer))->onQueue('emails');
-            $this->dispatch($job);
+            $this->dispatch(new \App\Jobs\SendOfferRejectedEmail($offer));
         }
         return redirect('trades/' . $offer->article_id);
     }

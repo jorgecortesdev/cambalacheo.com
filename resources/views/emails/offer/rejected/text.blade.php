@@ -1,8 +1,7 @@
-<p>
-Lo sentimos {{ $offer->parent->user->name }}, han rechazado a tu oferta!
-</p>
+Lo sentimos *{{ $offer->user->name }}*, una de tus ofertas ha sido rechazada.
 
-<ul>
-    <li>Cambalache: {{ $offer->article->title }}</li>
-    <li>Te lo envia: {{ $offer->user->name }}</li>
-</ul>
+Para conocer cual da clic en la siguiente liga: {{ config('app.url') }}/trades/{{ $offer->article_id }}
+
+
+Saludos!
+{{ config('app.url') }}

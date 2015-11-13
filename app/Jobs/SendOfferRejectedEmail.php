@@ -25,6 +25,7 @@ class SendOfferRejectedEmail extends Job implements SelfHandling, ShouldQueue
     public function __construct(Offer $offer)
     {
         $this->offer = $offer;
+        $this->onQueue('emails');
     }
 
     /**
@@ -34,13 +35,14 @@ class SendOfferRejectedEmail extends Job implements SelfHandling, ShouldQueue
      */
     public function handle(Mailer $mailer)
     {
+        $offer = $this->offer;
         $mailer->send(
-            'emails.offer_rejected',
-            ['offer' => $this->offer],
-            function($message) {
-                $message->subject('Contacto cambalacheo')
+            ['emails.offer.rejected.html', 'emails.offer.rejected.text'],
+            ['offer' => $offer],
+            function($message) use ($offer) {
+                $message->subject('[Cambalacheo]: ¡Lo sentimos ' . $offer->user->name . '!, han rechazado tu oferta.')
                     ->to('cambalacheo.oficial@gmail.com')
-                    ->replyTo('noreplay@cambalacheo.com');
+                    ->replyTo(config('app.site_email'));
             }
         );
     }
