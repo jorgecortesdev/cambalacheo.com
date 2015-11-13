@@ -96,7 +96,7 @@ class IndexController extends Controller
     public function contact(ContactRequest $request)
     {
         if ($request->isMethod('post')) {
-            $data = $request->only('name', 'email', 'message');
+            $data = $request->only('name', 'email', 'message', 'registered');
             Event::fire(new \App\Events\ContactSent($data));
             return back()->with('message', 'Mensaje enviado');
         }

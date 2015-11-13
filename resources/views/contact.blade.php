@@ -29,14 +29,31 @@ la forma siguiente y mandanos un mensaje.</p>
 </div>
 @endif
 
+{{--*/
+$extra_attributes = [];
+$name             = '';
+$email            = '';
+$registered       = false;
+/*--}}
+@if (Auth::check())
+{{--*/
+$name                         = Auth::user()->name;
+$email                        = Auth::user()->email;
+$extra_attributes['readonly'] = 'readonly';
+$registered                   = true;
+/*--}}
+@endif
+
 <div class="row">
     <div class="col-md-12">
         <div class="well">
             {!! Form::open(['url' => 'contact', 'class' => 'form-counter']) !!}
+                {!! Form::hidden('registered', $registered) !!}
+
                 <div class="form-group @if ($errors->has('name')) has-error @endif">
                     {!! Form::label('name', 'Nombre', ['class' => 'control-label']) !!}
                     <div class="input-counter">
-                        {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                        {!! Form::text('name', $name, ['class' => 'form-control'] + $extra_attributes) !!}
                         <div class="small"><span id="counter-name"></span>/255</div>
                     </div>
                     @if ($errors->has('name'))
@@ -47,7 +64,7 @@ la forma siguiente y mandanos un mensaje.</p>
                 <div class="form-group @if ($errors->has('email')) has-error @endif">
                     {!! Form::label('email', 'Correo', ['class' => 'control-label']) !!}
                     <div class="input-counter">
-                        {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
+                        {!! Form::email('email', $email, ['class' => 'form-control'] + $extra_attributes) !!}
                         <div class="small"><span id="counter-email"></span>/255</div>
                     </div>
                     @if ($errors->has('email'))

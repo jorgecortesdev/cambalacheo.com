@@ -3,7 +3,7 @@
 <p style="margin:1em 0">Aquí los detalles.</p>
 
 <ul>
-    <li>Nombre: <strong>{{ $name }}</strong></li>
+    <li>Nombre: <strong>{{ $name }}</strong> @if($registered) <strong>(REGISTRADO)</strong> @endif</li>
     <li>Correo: <strong>{{ $email }}</strong></li>
 </ul>
 
