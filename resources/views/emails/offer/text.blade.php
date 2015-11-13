@@ -1,8 +1,7 @@
-<p>
-En horabuena! {{ $offer->article->user->name }}, has recibido una oferta!
-</p>
+*{{ $offer->user->name }}* ha agregado una oferta sobre uno de tus cambalaches.
 
-<ul>
-    <li>Cambalache: {{ $offer->article->title }}</li>
-    <li>Te lo envia: {{ $offer->user->name }}</li>
-</ul>
+Te sugerimos responder a la brevedad. Para revisar la oferta da clic en la siguiente liga: {{ config('app.url') }}/panel/offers#received
+
+
+Saludos!
+{{ config('app.url') }}

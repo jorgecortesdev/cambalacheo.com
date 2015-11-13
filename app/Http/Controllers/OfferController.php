@@ -37,8 +37,7 @@ class OfferController extends Controller
             $offer->user_id = Auth::user()->id;
             $offer->save();
 
-            $job  = (new \App\Jobs\SendOfferReplayEmail($offer))->onQueue('emails');
-            $this->dispatch($job);
+            $this->dispatch(new \App\Jobs\SendOfferReplayEmail($offer));
         }
         return redirect('trades/' . $request->article_id);
     }

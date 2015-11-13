@@ -1,8 +1,7 @@
-<p>
-En horabuena! {{ $offer->parent->user->name }}, han contestado a tu oferta!
-</p>
+*{{ $replay->user->name }}* ha agregado una respuesta a tu oferta.
 
-<ul>
-    <li>Cambalache: {{ $offer->article->title }}</li>
-    <li>Te lo envia: {{ $offer->user->name }}</li>
-</ul>
+Te sugerimos responder a la brevedad. Para revisar la respuesta da clic en la siguiente liga: {{ config('app.url') }}/trades/{{ $replay->article_id }}
+
+
+Saludos!
+{{ config('app.url') }}
