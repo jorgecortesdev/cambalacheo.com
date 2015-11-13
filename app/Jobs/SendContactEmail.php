@@ -16,6 +16,7 @@ class SendContactEmail extends Job implements SelfHandling, ShouldQueue
     protected $name;
     protected $email;
     protected $message;
+    protected $registered;
 
     /**
      * Create a new job instance.
@@ -24,9 +25,10 @@ class SendContactEmail extends Job implements SelfHandling, ShouldQueue
      */
     public function __construct($data)
     {
-        $this->name    = $data['name'];
-        $this->email   = $data['email'];
-        $this->message = $data['message'];
+        $this->name       = $data['name'];
+        $this->email      = $data['email'];
+        $this->message    = $data['message'];
+        $this->registered = $data['registered'];
 
         $this->onQueue('emails');
     }
@@ -39,8 +41,9 @@ class SendContactEmail extends Job implements SelfHandling, ShouldQueue
     public function handle(Mailer $mailer)
     {
         $data = [
-            'name'  => $this->name,
-            'email' => $this->email,
+            'name'       => $this->name,
+            'email'      => $this->email,
+            'registered' => $this->registered,
         ];
         $data['umessage'] = explode("\n", $this->message);
 
