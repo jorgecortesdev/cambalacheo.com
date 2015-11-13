@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\ContactSent' => [
             'App\Listeners\SendContactEmail',
         ],
+        'App\Events\OfferStore' => [
+            'App\Listeners\SendOfferEmail',
+        ],
     ];
 
     /**
