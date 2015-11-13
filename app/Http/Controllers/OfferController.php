@@ -75,9 +75,7 @@ class OfferController extends Controller
             $article->save();
             $offer->status = OFFER_STATUS_ACCEPTED;
             $offer->save();
-
-            $job  = (new \App\Jobs\SendOfferAcceptedEmail($offer))->onQueue('emails');
-            $this->dispatch($job);
+            $this->dispatch(new \App\Jobs\SendOfferAcceptedEmail($offer));
         }
         return redirect('trades/' . $offer->article_id);
     }
