@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Auth;
+use Event;
 
 use App\Article;
 use App\Offer;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Http\Requests\OfferRequest;
 use App\Http\Controllers\Controller;
 
 class OfferController extends Controller
@@ -41,15 +43,12 @@ class OfferController extends Controller
         return redirect('trades/' . $request->article_id);
     }
 
-    public function store(Request $request)
+    public function store(OfferRequest $request)
     {
         $offer = new Offer($request->all());
         $offer->user_id = Auth::user()->id;
         $offer->save();
-
-        $job  = (new \App\Jobs\SendOfferEmail($offer))->onQueue('emails');
-        $this->dispatch($job);
-
+        Event::fire(new \App\Events\OfferStore($offer));
         return redirect('trades/' . $offer->article_id);
     }
 
