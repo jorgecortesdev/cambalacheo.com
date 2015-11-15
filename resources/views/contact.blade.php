@@ -48,7 +48,7 @@ $registered                   = true;
     <div class="col-md-12">
         <div class="well">
             {!! Form::open(['url' => 'contact', 'class' => 'form-counter']) !!}
-                {!! Form::hidden('registered', $registered) !!}
+                {!! Form::hidden('user_registered', $user_registered) !!}
 
                 <div class="form-group @if ($errors->has('name')) has-error @endif">
                     {!! Form::label('name', 'Nombre', ['class' => 'control-label']) !!}

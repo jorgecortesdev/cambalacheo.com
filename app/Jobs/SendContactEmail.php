@@ -28,7 +28,7 @@ class SendContactEmail extends Job implements SelfHandling, ShouldQueue
         $this->name       = $data['name'];
         $this->email      = $data['email'];
         $this->message    = $data['message'];
-        $this->registered = $data['registered'];
+        $this->registered = $data['user_registered'];
 
         $this->onQueue('emails');
     }

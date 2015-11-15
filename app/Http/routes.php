@@ -18,8 +18,9 @@ Route::get('/condition/{condition_id}',      'IndexController@condition');
 Route::get('/search',                        'IndexController@search');
 Route::get('/location/{state_id}/{city_id}', 'IndexController@location');
 Route::get('about',                          'IndexController@about');
-Route::get('contact',                        'IndexController@contact');
-Route::post('contact',                       'IndexController@contact');
+
+Route::get('contact',                        'ContactController@create');
+Route::post('contact',                       'ContactController@store');
 
 // Panel routes
 Route::get('panel',           'PanelController@index');
