@@ -24,7 +24,7 @@ class SearchRequest extends Request
     public function rules()
     {
         return [
-            'q' => 'required|min:3|max:25'
+            'query' => 'required|min:3|max:25'
         ];
     }
 

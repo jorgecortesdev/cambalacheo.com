@@ -18,10 +18,6 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         view()->composer(
-            'layouts.partials.article_list', 'App\Http\ViewComposers\ArticleListComposer'
-        );
-
-        view()->composer(
             'layouts.partials.sidebar_panel', 'App\Http\ViewComposers\PanelMenuComposer'
         );
 
@@ -30,9 +26,9 @@ class ComposerServiceProvider extends ServiceProvider
         );
 
         // Figure it out what is the correct view
-        // view()->composer('*', function($view) { 
-        //     print $view->getName() . "<br>"; 
-        // }); 
+        // view()->composer('*', function($view) {
+        //     print $view->getName() . "<br>";
+        // });
     }
 
     /**

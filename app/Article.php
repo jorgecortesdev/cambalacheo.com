@@ -65,9 +65,8 @@ class Article extends Model
 
     public function scopeSearch($query, $q)
     {
-        $main_article_list_limit = \Config::get('main_article_list_limit');
         return $query->where('title', 'LIKE', '%' . $q . '%')
             ->orWhere('description', 'LIKE', '%' . $q . '%')
-            ->paginate($main_article_list_limit);
+            ->orderBy('created_at', 'desc');
     }
 }

@@ -11,16 +11,17 @@
 |
 */
 
-// Index routes
-Route::get('/',                              'IndexController@index');
-Route::get('/category/{category_id}',        'IndexController@category');
-Route::get('/condition/{condition_id}',      'IndexController@condition');
-Route::get('/search',                        'IndexController@search');
-Route::get('/location/{state_id}/{city_id}', 'IndexController@location');
 Route::get('about',                          'IndexController@about');
 
-Route::get('contact',                        'ContactController@create');
-Route::post('contact',                       'ContactController@store');
+// Index routes
+Route::get('/',                              'SearchController@index');
+Route::get('/category/{category_id}',        'SearchController@category');
+Route::get('/condition/{condition_id}',      'SearchController@condition');
+Route::get('/search',                        'SearchController@search');
+Route::get('/location/{state_id}/{city_id}', 'SearchController@location');
+
+Route::get('contact',  'ContactController@create');
+Route::post('contact', 'ContactController@store');
 
 // Panel routes
 Route::get('panel',           'PanelController@index');
