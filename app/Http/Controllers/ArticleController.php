@@ -105,7 +105,7 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        $article = Article::with('category', 'offers', 'questions', 'user.state')->find($id);
+        $article = Article::with('category', 'offers', 'questions', 'user.state', 'images', 'user.city')->find($id);
 
         $article_conditions = Config::get('constants.conditions');
 
