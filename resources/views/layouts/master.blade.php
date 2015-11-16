@@ -10,7 +10,7 @@
         <title>Cambalacheo - @yield('page_title')</title>
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
+        <link rel="stylesheet" href="{{ Cdn::asset(elixir('css/all.css')) }}">
 
         @yield('header')
 
@@ -46,7 +46,7 @@
         </div> <!-- /container -->
 
         <!-- Scripts -->
-        <script src={{ elixir('js/all.js') }}></script>
+        <script src={{ Cdn::asset(elixir('js/all.js')) }}></script>
 
         @yield('footer')
 

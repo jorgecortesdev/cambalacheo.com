@@ -3,7 +3,6 @@
 @section('page_title', $article->title)
 
 @section('footer')
-<script src="{{ Cdn::asset('/js/jquery.slides.min.js') }}"></script>
 <script src="{{ Cdn::asset('/js/show.js') }}"></script>
 @endsection
 
