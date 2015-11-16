@@ -1,0 +1,34 @@
+.article .description {
+  color: #999;
+}
+
+.dl-horizontal dd.article-status {
+  border-radius: 6px;
+  font-weight: 700;
+  padding: 5px 0;
+}
+
+#main-carousel {
+  background-color: #eee;
+  margin-bottom: 4px;
+}
+#main-carousel .carousel-inner div img {
+  margin: auto;
+  min-height: 416px;
+}
+#main-carousel-thumbs ul {
+  margin-left: 0
+}
+#main-carousel-thumbs ul li {
+  cursor: pointer;
+  padding: 0;
+}
+#main-carousel-thumbs ul li.active img {
+  opacity: .5;
+}
+
+.vcenter {
+  display: inline-block;
+  float: none;
+  vertical-align: middle;
+}

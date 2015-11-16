@@ -1,0 +1,33 @@
+.article-list ul {
+  color: #555555;
+  line-height: 1.8em;
+  list-style: none;
+  margin-top: 5px;
+  padding-left: 20px;
+}
+.article-list td .row {
+  min-height: 130px;
+}
+.article-list td h4 {
+  margin-top: 0;
+}
+.article-list td p.description {
+  color: #555555;
+  min-height: 55px;
+}
+.article-list a {
+  display: inline-block;
+  position: relative;
+}
+.article-list .photo-counter {
+  background: rgba(0,0,0,.50);
+  border-radius: 0 0 6px 6px;
+  bottom: 0;
+  color: rgba(255,255,255,.85);
+  display: block;
+  font-size: 85%;
+  padding: .35em .25em;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+}

@@ -9,14 +9,8 @@
 
         <title>Cambalacheo - @yield('page_title')</title>
 
-        <!-- Bootstrap Core CSS -->
-        <link href="{{ Cdn::asset('/css/bootstrap.min.css') }}" rel="stylesheet">
-
-        <!-- Custom styles for this template -->
-        <link href="{{ Cdn::asset('/css/style.css') }}" rel="stylesheet">
-
-        <!-- Custom Fonts -->
-        <link href="{{ Cdn::asset('/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css">
+        <!-- Styles -->
+        <link rel="stylesheet" href="{{ elixir('css/all.css') }}">
 
         @yield('header')
 
@@ -51,14 +45,8 @@
 
         </div> <!-- /container -->
 
-        <!-- jQuery -->
-        <script src="{{ Cdn::asset('/js/jquery-1.11.3.min.js') }}"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="{{ Cdn::asset('/js/bootstrap.min.js') }}"></script>
-
-        <!-- Jquery plugins -->
-        <script src="{{ Cdn::asset('/js/jquery.lazyload.min.js') }}"></script>
+        <!-- Scripts -->
+        <script src={{ elixir('js/all.js') }}></script>
 
         @yield('footer')
 

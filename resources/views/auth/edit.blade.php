@@ -3,7 +3,6 @@
 @section('page_title', 'Editar perfil')
 
 @section('footer')
-<script src="{{ Cdn::asset('/js/jquery.simplyCountable.js') }}"></script>
 <script src="{{ Cdn::asset('/js/user.js') }}"></script>
 
 <script type="text/javascript">

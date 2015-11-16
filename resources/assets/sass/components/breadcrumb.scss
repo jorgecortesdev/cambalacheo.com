@@ -1,0 +1,9 @@
+.breadcrumb {
+    background: 0 0;
+    border-radius: 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.breadcrumb>li+li:before {
+  color: rgba(204, 204, 204, 1); content: "\003E\00a0";
+}

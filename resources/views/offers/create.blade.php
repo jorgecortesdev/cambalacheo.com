@@ -3,7 +3,6 @@
 @section('page_title', 'Hacer oferta')
 
 @section('footer')
-<script src="{{ Cdn::asset('/js/jquery.simplyCountable.js') }}"></script>
 <script src="{{ Cdn::asset('/js/create-offer.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
