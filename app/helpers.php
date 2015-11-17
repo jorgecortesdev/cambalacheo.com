@@ -1,13 +1,19 @@
 <?php
 
 /**
- * Traduce el id de la condicion del articulo al nombre.
+ * Regresa la condicion dependiendo del slug o el id que se le pase.
  *
- * @param int $id
+ * @param mixed $slug
  * @return string
  */
-function article_condition($id)
+function article_condition($slug)
 {
     $conditions = \Config::get('constants.conditions');
-    return isset($conditions[$id]) ? $conditions[$id] : null;
+    foreach ($conditions as $condition) {
+        if ($condition['slug'] == $slug || $condition['id'] == $slug) {
+            return $condition;
+        }
+    }
+
+    return null;
 }

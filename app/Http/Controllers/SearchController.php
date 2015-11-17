@@ -52,20 +52,19 @@ class SearchController extends Controller
     }
 
 
-    public function condition(Request $request)
+    public function condition($slug)
     {
-        $condition_id = $request->condition_id;
-        $name = article_condition($condition_id);
+        $condition = article_condition($slug);
 
-        if (! $name) {
+        if (! $condition) {
             abort(404, 'No existe esa condición.');
         }
 
         $articles = $this->article
-            ->where(['condition_id' => $condition_id, 'status' => ARTICLE_STATUS_OPEN])
+            ->where(['condition_id' => $condition['id'], 'status' => ARTICLE_STATUS_OPEN])
             ->paginate($this->limit);
 
-        return view('search.condition', compact('articles', 'name'));
+        return view('search.condition', compact('articles', 'condition'));
     }
 
     public function location(Request $request)

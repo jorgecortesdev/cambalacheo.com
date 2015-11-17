@@ -31,7 +31,10 @@ class ArticleController extends Controller
     {
         $categories = \App\Category::lists('name', 'id');
 
-        $conditions = Config::get('constants.conditions');
+        $conditions = [];
+        foreach(Config::get('constants.conditions') as $condition) {
+            $conditions[$condition['id']] = $condition['name'];
+        }
 
         return view('articles.create', compact('categories', 'conditions'));
     }
@@ -107,8 +110,6 @@ class ArticleController extends Controller
     {
         $article = Article::with('category', 'offers', 'questions', 'user.state', 'images', 'user.city')->find($id);
 
-        $article_conditions = Config::get('constants.conditions');
-
         $article_status = Config::get('constants.status_article');
 
         $article_id = $article->id;
@@ -124,7 +125,6 @@ class ArticleController extends Controller
             'articles.show',
             compact(
                 'article',
-                'article_conditions',
                 'article_status',
                 'images',
                 'logged_user_id'
@@ -144,7 +144,10 @@ class ArticleController extends Controller
 
         $categories = \App\Category::lists('name', 'id');
 
-        $conditions = Config::get('constants.conditions');
+        $conditions = [];
+        foreach(Config::get('constants.conditions') as $condition) {
+            $conditions[$condition['id']] = $condition['name'];
+        }
 
         return view('articles.edit', compact('article', 'categories', 'conditions'));
 

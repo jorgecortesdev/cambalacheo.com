@@ -74,7 +74,7 @@
                 </tr>
                 <tr>
                     <td>Condición</td>
-                    <td>{{ $article_conditions[$article->condition_id] }}</td>
+                    <td>{{ article_condition($article->condition_id)['name'] }}</td>
                 </tr>
                 <tr>
                     <td>Ubicación</td>

@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
-@section('page_title', 'Condición: ' . $name)
+@section('page_title', 'Condición: ' . $condition['name'])
 
 @section('content')
 
-<h4>Mostrando: <span class="text-muted">{{ $name }}s</span></h4>
+<h4>Mostrando: <span class="text-muted">{{ $condition['name'] }}s</span></h4>
 
 @include('partials.articles.list')
 

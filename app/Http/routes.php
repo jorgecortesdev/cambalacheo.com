@@ -15,13 +15,12 @@ Route::get('about',                          'IndexController@about');
 
 // Index routes
 Route::get('/',                              'SearchController@index');
-Route::get('/category/{category_id}',        'SearchController@category');
-Route::get('/condition/{condition_id}',      'SearchController@condition');
 Route::get('/search',                        'SearchController@search');
 Route::get('/location/{state_id}/{city_id}', 'SearchController@location');
 
 // Slugs
 Route::get('/categoria/{slug}', 'SearchController@category');
+Route::get('/condicion/{slug}', 'SearchController@condition');
 
 Route::get('contact',  'ContactController@create');
 Route::post('contact', 'ContactController@store');

@@ -1,9 +1,9 @@
 <?php
 return [
 	'conditions' => [
-		1 => 'Nuevo',
-		2 => 'Usado',
-		3 => 'Renovado',
+		['id' => 1, 'name' => 'Nuevo', 'slug' => 'nuevo'],
+		['id' => 2, 'name' => 'Usado', 'slug' => 'usado'],
+		['id' => 3, 'name' => 'Renovado', 'slug' => 'renovado']
 	],
 	'status_article' => [
 		1 => 'Recibiendo ofertas',
