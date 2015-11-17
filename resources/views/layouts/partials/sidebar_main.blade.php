@@ -18,6 +18,6 @@
 <h4>Categorías</h4>
 <div class="categories list-group">
     @foreach ($categories as $category)
-    <a href="/category/{{ $category->id }}" class="list-group-item">{{ $category->name }} ({{ $category->articlesCount }}) <i class="fa fa-chevron-right"></i></a>
+    <a href="/categoria/{{ $category->slug }}" class="list-group-item">{{ $category->name }} ({{ $category->articlesCount }}) <i class="fa fa-chevron-right"></i></a>
     @endforeach
 </div>

@@ -26,7 +26,7 @@
 						<div class="col-md-4">
 							<ul class="list">
 								<li><i class="glyphicon glyphicon-calendar"></i>&nbsp;&nbsp;{{ $article->created_at->format('d/m/Y') }}</li>
-								<li><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;<a href="/category/{{ $article->category->id }}">{{ str_limit($article->category->name, 27) }}</a></li>
+								<li><i class="glyphicon glyphicon-folder-open"></i>&nbsp;&nbsp;<a href="/categoria/{{ $article->category->slug }}">{{ str_limit($article->category->name, 27) }}</a></li>
 								<li><i class="glyphicon glyphicon-asterisk"></i>&nbsp;&nbsp;<a href="/condition/{{ $article->condition_id }}">{{ article_condition($article->condition_id) }}</a></li>
 								<li>
 									<i class="fa fa-globe"></i>&nbsp;&nbsp;<a href="/location/{{ $article->user->state->id }}/{{ $article->user->city->id }}">

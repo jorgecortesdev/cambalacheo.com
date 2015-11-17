@@ -8,7 +8,7 @@ Breadcrumbs::register('home', function($breadcrumb) {
 // Home > Category
 Breadcrumbs::register('category', function($breadcrumb, $category) {
     $breadcrumb->parent('home');
-    $breadcrumb->push($category->name, url('/category/' . $category->id));
+    $breadcrumb->push($category->name, url('/categoria/' . $category->slug));
 });
 
 // Home > Category > Article

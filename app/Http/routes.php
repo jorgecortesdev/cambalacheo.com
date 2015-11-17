@@ -20,6 +20,9 @@ Route::get('/condition/{condition_id}',      'SearchController@condition');
 Route::get('/search',                        'SearchController@search');
 Route::get('/location/{state_id}/{city_id}', 'SearchController@location');
 
+// Slugs
+Route::get('/categoria/{slug}', 'SearchController@category');
+
 Route::get('contact',  'ContactController@create');
 Route::post('contact', 'ContactController@store');
 
@@ -85,3 +88,5 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 // Password reset routes...
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
+
+Route::get('migration/categories', 'MigrationController@categories_slug');

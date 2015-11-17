@@ -37,14 +37,12 @@ class SearchController extends Controller
         return view('search.index', compact('articles', 'featured_articles'));
     }
 
-    public function category(Request $request)
+    public function category($slug)
     {
-        $category_id = $request->category_id;
-
         try {
-            $category = Category::findOrFail($category_id);
+            $category = Category::whereSlug($slug)->firstOrFail();
             $articles = $this->article
-                ->where(['category_id' => $category_id, 'status' => ARTICLE_STATUS_OPEN])
+                ->where(['category_id' => $category->id, 'status' => ARTICLE_STATUS_OPEN])
                 ->paginate($this->limit);
         } catch(ModelNotFoundException $e) {
             abort(404, 'No existe esa categoría.');
