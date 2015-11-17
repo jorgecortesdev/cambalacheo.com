@@ -39,7 +39,7 @@
 								</li>
 								<li>
 									<i class="fa fa-globe"></i>&nbsp;
-									<a href="/location/{{ $article->user->state->id }}/{{ $article->user->city->id }}">
+									<a href="/ubicacion/{{ $article->user->state->slug }}/{{ $article->user->city->slug }}">
 										{{ str_limit($article->user->city->name, 17) }}, {{ $article->user->state->short }}
 									</a>
 								</li>

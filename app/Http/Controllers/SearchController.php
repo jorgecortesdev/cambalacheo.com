@@ -67,21 +67,18 @@ class SearchController extends Controller
         return view('search.condition', compact('articles', 'condition'));
     }
 
-    public function location(Request $request)
+    public function location($state_slug, $city_slug)
     {
-        $state_id = $request->state_id;
-        $city_id  = $request->city_id;
-
         try {
             $location = State::join('cities', 'cities.state_id', '=', 'states.id')
-                ->select('states.short', 'cities.name')
-                ->where(['state_id' => $state_id, 'cities.id' => $city_id])
+                ->select('states.id as state_id', 'states.slug as state_slug', 'states.short as state_short', 'cities.id as city_id', 'cities.slug as city_slug', 'cities.name as city_name')
+                ->where(['states.slug' => $state_slug, 'cities.slug' => $city_slug])
                 ->firstOrFail();
 
             $articles = $this->article
                 ->join('users', 'users.id', '=', 'user_id')
                 ->select('articles.*')
-                ->where(['users.state_id' => $state_id, 'city_id' => $city_id,'status' => ARTICLE_STATUS_OPEN])
+                ->where(['users.state_id' => $location->state_id, 'city_id' => $location->city_id,'status' => ARTICLE_STATUS_OPEN])
                 ->paginate($this->limit);
         } catch(ModelNotFoundException $e) {
             abort(404, 'No existe esa ubicación.');
