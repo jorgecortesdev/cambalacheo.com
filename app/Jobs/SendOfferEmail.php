@@ -41,7 +41,7 @@ class SendOfferEmail extends Job implements SelfHandling, ShouldQueue
             ['offer' => $offer],
             function($message) use ($offer) {
                 $message->subject('[Cambalacheo]: ¡En horabuena ' . $offer->article->user->name . '!, has recibido una oferta.')
-                    ->to('cambalacheo.oficial@gmail.com')
+                    ->to($offer->article->user->email)
                     ->replyTo(config('app.site_email'));
             }
         );

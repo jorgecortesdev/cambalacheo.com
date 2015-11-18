@@ -41,7 +41,7 @@ class SendOfferRejectedEmail extends Job implements SelfHandling, ShouldQueue
             ['offer' => $offer],
             function($message) use ($offer) {
                 $message->subject('[Cambalacheo]: ¡Lo sentimos ' . $offer->user->name . '!, han rechazado tu oferta.')
-                    ->to('cambalacheo.oficial@gmail.com')
+                    ->to($offer->user->email)
                     ->replyTo(config('app.site_email'));
             }
         );

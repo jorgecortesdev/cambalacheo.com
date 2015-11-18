@@ -41,7 +41,7 @@ class SendQuestionEmail extends Job implements SelfHandling, ShouldQueue
             ['question' => $question],
             function($message) use ($question) {
                 $message->subject('[Cambalacheo]: ¡En horabuena ' . $question->article->user->name . '!, has recibido una pregunta.')
-                    ->to('cambalacheo.oficial@gmail.com')
+                    ->to($question->article->user->email)
                     ->replyTo(config('app.site_email'));
             }
         );

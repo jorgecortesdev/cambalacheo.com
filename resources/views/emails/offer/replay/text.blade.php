@@ -1,6 +1,6 @@
 *{{ $replay->user->name }}* ha agregado una respuesta a tu oferta.
 
-Te sugerimos responder a la brevedad. Para revisar la respuesta da clic en la siguiente liga: {{ config('app.url') }}/trades/{{ $replay->article_id }}
+Te sugerimos responder a la brevedad. Para revisar la respuesta da clic en la siguiente liga: {{ config('app.url') }}/articulo/{{ $replay->article->slug }}
 
 
 Saludos!

@@ -49,7 +49,7 @@ class SendQuestionReplayEmail extends Job implements SelfHandling, ShouldQueue
             ['question' => $question, 'replay' => $replay],
             function($message) use ($question) {
                 $message->subject('[Cambalacheo]: ¡En horabuena ' . $question->user->name . '!, has recibido una respuesta.')
-                    ->to('cambalacheo.oficial@gmail.com')
+                    ->to($question->user->email)
                     ->replyTo(config('app.site_email'));
             }
         );

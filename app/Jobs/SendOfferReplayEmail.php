@@ -49,7 +49,7 @@ class SendOfferReplayEmail extends Job implements SelfHandling, ShouldQueue
             ['offer' => $offer, 'replay' => $replay],
             function($message) use ($offer) {
                 $message->subject('[Cambalacheo]: ¡En horabuena ' . $offer->user->name . '!, has recibido una respuesta.')
-                    ->to('cambalacheo.oficial@gmail.com')
+                    ->to($offer->user->email)
                     ->replyTo(config('app.site_email'));
             }
         );

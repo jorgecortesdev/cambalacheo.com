@@ -56,8 +56,8 @@ class OfferController extends Controller
 
     public function reject($offer_id)
     {
-        $article = \App\Article::findOrFail($request->article_id);
-        $offer = Offer::find($offer_id);
+        $offer = Offer::findOrFail($offer_id);
+        $article = \App\Article::find($offer->article_id);
         $owner_user_id = $offer->article->user_id;
         $logged_user_id = Auth::user()->id;
         if ($owner_user_id == $logged_user_id) {
@@ -70,8 +70,8 @@ class OfferController extends Controller
 
     public function accept($offer_id)
     {
-        $article = \App\Article::findOrFail($request->article_id);
-        $offer = Offer::find($offer_id);
+        $offer = Offer::findOrFail($offer_id);
+        $article = \App\Article::find($offer->article_id);
         $article = $offer->article;
         $owner_user_id = $article->user_id;
         $logged_user_id = Auth::user()->id;

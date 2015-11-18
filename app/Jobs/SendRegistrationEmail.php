@@ -42,7 +42,7 @@ class SendRegistrationEmail extends Job implements SelfHandling, ShouldQueue
             ['user' => $user, 'password' => $this->password],
             function($message) use ($user) {
                 $message->subject('[Cambalacheo]: Bienvenido a Cambalacheo.com')
-                    ->to('cambalacheo.oficial@gmail.com')
+                    ->to($user->email)
                     ->replyTo(config('app.site_email'));
             }
         );

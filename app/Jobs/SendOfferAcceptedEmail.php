@@ -58,7 +58,7 @@ class SendOfferAcceptedEmail extends Job implements SelfHandling, ShouldQueue
             ],
             function($message) use ($offer_owner) {
                 $message->subject('[Cambalacheo]: ¡En horabuena ' . $offer_owner->name . '!, han aceptado tu oferta.')
-                    ->to('cambalacheo.oficial@gmail.com')
+                    ->to($offer_owner->email)
                     ->replyTo(config('app.site_email'));
             }
         );
@@ -73,7 +73,7 @@ class SendOfferAcceptedEmail extends Job implements SelfHandling, ShouldQueue
             ],
             function($message) use ($article_owner) {
                 $message->subject('[Cambalacheo]: ¡En horabuena ' . $article_owner->name . '!, has aceptado una oferta.')
-                    ->to('cambalacheo.oficial@gmail.com')
+                    ->to($article_owner->email)
                     ->replyTo(config('app.site_email'));
             }
         );
