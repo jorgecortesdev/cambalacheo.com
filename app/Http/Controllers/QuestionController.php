@@ -25,6 +25,7 @@ class QuestionController extends Controller
 
     public function replay(Request $request)
     {
+        $article = \App\Article::findOrFail($request->article_id);
         $rules = [
             'description' => 'required|min:10|max:255',
         ];
@@ -36,11 +37,13 @@ class QuestionController extends Controller
 
             $this->dispatch(new \App\Jobs\SendQuestionReplayEmail($question));
         }
-        return redirect('trades/' . $request->article_id);
+        return redirect('articulo/' . $article->slug);
     }
 
     public function store(Request $request)
     {
+        $article = \App\Article::findOrFail($request->article_id);
+
         $messages = [
             'required'        => 'Este campo es requerido.',
             'description.max' => 'No debe ser mayor a :max caracteres.',
@@ -53,7 +56,7 @@ class QuestionController extends Controller
         $validator = \Validator::make($request->all(), $rules, $messages);
 
         if ($validator->fails()) {
-            return redirect('/trades/question/' . $request->article_id)
+            return redirect('/trades/question/' . $article->id)
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -64,6 +67,6 @@ class QuestionController extends Controller
 
         $this->dispatch(new \App\Jobs\SendQuestionEmail($question));
 
-        return redirect('trades/' . $question->article_id);
+        return redirect('articulo/' . $article->slug);
     }
 }

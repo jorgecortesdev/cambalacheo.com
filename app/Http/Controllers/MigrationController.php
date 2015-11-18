@@ -42,4 +42,21 @@ class MigrationController extends Controller
 
         echo 'Done';
     }
+
+    public function article_slug()
+    {
+        $articles = \App\Article::all();
+
+        foreach ($articles as $article) {
+            $article->slug = str_slug($article->title);
+
+            $index = 1;
+            while (\App\Article::whereSlug($article->slug)->exists()) {
+                $article->slug = str_slug($article->title) . '-' . $index++;
+            }
+            $article->save();
+        }
+
+        echo 'Done';
+    }
 }

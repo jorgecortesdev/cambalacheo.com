@@ -5,7 +5,7 @@
 			{{--*/ $images = $article->images; /*--}}
 			<tr>
 				<td>
-					<a href="/trades/{{ $article->id }}">
+					<a href="/articulo/{{ $article->slug }}">
 						<img
 							class="img-rounded lazy"
 							data-original="{{ Cdn::image($images->first(), 'list') }}"
@@ -17,10 +17,10 @@
 				<td>
 					<div class="row">
 						<div class="col-md-8">
-							<h4><a href="/trades/{{ $article->id }}">{{ $article->title }}</a></h4>
+							<h4><a href="/articulo/{{ $article->slug }}">{{ $article->title }}</a></h4>
 							<p class="description">{{ str_limit($article->description, 150) }}</p>
 							<span class="pull-right">
-								<a class="btn btn-sm btn-default" href="/trades/{{ $article->id }}">Ver detalle</a>
+								<a class="btn btn-sm btn-default" href="/articulo/{{ $article->slug }}">Ver detalle</a>
 							</span>
 						</div>
 						<div class="col-md-4">

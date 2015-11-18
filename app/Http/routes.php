@@ -11,16 +11,17 @@
 |
 */
 
-Route::get('about',                          'IndexController@about');
+Route::get('about', 'IndexController@about');
 
 // Index routes
-Route::get('/',                              'SearchController@index');
-Route::get('/search',                        'SearchController@search');
+Route::get('/',      'SearchController@index');
+Route::get('search', 'SearchController@search');
 
 // Slugs
-Route::get('/categoria/{slug}', 'SearchController@category');
-Route::get('/condicion/{slug}', 'SearchController@condition');
-Route::get('/ubicacion/{state_slug}/{city_slug}', 'SearchController@location');
+Route::get('categoria/{slug}', 'SearchController@category');
+Route::get('condicion/{slug}', 'SearchController@condition');
+Route::get('articulo/{slug}',  'ArticleController@show');
+Route::get('ubicacion/{state_slug}/{city_slug}', 'SearchController@location');
 
 Route::get('contact',  'ContactController@create');
 Route::post('contact', 'ContactController@store');
@@ -55,7 +56,6 @@ Route::get('image/article/default/{image_size}.gif', 'ImageController@getDefault
 Route::get('panel/article/create',             'ArticleController@create');
 Route::get('panel/articles/edit/{article_id}', 'ArticleController@edit');
 Route::post('articles',                        'ArticleController@store');
-Route::get('trades/{article_id}',              'ArticleController@show');
 Route::put('panel/articles/edit/{article_id}', [
     'as'   => 'article.update',
     'uses' => 'ArticleController@update'
@@ -88,6 +88,8 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
+// Migraciones temporal!
 Route::get('migration/categories', 'MigrationController@categories_slug');
 Route::get('migration/location', 'MigrationController@location_slug');
+Route::get('migration/article', 'MigrationController@article_slug');
 

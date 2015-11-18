@@ -28,6 +28,8 @@ class OfferController extends Controller
 
     public function replay(Request $request)
     {
+        $article = \App\Article::findOrFail($request->article_id);
+
         $rules = [
             'description' => 'required|min:10|max:255',
         ];
@@ -39,20 +41,22 @@ class OfferController extends Controller
 
             $this->dispatch(new \App\Jobs\SendOfferReplayEmail($offer));
         }
-        return redirect('trades/' . $request->article_id);
+        return redirect('articulo/' . $article->slug);
     }
 
     public function store(OfferRequest $request)
     {
+        $article = \App\Article::findOrFail($request->article_id);
         $offer = new Offer($request->all());
         $offer->user_id = Auth::user()->id;
         $offer->save();
         Event::fire(new \App\Events\OfferStore($offer));
-        return redirect('trades/' . $offer->article_id);
+        return redirect('articulo/' . $article->slug);
     }
 
     public function reject($offer_id)
     {
+        $article = \App\Article::findOrFail($request->article_id);
         $offer = Offer::find($offer_id);
         $owner_user_id = $offer->article->user_id;
         $logged_user_id = Auth::user()->id;
@@ -61,11 +65,12 @@ class OfferController extends Controller
             $offer->save();
             $this->dispatch(new \App\Jobs\SendOfferRejectedEmail($offer));
         }
-        return redirect('trades/' . $offer->article_id);
+        return redirect('articulo/' . $article->slug);
     }
 
     public function accept($offer_id)
     {
+        $article = \App\Article::findOrFail($request->article_id);
         $offer = Offer::find($offer_id);
         $article = $offer->article;
         $owner_user_id = $article->user_id;
@@ -77,6 +82,6 @@ class OfferController extends Controller
             $offer->save();
             $this->dispatch(new \App\Jobs\SendOfferAcceptedEmail($offer));
         }
-        return redirect('trades/' . $offer->article_id);
+        return redirect('articulo/' . $article->slug);
     }
 }

@@ -60,7 +60,7 @@ class PanelController extends Controller
     {
         $user_id = Auth::user()->id;
 
-        $offers_sent = \App\Article::select('offers.description', 'articles.id', 'articles.title')
+        $offers_sent = \App\Article::select('offers.description', 'articles.id', 'articles.title', 'articles.slug')
             ->with('images')
             ->join('offers', 'articles.id', '=', 'offers.article_id')
             ->where([
@@ -81,7 +81,7 @@ class PanelController extends Controller
     {
         $user_id = Auth::user()->id;
 
-        $questions_sent = \App\Article::select('questions.description', 'articles.id', 'articles.title')
+        $questions_sent = \App\Article::select('questions.description', 'articles.id', 'articles.title', 'articles.slug')
             ->with('images')
             ->join('questions', 'articles.id', '=', 'questions.article_id')
             ->where([

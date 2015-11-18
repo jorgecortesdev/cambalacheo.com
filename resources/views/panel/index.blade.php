@@ -49,7 +49,7 @@
                                 <td>{{ $article->title }}</td>
                                 <td class="text-center">
                                     <ul class="list-inline">
-                                        <li><a href="/trades/{{ $article->id }}"><i class="fa fa-eye"></i> Ver</a></li>
+                                        <li><a href="/articulo/{{ $article->slug }}"><i class="fa fa-eye"></i> Ver</a></li>
                                         <li><a href="/panel/articles/edit/{{ $article->id }}"><i class="fa fa-edit"></i> Editar</a></li>
                                         <li><a href="#" data-id="{{ $article->id }}" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i> Remover</a></li>
                                     </ul>
@@ -95,7 +95,7 @@
                                 <td>{{ $article->title }}</td>
                                 <td class="text-center">
                                     <ul class="list-inline">
-                                        <li><a href="/trades/{{ $article->id }}"><i class="fa fa-eye"></i> Ver</a></li>
+                                        <li><a href="/articulo/{{ $article->slug }}"><i class="fa fa-eye"></i> Ver</a></li>
                                         <li><a href="/panel/articles/edit/{{ $article->id }}"><i class="fa fa-edit"></i> Editar</a></li>
                                         <li><a href="#" data-id="{{ $article->id }}" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i> Remover</a></li>
                                     </ul>

@@ -10,6 +10,25 @@ class Article extends Model
 
     protected $fillable = ['title', 'category_id', 'condition_id', 'user_id', 'description', 'request'];
 
+    public static function boot()
+    {
+            parent::boot();
+
+            static::saving(function($article) {
+                $article->slug = str_slug($article->title);
+                $builder = static::whereRaw("slug RLIKE '^{$article->slug}(-[0-9]*)?$'")
+                    ->latest('id');
+                if ($article->id) {
+                    $builder = $builder->where('id', '<>', $article->id);
+                }
+                $latestSlug = $builder->value('slug');
+                if ($latestSlug) {
+                    $pieces = explode('-', $latestSlug);
+                    $number = intval(end($pieces));
+                    $article->slug .= '-' . ($number + 1);
+                }
+            });
+    }
     public function user()
     {
         return $this->belongsTo('App\User');

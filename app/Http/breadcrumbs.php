@@ -14,5 +14,5 @@ Breadcrumbs::register('category', function($breadcrumb, $category) {
 // Home > Category > Article
 Breadcrumbs::register('article', function($breadcrumb, $article) {
     $breadcrumb->parent('category', $article->category);
-    $breadcrumb->push($article->title, url('/trades/' . $article->id));
+    $breadcrumb->push($article->title, url('/articulo/' . $article->slug));
 });

@@ -3,7 +3,7 @@
     @foreach ($featured_articles as $article)
     <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
         <div class="thumbnail">
-            <a href="/trades/{{ $article->id }}">
+            <a href="/articulo/{{ $article->slug }}">
                 <img
                     class="lazy"
                     data-original="{{ Cdn::image($article->images->first(), 'profile') }}"
@@ -11,7 +11,7 @@
                 />
             </a>
             <div class="caption">
-                <h5><a href="/trades/{{ $article->id }}">{{ str_limit($article->title, 42) }}</a></h5>
+                <h5><a href="/articulo/{{ $article->slug }}">{{ str_limit($article->title, 42) }}</a></h5>
             </div>
         </div>
     </div>

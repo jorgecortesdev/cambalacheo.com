@@ -106,9 +106,9 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($slug)
     {
-        $article = Article::with('category', 'offers', 'questions', 'user.state', 'images', 'user.city')->find($id);
+        $article = Article::with('category', 'offers', 'questions', 'user.state', 'images', 'user.city')->whereSlug($slug)->firstOrFail();
 
         $article_status = Config::get('constants.status_article');
 

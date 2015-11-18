@@ -62,7 +62,7 @@
                                 <td>{{ $article->description }}</td>
                                 <td class="text-center">
                                     <ul class="list-inline">
-                                        <li><a href="/trades/{{ $article->id }}"><i class="fa fa-eye"></i> Ver</a></li>
+                                        <li><a href="/articulo/{{ $article->slug }}"><i class="fa fa-eye"></i> Ver</a></li>
                                     </ul>
                                 </td>
                             </tr>
@@ -104,7 +104,7 @@
                                 <td>{{ $article->description }}</td>
                                 <td class="text-center">
                                     <ul class="list-inline">
-                                        <li><a href="/trades/{{ $article->id }}"><i class="fa fa-eye"></i> Ver</a></li>
+                                        <li><a href="/articulo/{{ $article->slug }}"><i class="fa fa-eye"></i> Ver</a></li>
                                     </ul>
                                 </td>
                             </tr>
