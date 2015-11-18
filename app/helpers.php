@@ -17,3 +17,9 @@ function article_condition($slug)
 
     return null;
 }
+
+function article_status($id)
+{
+    $article_status = \Config::get('constants.status_article');
+    return $article_status[$id];
+}

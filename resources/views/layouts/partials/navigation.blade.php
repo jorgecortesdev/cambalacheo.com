@@ -6,6 +6,7 @@
             <li @if ($menu_active == 'index') class="active" @endif><a href="/"><i class="fa fa-home"></i> Inicio</a></li>
             @if (Auth::check())
             <li @if ($menu_active == 'panel') class="active" @endif><a href="/panel"><i class="fa fa-user"></i> Mi panel</a></li>
+            @can('admin')<li><a href="/admin"><i class="fa fa-lock"></i> Admin</a></li>@endcan
             <li><a href="/auth/logout"><i class="fa fa-sign-out"></i> Cerrar sesión</a></li>
             @else
             <li @if ($menu_active == 'login') class="active" @endif><a href="/auth/login"><i class="fa fa-sign-in"></i> Entrar</a></li>

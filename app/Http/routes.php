@@ -88,6 +88,11 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
+// Admin
+Route::get('admin/', 'Admin\IndexController@index');
+Route::get('admin/users', 'Admin\IndexController@users');
+Route::get('admin/articles', 'Admin\IndexController@articles');
+
 // Migraciones temporal!
 Route::get('migration/categories', 'MigrationController@categories_slug');
 Route::get('migration/location', 'MigrationController@location_slug');
