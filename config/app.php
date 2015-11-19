@@ -152,7 +152,7 @@ return [
         App\Providers\CdnServiceProvider::class,
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
         Ipunkt\LaravelAnalytics\AnalyticsServiceProvider::class,
-
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -210,6 +210,7 @@ return [
         'Cdn'         => App\Facades\Cdn::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
         'Analytics'   => Ipunkt\LaravelAnalytics\AnalyticsFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
     'site_email'      => env('MAIL_FROM', ''),

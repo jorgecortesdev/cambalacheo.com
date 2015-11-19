@@ -1,6 +1,6 @@
 <table cellspacing="0" cellpadding="0" border="0" style="font-family:arial,sans-serif;font-size:12px;">
    <tr>
-      <td valign="top" style="padding-right:15px;"><img src="{{ Gravatar::src($replay->user->email, 50) }}" style="border:0;"></td>
+      <td valign="top" style="padding-right:15px;"><img src="{{ profile_picture($replay->user, 50) }}" style="border:0;"></td>
       <td valign="top"><strong>{{ $replay->user->name }}</strong> ha agregado una respuesta a tu pregunta.
       <br><br>Te sugerimos responder a la brevedad. Para revisar la respuesta da clic <a href="{{ config('app.url') }}/articulo/{{ $replay->article->slug }}">aquí</a>.
       </td>

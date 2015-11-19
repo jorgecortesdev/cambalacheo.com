@@ -12,6 +12,7 @@
                 <th>Imágen</th>
                 <th>Nombre</th>
                 <th>Correo</th>
+                <th>Provider</th>
                 <th>Ubicación</th>
             </tr>
         </thead>
@@ -19,9 +20,10 @@
             @foreach ($users as $user)
             <tr>
                 <td>{{ $user->id }}</td>
-                <td><img class="avatar" src="{{ Gravatar::src($user->email, 50) }}" alt="avatar"></td>
+                <td><img class="avatar" src="{{ profile_picture($user, 50) }}" alt="avatar"></td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
+                <td>{{ $user->provider }}</td>
                 <td>{{ $user->city->name }}, {{ $user->state->short }}</td>
             </tr>
             @endforeach

@@ -2,7 +2,7 @@
     <div class="col-md-12">
         <div class="row profile-pic-container">
             <div class="col-md-12 profile-pic">
-                <img class="img-rounded" src="{{ Gravatar::src(Auth::user()->email, 92) }}" alt="">
+                <img class="img-rounded" src="{{ profile_picture(Auth::user(), 92) }}" alt="">
                 <h5>{{ Auth::user()->name }}</h5>
             </div>
         </div>

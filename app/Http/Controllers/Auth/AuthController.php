@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Socialite;
+use Illuminate\Http\Request;
+use App\Social\AuthenticateUser;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
@@ -101,7 +104,7 @@ class AuthController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(\Illuminate\Http\Request $request, $id)
+    public function update(Request $request, $id)
     {
         $messages = [
             'required'     => 'Este campo es requerido.',
@@ -149,5 +152,21 @@ class AuthController extends Controller
         $states = \App\State::lists('name', 'id');
 
         return view('auth.register', compact('states'));
+    }
+
+    /**
+     * Loguear a un usuario utilizando algun servicio externo.
+     */
+    public function socialite(AuthenticateUser $authenticateUser, Request $request, $provider)
+    {
+        return $authenticateUser->execute(
+            $request->has('code') || $request->has('oauth_token'),
+            $this,
+            $provider
+        );
+    }
+
+    public function userHasLoggedIn($user) {
+        return redirect($this->redirectPath);
     }
 }

@@ -47,6 +47,7 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 // Registration routes...
 Route::get('auth/register',  'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::get('auth/{provider}', 'Auth\AuthController@socialite');
 
 // Images routes
 Route::get('image/article/{article_id}/{image_id}/{image_size}.png', 'ImageController@getArticleImage');

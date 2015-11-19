@@ -63,5 +63,11 @@
                 }, 250);
             });
         </script>
+
+        @if ($complete_registration)
+            <script src="{{ Cdn::asset('/js/user.js') }}"></script>
+            @include('partials.modal.registration')
+        @endif
+
     </body>
 </html>

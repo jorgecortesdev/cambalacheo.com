@@ -14,8 +14,7 @@ body {
 .logo {
   left: 20px;
   position: absolute;
-  top: 10px;
-  z-index: 9999; }
+  top: 10px; }
 
 .add-classified-btn {
   margin-left: 255px; }
@@ -176,7 +175,9 @@ body {
   text-align: center; }
 
 .profile-pic img {
-  margin: 10px; }
+  margin: 10px;
+  width: 92px;
+  height: 92px; }
 
 .profile-pic-container {
   margin-left: 0;
@@ -234,6 +235,7 @@ body {
 
 #main-carousel .carousel-inner div img {
   margin: auto;
+  width: 100%;
   min-height: 416px; }
 
 #main-carousel-thumbs ul {
@@ -250,6 +252,21 @@ body {
   display: inline-block;
   float: none;
   vertical-align: middle; }
+
+.addthis_sharing_toolbox {
+  margin-bottom: 10px; }
+
+.carousel-big-picture {
+  padding-right: 0; }
+
+.carousel-thumbs {
+  padding: 0 5px; }
+
+.article > .col-md-8 {
+  padding-right: 0; }
+
+.article-detail {
+  padding-left: 0; }
 
 /* Categories */
 .categories a i {

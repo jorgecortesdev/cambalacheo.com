@@ -23,3 +23,18 @@ function article_status($id)
     $article_status = \Config::get('constants.status_article');
     return $article_status[$id];
 }
+
+function profile_picture(\App\User $user, $size = 50)
+{
+    switch ($user->provider) {
+        case "google":
+            $picture = str_replace('sz=50', "sz={$size}", $user->avatar);
+            break;
+        case "facebook":
+            $picture = $user->avatar . "&height={$size}&width={$size}";
+            break;
+        default:
+            $picture = Gravatar::src($user->email, $size);
+    }
+    return $picture;
+}

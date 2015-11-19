@@ -1,4 +1,3 @@
-<div class="logo"><a href="/"><img src="{{ Cdn::asset('/img/logo-md-blue.png') }}"></a></div>
 <nav class="navbar navbar-default" role="navigation">
     <div class="collapse navbar-collapse">
         <a href="/panel/article/create" class="btn btn-success navbar-btn navbar-left add-classified-btn" role="button">Publicar artículo</a>
@@ -15,3 +14,4 @@
         </ul>
     </div>
 </nav>
+<div class="logo"><a href="/"><img src="{{ Cdn::asset('/img/logo-md-blue.png') }}"></a></div>

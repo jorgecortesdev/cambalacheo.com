@@ -13,7 +13,8 @@
         "doctrine/dbal": "~2.3",
         "greggilbert/recaptcha": "dev-master",
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
-        "ipunkt/laravel-analytics": "~1.1"
+        "ipunkt/laravel-analytics": "~1.1",
+        "laravel/socialite": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

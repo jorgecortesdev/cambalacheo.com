@@ -25,6 +25,10 @@ class ComposerServiceProvider extends ServiceProvider
             'layouts.partials.navigation', 'App\Http\ViewComposers\NavigationMenuComposer'
         );
 
+        view()->composer(
+            'layouts.master', 'App\Http\ViewComposers\CompleteRegistrationComposer'
+        );
+
         // Figure it out what is the correct view
         // view()->composer('*', function($view) {
         //     print $view->getName() . "<br>";

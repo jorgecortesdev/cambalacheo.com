@@ -14,6 +14,7 @@
 }
 #main-carousel .carousel-inner div img {
   margin: auto;
+  width: 100%;
   min-height: 416px;
 }
 #main-carousel-thumbs ul {
@@ -31,4 +32,24 @@
   display: inline-block;
   float: none;
   vertical-align: middle;
+}
+
+.addthis_sharing_toolbox {
+  margin-bottom: 10px;
+}
+
+.carousel-big-picture {
+  padding-right: 0;
+}
+
+.carousel-thumbs {
+  padding: 0 5px;
+}
+
+.article > .col-md-8 {
+  padding-right: 0;
+}
+
+.article-detail {
+  padding-left: 0;
 }

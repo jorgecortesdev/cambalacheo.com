@@ -4,6 +4,8 @@
 
 @section('footer')
 <script src="{{ Cdn::asset('/js/show.js') }}"></script>
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-564d4ed94efe4b27" async="async"></script>
 @endsection
 
 
@@ -13,10 +15,10 @@
 <h2>{{ $article->title }}</h2>
 
 {{-- Article information --}}
-<div class="row">
+<div class="row article">
     <div class="col-md-8">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10 carousel-big-picture">
                 <div id="main-carousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         @foreach ($images as $index => $image)
@@ -38,10 +40,7 @@
                     <a class="right carousel-control" href="#main-carousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
             </div>
-        </div>
-
-        <div class="row hidden-xs">
-            <div class="col-md-12">
+            <div class="col-md-2 carousel-thumbs">
                 <div id="main-carousel-thumbs">
                     <ul class="list-inline">
                         @foreach ($images as $index => $image)
@@ -58,7 +57,22 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-4 article-detail">
+        {{--*/
+            $article_status_class = 'info';
+            switch($article->status) {
+                case ARTICLE_STATUS_PERMUTED:
+                    $article_status_class = 'success';
+                    break;
+                case ARTICLE_STATUS_CLOSE_ADMIN:
+                    $article_status_class = 'danger';
+                    break;
+                case ARTICLE_STATUS_CLOSE_USER:
+                    $article_status_class = 'warning';
+                    break;
+            }
+        /*--}}
+        <div class="alert alert-{{ $article_status_class }} text-center">{{ $article_status[$article->status] }}</div>
         <table class="table table-condensed table-hover">
             <thead>
                 <tr><th colspan="2">Detalle:</th>
@@ -80,24 +94,6 @@
                     <td>Ubicación</td>
                     <td>{{ $article->user->city->name }}, {{ $article->user->state->short }}</td>
                 </tr>
-                {{--*/
-                    $article_status_class = 'bg-info';
-                    switch($article->status) {
-                        case ARTICLE_STATUS_PERMUTED:
-                            $article_status_class = 'bg-success';
-                            break;
-                        case ARTICLE_STATUS_CLOSE_ADMIN:
-                            $article_status_class = 'bg-danger';
-                            break;
-                        case ARTICLE_STATUS_CLOSE_USER:
-                            $article_status_class = 'bg-warning';
-                            break;
-                    }
-                /*--}}
-                <tr>
-                    <td>Estado</td>
-                    <td class="{{ $article_status_class }} article-status text-center">{{ $article_status[$article->status] }}</td>
-                </tr>
             </tbody>
         </table>
         <div class="row">
@@ -106,17 +102,17 @@
                 <div class="well">
                     <div class="row">
                         <div class="col-sm-4">
-                            <img class="avatar" src="{{ Gravatar::src($article->user->email, 50) }}" alt="avatar">
+                            <img class="avatar" src="{{ profile_picture($article->user, 50) }}" alt="avatar">
                         </div>
                         <div class="col-sm-8">
-                            <h4 style="margin-top: 0"><a href="#">{{ $article->user->name }}</a></h4>
-                            <span title="Seller's rating: 4/5">
+                            <h4 style="margin-top: 0">{{ $article->user->name }}</h4>
+                            {{-- <span title="Seller's rating: 4/5">
                                 <span class="glyphicon glyphicon-star"></span>
                                 <span class="glyphicon glyphicon-star"></span>
                                 <span class="glyphicon glyphicon-star"></span>
                                 <span class="glyphicon glyphicon-star"></span>
                                 <span class="glyphicon glyphicon-star-empty"></span>
-                            </span>
+                            </span> --}}
                         </div>
                     </div>
                 </div>
@@ -124,7 +120,11 @@
         </div>
     </div>
 </div>
-
+<div class="row">
+    <div class="col-md-12">
+        <div class="addthis_sharing_toolbox"></div>
+    </div>
+</div>
 {{-- Article description --}}
 <div class="row">
 	<div class="col-md-12">
@@ -159,7 +159,7 @@
 					@foreach ($article->questions as $question)
                     <li class="comment">
                         <a class="pull-left" href="#">
-                            <img class="avatar" src="{{ Gravatar::src($question->user->email, 50) }}" alt="avatar">
+                            <img class="avatar" src="{{ profile_picture($question->user, 50) }}" alt="avatar">
                         </a>
                         <div class="comment-body">
                             <div class="comment-heading">
@@ -173,7 +173,7 @@
                         	@foreach ($question->replays as $replay)
                             <li class="comment">
                                 <a class="pull-left" href="#">
-                                    <img class="avatar" src="{{ Gravatar::src($replay->user->email, 44) }}" alt="avatar">
+                                    <img class="avatar" src="{{ profile_picture($replay->user, 44) }}" alt="avatar">
                                 </a>
                                 <div class="comment-body">
                                     <div class="comment-heading">
@@ -254,7 +254,7 @@
 					/*--}}
                     <li class="comment {{ $offer_status_class }}">
                         <a class="pull-left" href="#">
-                            <img class="avatar" src="{{ Gravatar::src($offer->user->email, 50) }}" alt="avatar">
+                            <img class="avatar" src="{{ profile_picture($offer->user, 50) }}" alt="avatar">
                         </a>
                         <div class="comment-body">
                             <div class="comment-heading">
@@ -268,7 +268,7 @@
                         	@foreach ($offer->replays as $replay)
                             <li class="comment">
                                 <a class="pull-left" href="#">
-                                    <img class="avatar" src="{{ Gravatar::src($replay->user->email, 44) }}" alt="avatar">
+                                    <img class="avatar" src="{{ profile_picture($replay->user, 44) }}" alt="avatar">
                                 </a>
                                 <div class="comment-body">
                                     <div class="comment-heading">
