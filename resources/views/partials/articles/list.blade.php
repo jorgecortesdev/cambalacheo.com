@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-		<table class="table table-stripped article-list article">
+		<table class="table table-stripped table-responsive article-list article">
 			@forelse ($articles as $article)
 			{{--*/ $images = $article->images; /*--}}
 			<tr>
@@ -19,22 +19,22 @@
 						<div class="col-md-8">
 							<h4><a href="/articulo/{{ $article->slug }}">{{ $article->title }}</a></h4>
 							<p class="description">{{ str_limit($article->description, 150) }}</p>
-							<span class="pull-right">
+							<span class="pull-right hidden-xs">
 								<a class="btn btn-sm btn-default" href="/articulo/{{ $article->slug }}">Ver detalle</a>
 							</span>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-4 hidden-xs">
 							<ul class="list">
 								<li>
-									<i class="glyphicon glyphicon-calendar"></i>&nbsp;
+									<i class="fa fa-calendar"></i>&nbsp;
 									{{ $article->created_at->format('d/m/Y') }}
 								</li>
 								<li>
-									<i class="glyphicon glyphicon-folder-open"></i>&nbsp;
+									<i class="fa fa-folder-open-o"></i>&nbsp;
 									<a href="/categoria/{{ $article->category->slug }}">{{ str_limit($article->category->name, 27) }}</a>
 								</li>
 								<li>
-									<i class="glyphicon glyphicon-asterisk"></i>&nbsp;
+									<i class="fa fa-asterisk"></i>&nbsp;
 									<a href="/condicion/{{ article_condition($article->condition_id)['slug'] }}">{{ article_condition($article->condition_id)['name'] }}</a>
 								</li>
 								<li>
@@ -46,7 +46,6 @@
 							</ul>
 						</div>
 					</div>
-
 				</td>
 			</tr>
 			@empty

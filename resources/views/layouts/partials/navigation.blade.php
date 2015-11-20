@@ -1,6 +1,14 @@
 <nav class="navbar navbar-default" role="navigation">
-    <div class="collapse navbar-collapse">
-        <a href="/panel/article/create" class="btn btn-success navbar-btn navbar-left add-classified-btn" role="button">Publicar artículo</a>
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#cambalacheo-navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+    <div class="collapse navbar-collapse" id="cambalacheo-navbar">
+        <a href="/panel/article/create" class="btn btn-success navbar-btn navbar-left add-classified-btn hidden-xs" role="button">Publicar artículo</a>
         <ul class="nav navbar-nav navbar-right">
             <li @if ($menu_active == 'index') class="active" @endif><a href="/"><i class="fa fa-home"></i> Inicio</a></li>
             @if (Auth::check())

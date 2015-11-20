@@ -1,6 +1,10 @@
 .selected-classifieds .thumbnail {
     margin-bottom: 20px;
-    min-height: 235px;
+    max-height: 290px;
+}
+.selected-classifieds .thumbnail img {
+    min-height: 180px;
+    max-height: 180px;
 }
 .selected-classifieds .caption {
     text-align: center;

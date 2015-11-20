@@ -134,7 +134,11 @@ body {
 
 .selected-classifieds .thumbnail {
   margin-bottom: 20px;
-  min-height: 235px; }
+  max-height: 290px; }
+
+.selected-classifieds .thumbnail img {
+  min-height: 180px;
+  max-height: 180px; }
 
 .selected-classifieds .caption {
   text-align: center; }
@@ -164,6 +168,10 @@ body {
 
 .footer .footer-content .row .text-right .bar {
   color: #e7e7e7; }
+
+@media (max-width: 767px) {
+  .footer-content .text-right {
+    text-align: center; } }
 
 .profile-pic {
   background-color: #f8f8f8;

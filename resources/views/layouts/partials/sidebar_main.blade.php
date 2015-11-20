@@ -15,9 +15,11 @@
     {!! Form::close() !!}
 </div>
 
-<h4>Categorías</h4>
-<div class="categories list-group">
-    @foreach ($categories as $category)
-    <a href="/categoria/{{ $category->slug }}" class="list-group-item">{{ $category->name }} ({{ $category->articlesCount }}) <i class="fa fa-chevron-right"></i></a>
-    @endforeach
+<div class="hidden-xs hidden-sm hidden-md">
+    <h4>Categorías</h4>
+    <div class="categories list-group hidden-xs hidden-sm hidden-md">
+        @foreach ($categories as $category)
+        <a href="/categoria/{{ $category->slug }}" class="list-group-item">{{ $category->name }} ({{ $category->articlesCount }}) <i class="fa fa-chevron-right"></i></a>
+        @endforeach
+    </div>
 </div>

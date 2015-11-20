@@ -1,7 +1,7 @@
-<h4>Cambalaches destacados</h4>
+<h4>Cambalaches aleatorios</h4>
 <div class="row selected-classifieds">
     @foreach ($featured_articles as $article)
-    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
         <div class="thumbnail">
             <a href="/articulo/{{ $article->slug }}">
                 <img
@@ -11,7 +11,7 @@
                 />
             </a>
             <div class="caption">
-                <h5><a href="/articulo/{{ $article->slug }}">{{ str_limit($article->title, 42) }}</a></h5>
+                <h5><a href="/articulo/{{ $article->slug }}">{{ str_limit($article->title, 17) }}</a></h5>
             </div>
         </div>
     </div>

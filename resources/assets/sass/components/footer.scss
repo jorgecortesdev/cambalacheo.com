@@ -15,3 +15,7 @@
 .footer .footer-content .row .text-right .bar {
     color: #e7e7e7;
 }
+
+@media (max-width: 767px) {
+    .footer-content .text-right { text-align:center }
+}
