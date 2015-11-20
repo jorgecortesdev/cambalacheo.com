@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('about', 'IndexController@about');
+Route::get('acerca', 'IndexController@about');
+Route::get('terminos', 'IndexController@terms');
+Route::get('privacidad', 'IndexController@privacy');
 
 // Index routes
 Route::get('/',      'SearchController@index');
