@@ -80,7 +80,7 @@
             <tbody style="font-size: 12px;">
                 <tr>
                     <td>Fecha</td>
-                    <td>{{ $article->created_at->format('d/m/Y') }}</td>
+                    <td>{{ $article->created_at->formatLocalized('%d/%B/%Y') }}</td>
                 </tr>
                 <tr>
                     <td>Categoría</td>

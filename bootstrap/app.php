@@ -51,6 +51,9 @@ $app->singleton(
 |
 */
 
+setlocale(LC_TIME, 'es_ES.utf-8');
+\Carbon\Carbon::setLocale('es');
+
 require app_path() . '/constants.php';
 
 return $app;

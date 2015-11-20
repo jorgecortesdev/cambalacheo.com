@@ -27,7 +27,7 @@
 							<ul class="list">
 								<li>
 									<i class="fa fa-calendar"></i>&nbsp;
-									{{ $article->created_at->format('d/m/Y') }}
+									{{ $article->created_at->formatLocalized('%d/%B/%Y') }}
 								</li>
 								<li>
 									<i class="fa fa-folder-open-o"></i>&nbsp;
