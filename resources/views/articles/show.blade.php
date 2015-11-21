@@ -25,7 +25,7 @@
 @section('content')
 {!! Breadcrumbs::render('category', $article->category) !!}
 
-<h2 itemprop="name">{{ $article->title }}</h2>
+<h2 itemprop="headline">{{ $article->title }}</h2>
 
 {{-- Article information --}}
 <div class="row article">
