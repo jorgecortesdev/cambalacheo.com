@@ -59,7 +59,7 @@
     </div>
     <div class="col-md-4 article-detail">
         {{--*/
-            $article_status_class = 'info';
+            $article_status_class = 'success';
             switch($article->status) {
                 case ARTICLE_STATUS_PERMUTED:
                     $article_status_class = 'success';

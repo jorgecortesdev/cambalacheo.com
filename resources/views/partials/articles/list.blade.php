@@ -20,7 +20,7 @@
 							<h4><a href="/articulo/{{ $article->slug }}">{{ $article->title }}</a></h4>
 							<p class="description">{{ str_limit($article->description, 150) }}</p>
 							<span class="pull-right hidden-xs">
-								<a class="btn btn-sm btn-default" href="/articulo/{{ $article->slug }}">Ver detalle</a>
+								<a class="btn btn-sm btn-success" href="/articulo/{{ $article->slug }}">Ver detalle</a>
 							</span>
 						</div>
 						<div class="col-md-4 hidden-xs">
