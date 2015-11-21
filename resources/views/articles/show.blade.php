@@ -191,15 +191,15 @@
                     	@if ($logged_user_id == $article->user->id || $logged_user_id == $question->user_id)
                         <div class="row">
                             <div class="col-md-10 vcenter">
-                                {!! Form::open(['url' => 'trades/question/replay', 'class' => 'form-replay pull-left', 'id' => 'form-' . $article->id . '-' . $question->id, 'style' => 'display: none']) !!}
+                                {!! Form::open(['url' => 'trades/question/replay', 'class' => 'form-replay pull-left', 'id' => 'q-form-' . $article->id . '-' . $question->id, 'style' => 'display: none']) !!}
                                     {!! Form::hidden('article_id', $article->id) !!}
                                     {!! Form::hidden('parent_id', $question->id) !!}
                                     {!! Form::text('description', null, ['class' => 'form-control', 'placeholder' => 'Escribe la respuesta...']) !!}
                                 {!! Form::close() !!}
                             </div><!--
                             --><div class="col-md-2 vcenter">
-                                <a class="pull-right replay" data-form="form-{{ $article->id }}-{{ $question->id }}" href="#"><i class="fa fa-reply"></i> Responder</a>
-                                <a class="send" style="display: none" data-form="form-{{ $article->id }}-{{ $question->id }}" href="#"><i class="fa fa-paper-plane"></i> Enviar</a>
+                                <a class="pull-right replay" data-form="q-form-{{ $article->id }}-{{ $question->id }}" href="#"><i class="fa fa-reply"></i> Responder</a>
+                                <a class="send" style="display: none" data-form="q-form-{{ $article->id }}-{{ $question->id }}" href="#"><i class="fa fa-paper-plane"></i> Enviar</a>
 
                             </div>
                         </div>
@@ -286,15 +286,15 @@
                     	@if ($logged_user_id == $article->user->id || $logged_user_id == $offer->user_id)
                     	<div class="row">
                             <div class="col-md-10 vcenter">
-                                {!! Form::open(['url' => 'trades/offer/replay', 'class' => 'form-replay pull-left', 'id' => 'form-' . $article->id . '-' . $offer->id, 'style' => 'display: none']) !!}
+                                {!! Form::open(['url' => 'trades/offer/replay', 'class' => 'form-replay pull-left', 'id' => 'o-form-' . $article->id . '-' . $offer->id, 'style' => 'display: none']) !!}
                                     {!! Form::hidden('article_id', $article->id) !!}
                                     {!! Form::hidden('parent_id', $offer->id) !!}
                                     {!! Form::text('description', null, ['class' => 'form-control', 'placeholder' => 'Escribe tu oferta...']) !!}
                                 {!! Form::close() !!}
                             </div><!--
                             --><div class="col-md-2 vcenter">
-                                <a class="pull-right replay" data-form="form-{{ $article->id }}-{{ $offer->id }}" href="#"><i class="fa fa-reply"></i> Responder</a>
-                                <a class="send" style="display: none" data-form="form-{{ $article->id }}-{{ $offer->id }}" href="#"><i class="fa fa-paper-plane"></i> Enviar</a>
+                                <a class="pull-right replay" data-form="o-form-{{ $article->id }}-{{ $offer->id }}" href="#"><i class="fa fa-reply"></i> Responder</a>
+                                <a class="send" style="display: none" data-form="o-form-{{ $article->id }}-{{ $offer->id }}" href="#"><i class="fa fa-paper-plane"></i> Enviar</a>
                             </div>
                         </div>
                         @endif
