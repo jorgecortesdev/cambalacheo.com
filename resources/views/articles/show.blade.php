@@ -8,10 +8,12 @@
     <meta property="og:url" content="{{ Request::url() }}" />
     <meta property="og:description" content="{{ $article->description }}" />
     <meta property="fb:app_id" content="1497518333876988" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content="article" />
     <meta property="og:locale" content="es_MX" />
     <meta property="og:image" content="http:{{ Cdn::image($article->images->first(), 'original') }}" />
 @endsection
+
+@section('itemtype', 'itemscope itemtype="http://schema.org/Article"')
 
 @section('footer')
 <script src="{{ Cdn::asset('/js/show.js') }}"></script>
@@ -23,7 +25,7 @@
 @section('content')
 {!! Breadcrumbs::render('category', $article->category) !!}
 
-<h2>{{ $article->title }}</h2>
+<h2 itemprop="name">{{ $article->title }}</h2>
 
 {{-- Article information --}}
 <div class="row article">
@@ -40,6 +42,7 @@
                         @foreach ($images as $index => $image)
                         <div class="item @if ($index == 0) active @endif">
                             <img
+                                @if ($index == 0) itemprop="image" @endif
                                 class="img-responsive lazy"
                                 data-original="{{ Cdn::image($image, 'original') }}"
                                 src="{{ Cdn::asset('/image/article/default/original.gif') }}"
@@ -91,11 +94,11 @@
             <tbody style="font-size: 12px;">
                 <tr>
                     <td>Fecha</td>
-                    <td>{{ $article->created_at->formatLocalized('%d/%B/%Y') }}</td>
+                    <td itemprop="datePublished" content="{{ $article->created_at->format('Y-m-d') }}">{{ $article->created_at->formatLocalized('%d/%B/%Y') }}</td>
                 </tr>
                 <tr>
                     <td>Categoría</td>
-                    <td>{{ $article->category->name }}</td>
+                    <td itemprop="articleSection">{{ $article->category->name }}</td>
                 </tr>
                 <tr>
                     <td>Condición</td>
@@ -116,7 +119,8 @@
                             <img class="avatar" src="{{ profile_picture($article->user, 50) }}" alt="avatar">
                         </div>
                         <div class="col-sm-8">
-                            <h4 style="margin-top: 0">{{ $article->user->name }}</h4>
+                            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                            <h4 itemprop="name" style="margin-top: 0">{{ $article->user->name }}</h4>
                             {{-- <span title="Seller's rating: 4/5">
                                 <span class="glyphicon glyphicon-star"></span>
                                 <span class="glyphicon glyphicon-star"></span>
@@ -124,6 +128,7 @@
                                 <span class="glyphicon glyphicon-star"></span>
                                 <span class="glyphicon glyphicon-star-empty"></span>
                             </span> --}}
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -140,7 +145,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<h4>Descripción:</h4>
-		<p class="text-muted">{{ $article->description }}</p>
+		<p class="text-muted"><span itemprop="articleBody">{{ $article->description }}</span></p>
 	</div>
 </div>
 

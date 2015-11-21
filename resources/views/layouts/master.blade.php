@@ -38,7 +38,7 @@
                     @endif
                 </div>
 
-                <div class="col-lg-9 content-right">
+                <div @yield('itemtype') class="col-lg-9 content-right">
                     @yield('content')
                 </div>
             </div>
