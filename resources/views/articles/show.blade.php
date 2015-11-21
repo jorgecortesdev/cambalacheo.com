@@ -10,7 +10,7 @@
     <meta property="fb:app_id" content="1497518333876988" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="es_MX" />
-    <meta property="og:image" content="{{ Cdn::image($article->images->first(), 'original') }}" />
+    <meta property="og:image" content="http:{{ Cdn::image($article->images->first(), 'original') }}" />
 @endsection
 
 @section('footer')
