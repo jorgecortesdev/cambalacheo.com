@@ -2,6 +2,17 @@
 
 @section('page_title', $article->title)
 
+@section('ogtags')
+    <meta property="og:site_name" content="Cambalacheo"/>
+    <meta property="og:title" content="{{ $article->title }}" />
+    <meta property="og:url" content="{{ Request::url() }}" />
+    <meta property="og:description" content="{{ $article->description }}" />
+    <meta property="fb:app_id" content="1497518333876988" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    <meta property="og:image" content="{{ Cdn::image($article->images->first(), 'original') }}" />
+@endsection
+
 @section('footer')
 <script src="{{ Cdn::asset('/js/show.js') }}"></script>
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
