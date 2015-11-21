@@ -46,7 +46,7 @@ ofertar a cambalaches ya abiertos.</p>
 <div class="row">
     <div class="col-md-12">
         <div class="well">
-            {!! Form::open(['url' => '/auth/register', 'class' => 'form-counter']) !!}
+            {!! Form::open(['url' => '/auth/register', 'class' => 'form-counter', 'novalidate' => 'novalidate']) !!}
                 <div class="form-group @if ($errors->has('name')) has-error @endif">
                     {!! Form::label('name', 'Nombre', ['class' => 'control-label']) !!}
                     <div class="input-counter">
