@@ -52,7 +52,7 @@ $(document).ready(function() {
     });
 });
 
-function loadCities(state_id, disable) {
+function loadCities(state_id, disable, callback) {
     $.ajax({
         url: '/cities/' + state_id
     }).done(function(cities) {
@@ -65,6 +65,10 @@ function loadCities(state_id, disable) {
 
         if (disable) {
             select.prop('disabled', false);
+        }
+
+        if (typeof callback == "function") {
+            callback();
         }
     });
 }

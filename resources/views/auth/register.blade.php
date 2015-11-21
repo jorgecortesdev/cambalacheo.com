@@ -8,17 +8,28 @@
     $(document).ready(function() {
         $('select#state').change(function() {
             var state_id = $(this).val();
-            loadCities(state_id, true);
+
+            if (state_id != null && state_id != "") {
+                @if (count($errors) > 0)
+                    loadCities(state_id, true, function() {
+                        $('select#city option[value="{{ old('city_id') }}"]').prop('selected', true);
+                    });
+                @else
+                    loadCities(state_id, true);
+                @endif
+            }
         });
 
         $('#register-button').on('click', function () {
             var $btn = $(this).button('loading');
         });
+
+        @if (count($errors) > 0)
+            $('select#state').trigger('change');
+            $('select#city option[value="{{ old('city_id') }}"]').prop('selected', true);
+        @endif
     });
 
-    @if (count($errors) > 0)
-        $('select#state').trigger('change');
-    @endif
 </script>
 @endsection
 
@@ -99,7 +110,7 @@ ofertar a cambalaches ya abiertos.</p>
                             {!! Form::select(
                                 'city_id',
                                 ['' => '-- Seleccionar --'],
-                                null,
+                                old('city_id'),
                                 ['class' => 'form-control', 'id' => 'city', 'disabled' => 'disabled'])
                             !!}
                             @if ($errors->has('city_id'))
