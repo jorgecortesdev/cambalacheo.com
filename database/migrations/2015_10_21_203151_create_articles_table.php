@@ -14,13 +14,14 @@ class CreateArticlesTable extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title')->unique();
+            $table->string('title');
+            $table->string('slug')->nullable()->unique();
+            $table->string('description');
+            $table->string('request');
+            $table->integer('category_id')->default(1)->unsigned();
+            $table->tinyInteger('condition_id')->default(1)->unsigned();
             $table->integer('user_id')->default(0)->unsigned();
-            $table->integer('category_id')->default(0)->unsigned();
-            $table->tinyInteger('state')->default(0)->unsigned();
-            $table->string('description')->unique();
-            $table->string('exchange')->unique();
-            $table->tinyInteger('status')->default(0)->unsigned();
+            $table->tinyInteger('status')->default(1)->unsigned();
             $table->timestamps();
         });
     }

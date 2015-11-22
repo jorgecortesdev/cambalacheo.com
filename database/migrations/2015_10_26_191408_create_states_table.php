@@ -17,6 +17,7 @@ class CreateStatesTable extends Migration
             $table->string('clave');
             $table->string('name');
             $table->string('short');
+            $table->string('slug')->nullable()->unique();
         });
     }
 

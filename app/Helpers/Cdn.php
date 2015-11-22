@@ -27,7 +27,14 @@ class Cdn
 
     public function image($image, $size)
     {
-        return $this->asset(sprintf('/image/article/%d/%d/%s.png', $image->article_id, $image->id, $size));
+        $article_id = 0;
+        $image_id   = 0;
+
+        if ($image) {
+            $article_id = $image->article_id;
+            $image_id   = $image->id;
+        }
+        return $this->asset(sprintf('/image/article/%d/%d/%s.png', $article_id, $image_id, $size));
     }
 
     private function cdnPath($cdn, $asset)

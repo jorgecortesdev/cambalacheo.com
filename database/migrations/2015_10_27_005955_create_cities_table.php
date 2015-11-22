@@ -17,6 +17,7 @@ class CreateCitiesTable extends Migration
             $table->integer('state_id');
             $table->string('clave');
             $table->string('name');
+            $table->string('slug')->nullable()->unique();
         });
     }
 

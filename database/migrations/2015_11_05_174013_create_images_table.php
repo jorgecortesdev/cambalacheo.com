@@ -14,10 +14,10 @@ class CreateImagesTable extends Migration
     {
         Schema::create('images', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('article_id');
+            $table->integer('article_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->string('file_size', 10);
             $table->string('file_mime', 50);
-            $table->integer('user_id');
             $table->timestamps();
         });
     }
