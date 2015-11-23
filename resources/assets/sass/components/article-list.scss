@@ -1,9 +1,12 @@
+.article .well {
+  padding: 5px;
+}
 .article-list ul {
   color: #555555;
   line-height: 1.8em;
   list-style: none;
-  margin-top: 5px;
-  padding-left: 20px;
+  margin: 2px 4px;
+  padding: 2px 10px;
 }
 .article-list td .row {
   min-height: 130px;
@@ -30,4 +33,18 @@
   position: absolute;
   text-align: center;
   width: 100%;
+}
+
+ul.list li {
+  border-bottom: 1px solid #ddd;
+  padding: 5px 0;
+}
+
+ul.list li:last-child {
+  border: 0;
+}
+
+ul.list li i {
+  padding: 4px 0;
+  width: 32px;
 }

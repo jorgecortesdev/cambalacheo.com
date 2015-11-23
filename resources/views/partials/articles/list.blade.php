@@ -16,34 +16,37 @@
 				</td>
 				<td>
 					<div class="row">
-						<div class="col-md-8">
-							<h4><a href="/articulo/{{ $article->slug }}">{{ $article->title }}</a></h4>
+						<div class="col-md-7">
+							<h4><a href="/articulo/{{ $article->slug }}">{{ str_limit($article->title, 45) }}</a></h4>
 							<p class="description">{{ str_limit($article->description, 150) }}</p>
-							<span class="pull-right hidden-xs">
+							<p class="small text-muted"><strong>Publicado:</strong> {{ $article->created_at->formatLocalized('%d/%B/%Y') }}</p>
+{{-- 							<span class="hidden-xs pull-right">
 								<a class="btn btn-sm btn-success" href="/articulo/{{ $article->slug }}">Ver detalle</a>
-							</span>
+							</span> --}}
 						</div>
-						<div class="col-md-4 hidden-xs">
-							<ul class="list">
-								<li>
-									<i class="fa fa-calendar"></i>&nbsp;
-									{{ $article->created_at->formatLocalized('%d/%B/%Y') }}
-								</li>
-								<li>
-									<i class="fa fa-folder-open-o"></i>&nbsp;
-									<a href="/categoria/{{ $article->category->slug }}">{{ str_limit($article->category->name, 27) }}</a>
-								</li>
-								<li>
-									<i class="fa fa-asterisk"></i>&nbsp;
-									<a href="/condicion/{{ article_condition($article->condition_id)['slug'] }}">{{ article_condition($article->condition_id)['name'] }}</a>
-								</li>
-								<li>
-									<i class="fa fa-globe"></i>&nbsp;
-									<a href="/ubicacion/{{ $article->user->state->slug }}/{{ $article->user->city->slug }}">
-										{{ str_limit($article->user->city->name, 17) }}, {{ $article->user->state->short }}
-									</a>
-								</li>
-							</ul>
+						<div class="col-md-5 hidden-xs article-attributes">
+							<div class="well">
+								<ul class="list">
+{{-- 									<li>
+										<i class="fa fa-calendar btn btn-success"></i>&nbsp;
+										{{ $article->created_at->formatLocalized('%d/%B/%Y') }}
+									</li> --}}
+									<li>
+										<i class="fa fa-folder-open-o btn btn-success"></i>&nbsp;
+										<a href="/categoria/{{ $article->category->slug }}">{{ str_limit($article->category->name, 27) }}</a>
+									</li>
+									<li>
+										<i class="fa fa-asterisk btn btn-success"></i>&nbsp;
+										<a href="/condicion/{{ article_condition($article->condition_id)['slug'] }}">{{ article_condition($article->condition_id)['name'] }}</a>
+									</li>
+									<li>
+										<i class="fa fa-globe btn btn-success"></i>&nbsp;
+										<a href="/ubicacion/{{ $article->user->state->slug }}/{{ $article->user->city->slug }}">
+											{{ str_limit($article->user->city->name, 16) }}, {{ $article->user->state->short }}
+										</a>
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				</td>

@@ -34,7 +34,7 @@ class ImageController extends Controller
                 });
                 break;
             case 'list':
-                $img = $img->fit(115, 115, function ($constraint) {
+                $img = $img->fit(90, 90, function ($constraint) {
                     $constraint->upsize();
                 });
                 break;
@@ -80,7 +80,7 @@ class ImageController extends Controller
                 });
                 break;
             case 'list':
-                $img = $img->fit(115, 115, function ($constraint) {
+                $img = $img->fit(90, 90, function ($constraint) {
                     $constraint->upsize();
                 });
                 break;
@@ -95,7 +95,9 @@ class ImageController extends Controller
                 });
                 break;
             default:
-                # code...
+                $img = $img->fit(600, 600, function ($constraint) {
+                    $constraint->upsize();
+                });
                 break;
         }
 
