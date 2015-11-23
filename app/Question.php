@@ -30,14 +30,32 @@ class Question extends Model
         return $this->hasMany('App\Question', 'parent_id');
     }
 
-    public function userQuestionsCount($user_id)
+    public function scopeReceived($query, $user_id)
     {
-        return $this->join('articles', 'articles.id', '=', 'questions.article_id')
+        return $query->select('questions.*')
+            ->join('articles', 'questions.article_id', '=', 'articles.id')
+            ->with('article.images')
             ->where([
-                'questions.user_id' => $user_id,
-                'questions.status'  => QUESTION_STATUS_OPEN,
                 'questions.parent_id' => 0,
-                'articles.status' => ARTICLE_STATUS_OPEN,
-            ])->get()->count();
+                'questions.status'    => QUESTION_STATUS_OPEN,
+                'articles.status'     => ARTICLE_STATUS_OPEN,
+                'articles.user_id'    => $user_id
+            ])
+            ->where('questions.user_id', '<>', $user_id)
+            ->latest();
+    }
+
+    public function scopeSent($query, $user_id)
+    {
+        return $query->select('questions.*')
+            ->join('articles', 'questions.article_id', '=', 'articles.id')
+            ->with('article.images')
+            ->where([
+                'questions.user_id'   => $user_id,
+                'questions.parent_id' => 0,
+                'questions.status'    => QUESTION_STATUS_OPEN,
+                'articles.status'     => ARTICLE_STATUS_OPEN,
+            ])
+            ->latest();
     }
 }

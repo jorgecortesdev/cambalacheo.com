@@ -1,16 +1,4 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 Route::get('acerca', 'IndexController@about');
 Route::get('terminos', 'IndexController@terms');
 Route::get('privacidad', 'IndexController@privacy');
@@ -95,9 +83,3 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::get('admin/', 'Admin\IndexController@index');
 Route::get('admin/users', 'Admin\IndexController@users');
 Route::get('admin/articles', 'Admin\IndexController@articles');
-
-// Migraciones temporal!
-Route::get('migration/categories', 'MigrationController@categories_slug');
-Route::get('migration/location', 'MigrationController@location_slug');
-Route::get('migration/article', 'MigrationController@article_slug');
-

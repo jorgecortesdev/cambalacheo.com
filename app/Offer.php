@@ -30,14 +30,32 @@ class Offer extends Model
         return $this->hasMany('App\Offer', 'parent_id');
     }
 
-    public function userOffersCount($user_id)
+    public function scopeReceived($query, $user_id)
     {
-        return $this->join('articles', 'articles.id', '=', 'offers.article_id')
+        return $query->select('offers.*')
+            ->join('articles', 'offers.article_id', '=', 'articles.id')
+            ->with('article.images')
             ->where([
-                'offers.user_id' => $user_id,
-                'offers.status'  => OFFER_STATUS_OPEN,
                 'offers.parent_id' => 0,
-                'articles.status' => ARTICLE_STATUS_OPEN,
-            ])->get()->count();
+                'offers.status'    => OFFER_STATUS_OPEN,
+                'articles.status'  => ARTICLE_STATUS_OPEN,
+                'articles.user_id' => $user_id
+            ])
+            ->where('offers.user_id', '<>', $user_id)
+            ->latest();
+    }
+
+    public function scopeSent($query, $user_id)
+    {
+        return $query->select('offers.*')
+            ->join('articles', 'offers.article_id', '=', 'articles.id')
+            ->with('article.images')
+            ->where([
+                'offers.user_id'   => $user_id,
+                'offers.parent_id' => 0,
+                'offers.status'    => OFFER_STATUS_OPEN,
+                'articles.status'  => ARTICLE_STATUS_OPEN,
+            ])
+            ->latest();
     }
 }

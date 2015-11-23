@@ -47,6 +47,16 @@ class User extends Model implements AuthenticatableContract,
         return $this->belongsTo('App\City');
     }
 
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    public function offers()
+    {
+        return $this->hasMany(Offer::class);
+    }
+
     public function isAdmin()
     {
         return $this->admin == 1;

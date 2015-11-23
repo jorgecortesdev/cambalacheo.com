@@ -29,6 +29,10 @@ class ComposerServiceProvider extends ServiceProvider
             'layouts.master', 'App\Http\ViewComposers\CompleteRegistrationComposer'
         );
 
+        view()->composer(
+            'partials.modal.remove_article', 'App\Http\ViewComposers\RemoveArticleComposer'
+        );
+
         // Figure it out what is the correct view
         // view()->composer('*', function($view) {
         //     print $view->getName() . "<br>";

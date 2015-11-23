@@ -36,91 +36,17 @@
 
     <!-- Tab panes -->
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in active" id="sent">
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-hover table-striped">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Imágen</th>
-                                <th class="text-center">Artículo</th>
-                                <th class="text-center">Pregunta</th>
-                                <th class="text-center">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($questions_sent as $article)
-                            <tr>
-                                <td class="text-center">
-                                    <img
-                                        class="img-rounded lazy"
-                                        data-original="{{ Cdn::image($article->images->first(), 'thumbnail') }}"
-                                        src="{{ Cdn::asset('/image/article/default/thumbnail.gif') }}"
-                                    />
-                                </td>
-                                <td>{{ $article->title }}</td>
-                                <td>{{ $article->description }}</td>
-                                <td class="text-center">
-                                    <ul class="list-inline">
-                                        <li><a href="/articulo/{{ $article->slug }}"><i class="fa fa-eye"></i> Ver</a></li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="4" class="text-center">
-                                    <span>No hay preguntas</span>
-                                </td>
-                            </tr>
-                            @endforelse
+        @include('partials.panel.questions_tab', [
+            'questions'  => $questions_sent,
+            'tab_id'     => 'sent',
+            'tab_active' => true
+        ])
 
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div role="tabpanel" class="tab-pane fade" id="received">
-            <div class="row">
-                <div class="col-md-12">
-                    <table class="table table-hover table-striped">
-                        <thead>
-                            <tr>
-                                <th class="text-center">Imágen</th>
-                                <th class="text-center">Artículo</th>
-                                <th class="text-center">Pregunta</th>
-                                <th class="text-center">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($questions_received as $article)
-                            <tr>
-                                <td class="text-center">
-                                  <img
-                                        class="img-rounded lazy"
-                                        data-original="{{ Cdn::image($article->images->first(), 'thumbnail') }}"
-                                        src="{{ Cdn::asset('/image/article/default/thumbnail.gif') }}"
-                                    />
-                                </td>
-                                <td>{{ $article->title }}</td>
-                                <td>{{ $article->description }}</td>
-                                <td class="text-center">
-                                    <ul class="list-inline">
-                                        <li><a href="/articulo/{{ $article->slug }}"><i class="fa fa-eye"></i> Ver</a></li>
-                                    </ul>
-                                </td>
-                            </tr>
-                            @empty
-                            <tr>
-                                <td colspan="4" class="text-center">
-                                    <span>No hay preguntas</span>
-                                </td>
-                            </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
+        @include('partials.panel.questions_tab', [
+            'questions'  => $questions_received,
+            'tab_id'     => 'received',
+            'tab_active' => false
+        ])
     </div>
 </div>
 

@@ -112,8 +112,6 @@ class ArticleController extends Controller
 
         $article_status = Config::get('constants.status_article');
 
-        $article_id = $article->id;
-
         $images = $article->images;
 
         $logged_user_id = false;
@@ -251,16 +249,5 @@ class ArticleController extends Controller
         }
 
         return redirect('/panel');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

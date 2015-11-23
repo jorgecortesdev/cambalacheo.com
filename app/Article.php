@@ -12,23 +12,24 @@ class Article extends Model
 
     public static function boot()
     {
-            parent::boot();
+        parent::boot();
 
-            static::saving(function($article) {
-                $article->slug = str_slug($article->title);
-                $builder = static::whereRaw("slug RLIKE '^{$article->slug}(-[0-9]*)?$'")
-                    ->latest('id');
-                if ($article->id) {
-                    $builder = $builder->where('id', '<>', $article->id);
-                }
-                $latestSlug = $builder->value('slug');
-                if ($latestSlug) {
-                    $pieces = explode('-', $latestSlug);
-                    $number = intval(end($pieces));
-                    $article->slug .= '-' . ($number + 1);
-                }
-            });
+        static::saving(function($article) {
+            $article->slug = str_slug($article->title);
+            $builder = static::whereRaw("slug RLIKE '^{$article->slug}(-[0-9]*)?$'")
+                ->latest('id');
+            if ($article->id) {
+                $builder = $builder->where('id', '<>', $article->id);
+            }
+            $latestSlug = $builder->value('slug');
+            if ($latestSlug) {
+                $pieces = explode('-', $latestSlug);
+                $number = intval(end($pieces));
+                $article->slug .= '-' . ($number + 1);
+            }
+        });
     }
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -54,32 +55,13 @@ class Article extends Model
         return $this->hasMany('App\Image');
     }
 
-    public function receivedOffers($user_id)
+    public function scopeStatus($query, $user_id, $status)
     {
-        return $this->select('articles.*', 'offers.description')
-            ->with('images')
-            ->leftJoin('offers', 'articles.id', '=', 'offers.article_id')
+        return $query->with('images')
             ->where([
-                'articles.user_id' => $user_id,
-                'articles.status'  => ARTICLE_STATUS_OPEN,
-                'offers.status' => OFFER_STATUS_OPEN,
-                'offers.parent_id' => 0
-            ])
-
-            ->orderBy('offers.created_at', 'desc')->get();
-    }
-
-    public function receivedQuestions($user_id)
-    {
-        return $this->select('articles.*', 'questions.description')
-            ->with('images')
-            ->leftJoin('questions', 'articles.id', '=', 'questions.article_id')
-            ->where([
-                'articles.user_id' => $user_id,
-                'articles.status'  => ARTICLE_STATUS_OPEN,
-                'questions.status' => QUESTION_STATUS_OPEN,
-                'questions.parent_id' => 0
-            ])->orderBy('questions.created_at', 'desc')->get();
+                'user_id' => $user_id,
+                'status'  => $status
+            ])->latest();
     }
 
     public function scopeSearch($query, $q)
