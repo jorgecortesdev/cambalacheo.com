@@ -11,96 +11,130 @@ use App\Http\Controllers\Controller;
 
 class ImageController extends Controller
 {
+    /**
+     * Imagen default.
+     *
+     * @var string
+     */
+    protected $defaultImage;
+
     public function __construct()
     {
         $this->middleware('image.cache.headers');
+
+        $this->defaultImage = public_path('img/default.png');
     }
 
+    /**
+     * Devuelve la image de un articulo para el $article_id proporcionado.
+     *
+     * Ya que el articulo tiene varias imagenes asociadas, se puede especificar
+     * que imagen se ocupa regresar mediante el parametro $image_id.
+     *
+     * Ademas las imagenes pueden tener distintos tamaños, esto puede indicarse
+     * por medio del parametro $image_size.
+     *
+     * @param  integer
+     * @param  integer
+     * @param  string
+     *
+     * @return Intervention\Image\Image
+     */
     public function getArticleImage($article_id, $image_id, $image_size)
     {
-        $image_filename = public_path('img/default.gif');
+        $image_filename = $this->buildImagePath($article_id, $image_id);
+        return $this->buildImage($image_filename, $image_size);
+    }
 
-        $images_path = "articles/images/{$article_id}/{$image_id}";
+    /**
+     * Regresa la imagen default en el tamaño especificado.
+     *
+     * @param  string
+     *
+     * @return Intervention\Image\Image
+     */
+    public function getDefault($image_size)
+    {
+        $image_filename = $this->defaultImage;
+        return $this->buildImage($image_filename, $image_size);
+    }
 
-        if (Storage::exists("articles/images/{$article_id}/{$image_id}")) {
-            $image_filename = storage_path("app/articles/images/{$article_id}/{$image_id}");
+    /**
+     * Construye el path de la imagen dado el articulo y la imagen id.
+     *
+     * @param  integer
+     * @param  integer
+     * @return string
+     */
+    protected function buildImagePath($article_id, $image_id)
+    {
+        $image_filename = $this->defaultImage;
+
+        $image_path = "articles/images/{$article_id}/{$image_id}";
+        if (Storage::exists($image_path)) {
+            $image_filename = storage_path("app/{$image_path}");
         }
 
-        $img = Image::make($image_filename);
-        switch ($image_size) {
+        return $image_filename;
+    }
+
+    /**
+     * Redimensiona y corta la imagen dada con el tamaño especificado.
+     *
+     * @param  Intervention\Image\Image
+     * @param  string
+     *
+     * @return Intervention\Image\Image
+     */
+    protected function resizeAndCropImage(\Intervention\Image\Image $image, $size)
+    {
+        switch ($size) {
             case 'thumbnail':
-                $img = $img->fit(50, 50, function ($constraint) {
+                $image = $image->fit(50, 50, function ($constraint) {
                     $constraint->upsize();
                 });
                 break;
             case 'list':
-                $img = $img->fit(90, 90, function ($constraint) {
+                $image = $image->fit(90, 90, function ($constraint) {
                     $constraint->upsize();
                 });
                 break;
             case 'profile':
-                $img = $img->fit(250, 250, function ($constraint) {
-                    $constraint->upsize();
-                });
-                break;
-            case 'carousel':
-                $img = $img->fit(125, 125, function ($constraint) {
+                $image = $image->fit(250, 250, function ($constraint) {
                     $constraint->upsize();
                 });
                 break;
             default:
-                $img = $img->fit(600, 600, function ($constraint) {
+                $image = $image->fit(600, 600, function ($constraint) {
                     $constraint->upsize();
                 });
                 break;
         }
 
-        $img->encode('png', 90);
+        return $image;
+    }
 
-        $data   = $img->getEncoded();
+    /**
+     * Construye la imagen y la attacha a un nuevo response.
+     *
+     * @param  string
+     * @param  string
+     * @return Illuminate\Support\Facades\Response
+     */
+    protected function buildImage($filename, $size)
+    {
+        $image = Image::make($filename);
+        $image = $this->resizeAndCropImage($image, $size);
+        $image->encode('png', 90);
+
+        $data   = $image->getEncoded();
         $length = strlen($data);
 
         $response = \Response::make($data);
         $response->header('Content-Type', 'image/png');
         $response->header('Content-Length', $length);
-        $response->header('Last-Modified', gmdate('D, d M Y H:i:s T', filemtime($image_filename)));
+        $response->header('Last-Modified', gmdate('D, d M Y H:i:s T', filemtime($filename)));
 
         return $response;
-    }
-
-    public function getDefault($image_size)
-    {
-        $image_filename = public_path('img/default.gif');
-
-        $img = Image::make($image_filename);
-                switch ($image_size) {
-            case 'thumbnail':
-                $img = $img->fit(50, 50, function ($constraint) {
-                    $constraint->upsize();
-                });
-                break;
-            case 'list':
-                $img = $img->fit(90, 90, function ($constraint) {
-                    $constraint->upsize();
-                });
-                break;
-            case 'profile':
-                $img = $img->fit(250, 250, function ($constraint) {
-                    $constraint->upsize();
-                });
-                break;
-            case 'carousel':
-                $img = $img->fit(125, 125, function ($constraint) {
-                    $constraint->upsize();
-                });
-                break;
-            default:
-                $img = $img->fit(600, 600, function ($constraint) {
-                    $constraint->upsize();
-                });
-                break;
-        }
-
-        return $img->response();
     }
 }
