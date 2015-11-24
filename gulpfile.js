@@ -1,24 +1,28 @@
 var elixir = require('laravel-elixir');
 
-elixir(function(mix) {
-    mix.sass('app.scss', 'resources/assets/css');
+var paths = {
+    bower: "../../../bower_modules"
+};
 
-    mix.styles([
-        'libs/bootstrap.min.css',
-        'libs/font-awesome.min.css',
-        'libs/bootstrap-social.css',
+elixir(function(mix) {
+    mix.sass('app.scss', 'resources/assets/css')
+
+    .styles([
+        paths.bower + '/bootstrap/dist/css/bootstrap.css',
+        paths.bower + '/font-awesome/css/font-awesome.css',
+        paths.bower + '/bootstrap-social/bootstrap-social.css',
         'app.css'
     ]);
 
     mix.scripts([
-        'libs/jquery-1.11.3.min.js',
-        'libs/bootstrap.min.js',
-        'libs/jquery.lazyload.min.js',
-        'libs/jquery.simplyCountable.js',
-        'libs/jquery.slides.min.js'
+        paths.bower + '/jquery/dist/jquery.js',
+        paths.bower + '/bootstrap/dist/js/bootstrap.js',
+        paths.bower + '/jquery_lazyload/jquery.lazyload.js',
+        paths.bower + '/jquery-simply-countable/jquery.simplyCountable.js'
     ]);
 
-    mix.copy('resources/assets/fonts', 'public/build/fonts');
+    mix.copy('bower_modules/bootstrap/dist/fonts', 'public/build/fonts');
+    mix.copy('bower_modules/font-awesome/fonts', 'public/build/fonts');
 
     mix.version(['css/all.css', 'js/all.js']);
 });

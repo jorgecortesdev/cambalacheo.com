@@ -1,0 +1,11 @@
+{
+  "name": "Laravel Application",
+  "dependencies": {
+    "jquery": "1.11.3",
+    "bootstrap": "~3.3.5",
+    "jquery_lazyload": "jquery.lazyload#~1.9.7",
+    "jquery-simply-countable": "git://github.com/aaronrussell/jquery-simply-countable.git#~0.5.0",
+    "bootstrap-social": "~4.10.1",
+    "font-awesome": "fontawesome#~4.5.0"
+  }
+}
