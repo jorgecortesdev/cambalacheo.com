@@ -17,6 +17,10 @@
   width: 100%;
   min-height: 416px;
 }
+#main-carousel .carousel-inner div a:hover,
+#main-carousel .carousel-inner div a:focus {
+  cursor: -webkit-zoom-in;
+}
 #main-carousel-thumbs ul {
   margin-left: 0
 }

@@ -33,6 +33,10 @@ class ComposerServiceProvider extends ServiceProvider
             'partials.modal.remove_article', 'App\Http\ViewComposers\RemoveArticleComposer'
         );
 
+        view()->composer(
+            ['articles.show', 'articles.create', 'articles.edit'], 'App\Http\ViewComposers\ArticleComposer'
+        );
+
         // Figure it out what is the correct view
         // view()->composer('*', function($view) {
         //     print $view->getName() . "<br>";

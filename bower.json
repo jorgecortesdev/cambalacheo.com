@@ -7,6 +7,7 @@
     "jquery-simply-countable": "git://github.com/aaronrussell/jquery-simply-countable.git#~0.5.0",
     "bootstrap-social": "~4.10.1",
     "font-awesome": "fontawesome#~4.5.0",
-    "sweetalert": "~1.1.3"
+    "sweetalert": "~1.1.3",
+    "lity": "~1.5.0"
   }
 }

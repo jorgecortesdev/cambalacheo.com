@@ -17,7 +17,6 @@
 
 @section('footer')
 <script src="{{ Cdn::asset('/js/show.js') }}"></script>
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-564d4ed94efe4b27" async="async"></script>
 @endsection
 
@@ -34,19 +33,20 @@
             <div class="col-md-10 carousel-big-picture">
                 <div id="main-carousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
-                        @foreach ($images as $index => $image)
+                        @foreach ($article->images as $index => $image)
                         <li data-target="#main-carousel" data-slide-to="{{ $index }}" @if ($index == 0) class="active" @endif></li>
                         @endforeach
                     </ol>
                     <div class="carousel-inner">
-                        @foreach ($images as $index => $image)
+                        @foreach ($article->images as $index => $image)
                         <div class="item @if ($index == 0) active @endif">
-                            <img
-                                @if ($index == 0) itemprop="image" @endif
-                                class="img-responsive lazy"
-                                data-original="{{ Cdn::image($image, 'original') }}"
-                                src="{{ Cdn::asset('/image/article/default/original.gif') }}"
-                            />
+                            <a href="{{ Cdn::image($image, 'zoom') }}" data-lity>
+                                <img @if ($index == 0) itemprop="image" @endif
+                                    class="img-responsive lazy"
+                                    data-original="{{ Cdn::image($image, 'slider') }}"
+                                    src="{{ Cdn::asset('/image/article/default/slider.gif') }}"
+                                />
+                            </a>
                         </div>
                         @endforeach
                     </div>
@@ -57,7 +57,7 @@
             <div class="col-md-2 carousel-thumbs">
                 <div id="main-carousel-thumbs">
                     <ul class="list-inline">
-                        @foreach ($images as $index => $image)
+                        @foreach ($article->images as $index => $image)
                         <li data-target="#main-carousel" data-slide-to="{{ $index }}" @if ($index == 0) class="active" @endif>
                             <img
                                 class="img-responsive lazy"

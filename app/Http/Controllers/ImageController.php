@@ -104,10 +104,17 @@ class ImageController extends Controller
                     $constraint->upsize();
                 });
                 break;
-            default:
+            case 'slider':
                 $image = $image->fit(600, 600, function ($constraint) {
                     $constraint->upsize();
                 });
+                break;
+            case 'zoom':
+                $image = $image->fit(1200, 1200, function ($constraint) {
+                    $constraint->upsize();
+                });
+                break;
+            default:
                 break;
         }
 

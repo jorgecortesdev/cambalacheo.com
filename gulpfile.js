@@ -12,6 +12,7 @@ elixir(function(mix) {
         paths.bower + '/font-awesome/css/font-awesome.css',
         paths.bower + '/bootstrap-social/bootstrap-social.css',
         paths.bower + '/sweetalert/dist/sweetalert.css',
+        paths.bower + '/lity/dist/lity.css',
         'app.css'
     ]);
 
@@ -20,7 +21,8 @@ elixir(function(mix) {
         paths.bower + '/bootstrap/dist/js/bootstrap.js',
         paths.bower + '/jquery_lazyload/jquery.lazyload.js',
         paths.bower + '/jquery-simply-countable/jquery.simplyCountable.js',
-        paths.bower + '/sweetalert/dist/sweetalert.min.js'
+        paths.bower + '/sweetalert/dist/sweetalert-dev.js',
+        paths.bower + '/lity/dist/lity.js'
     ]);
 
     mix.copy('bower_modules/bootstrap/dist/fonts', 'public/build/fonts');
