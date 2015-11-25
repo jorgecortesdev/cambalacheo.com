@@ -9,7 +9,7 @@
 
         <title>Cambalacheo - @yield('page_title')</title>
 
-        @yield('ogtags');
+        @yield('ogtags')
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ Cdn::asset(elixir('css/all.css')) }}">
