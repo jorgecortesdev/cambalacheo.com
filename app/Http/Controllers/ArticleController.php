@@ -97,6 +97,8 @@ class ArticleController extends Controller
             );
         }
 
+        flash()->success('Tu artículo ha sido creado.');
+
         return redirect('/panel');
     }
 
@@ -233,6 +235,8 @@ class ArticleController extends Controller
             \App\Image::destroy($image_id);
             Storage::delete('articles/images' . '/' . $article->id . '/' . $image_id);
         }
+
+        flash()->success('Tu artículo ha sido actualizado.');
 
         return redirect($request->redirects_to);
     }

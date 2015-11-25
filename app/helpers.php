@@ -38,3 +38,21 @@ function profile_picture(\App\User $user, $size = 50)
     }
     return $picture;
 }
+
+/**
+ * Flash helper.
+ *
+ * @param  string|null $message
+ * @param  string|null $title
+ * @return void
+ */
+function flash($message = null, $title = null)
+{
+    $flash = app('App\Http\Flash');
+
+    if(func_num_args() == 0) {
+        return $flash;
+    }
+
+    return $flash->info($message, $title);
+}

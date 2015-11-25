@@ -79,8 +79,8 @@ class AuthController extends Controller
             'state_id' => $data['state_id'],
             'city_id'  => $data['city_id']
         ]);
-
-        $this->dispatch(new \App\Jobs\SendRegistrationEmail($user, $data['password']));
+        flash()->success('Tu cuenta ha sido creada.', 'Bienvenid@');
+        event(new \App\Events\UserCreated($user, $data['password']));
 
         return $user;
     }
@@ -129,21 +129,23 @@ class AuthController extends Controller
             return redirect('panel/profile')
                 ->withErrors($validator)
                 ->withInput($request->except('password'));
-        } else {
-            $user = \App\User::find($id);
-            $user->name     = $request->name;
-            $user->email    = $request->email;
-            $user->state_id = $request->state_id;
-            $user->city_id  = $request->city_id;
-
-            if (!empty($request->password)) {
-                $user->password = bcrypt($request->password);
-            }
-
-            $user->save();
-
-            return redirect('/panel/profile');
         }
+
+        $user = \App\User::find($id);
+        $user->name     = $request->name;
+        $user->email    = $request->email;
+        $user->state_id = $request->state_id;
+        $user->city_id  = $request->city_id;
+
+        if (!empty($request->password)) {
+            $user->password = bcrypt($request->password);
+        }
+
+        $user->save();
+
+        flash()->success('Tu cuenta ha sido actualizada.');
+
+        return redirect('/panel/profile');
     }
 
     // Override

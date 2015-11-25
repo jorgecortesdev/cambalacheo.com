@@ -29,7 +29,8 @@ class ContactController extends Controller
     public function store(ContactRequest $request)
     {
         $data = $request->only('name', 'email', 'message', 'user_registered');
+        flash()->success('Tu mensaje ha sido enviado', 'Gracias');
         event(new \App\Events\ContactSent($data));
-        return back()->with('message', 'Mensaje enviado');
+        return redirect()->back();
     }
 }

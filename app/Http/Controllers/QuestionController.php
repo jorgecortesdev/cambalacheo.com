@@ -35,8 +35,11 @@ class QuestionController extends Controller
             $question->user_id = Auth::user()->id;
             $question->save();
 
+            flash()->success('Tu respuesta ha sido enviada.');
+
             $this->dispatch(new \App\Jobs\SendQuestionReplayEmail($question));
         }
+
         return redirect('articulo/' . $article->slug);
     }
 
@@ -66,6 +69,8 @@ class QuestionController extends Controller
         $question->save();
 
         $this->dispatch(new \App\Jobs\SendQuestionEmail($question));
+
+        flash()->success('Tu pregunta ha sido enviada.');
 
         return redirect('articulo/' . $article->slug);
     }

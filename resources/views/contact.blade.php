@@ -22,12 +22,6 @@ la forma siguiente y mandanos un mensaje.</p>
 
 <hr>
 
-@if(Session::has('message'))
-<div class="alert alert-info text-center">
-    {{Session::get('message')}}
-</div>
-@endif
-
 {{--*/
 $extra_attributes = [];
 $name             = '';
@@ -100,8 +94,5 @@ $registered                   = true;
         </div>
     </div>
 </div>
-
-
-
 
 @endsection

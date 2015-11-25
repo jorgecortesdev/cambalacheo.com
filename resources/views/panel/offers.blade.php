@@ -27,26 +27,27 @@
 <div>
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
-            <a href="#sent" role="tab" data-toggle="tab">Enviadas <span class="badge">{{ $offers_sent->count() }}</span></a>
+            <a href="#received" role="tab" data-toggle="tab">Recibidas <span class="badge">{{ $offers_received->count() }}</span></a>
         </li>
         <li role="presentation">
-            <a href="#received" role="tab" data-toggle="tab">Recibidas <span class="badge">{{ $offers_received->count() }}</span></a>
+            <a href="#sent" role="tab" data-toggle="tab">Enviadas <span class="badge">{{ $offers_sent->count() }}</span></a>
         </li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
         @include('partials.panel.offers_tab', [
-            'offers'     => $offers_sent,
-            'tab_id'     => 'sent',
+            'offers'     => $offers_received,
+            'tab_id'     => 'received',
             'tab_active' => true
         ])
 
         @include('partials.panel.offers_tab', [
-            'offers'     => $offers_received,
-            'tab_id'     => 'received',
+            'offers'     => $offers_sent,
+            'tab_id'     => 'sent',
             'tab_active' => false
         ])
+
     </div>
 </div>
 

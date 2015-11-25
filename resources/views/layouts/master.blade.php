@@ -25,6 +25,7 @@
     </head>
 
     <body>{!! Analytics::render() !!}
+
         <div id="main" class="container">
 
             @include('layouts.partials.navigation')
@@ -71,5 +72,6 @@
             @include('partials.modal.registration')
         @endif
 
+        @include('partials.flash')
     </body>
 </html>

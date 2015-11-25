@@ -38,7 +38,7 @@ class OfferController extends Controller
             $offer = new Offer($request->all());
             $offer->user_id = Auth::user()->id;
             $offer->save();
-
+            flash()->success('Tu respuesta ha sido enviada.');
             $this->dispatch(new \App\Jobs\SendOfferReplayEmail($offer));
         }
         return redirect('articulo/' . $article->slug);
@@ -50,6 +50,7 @@ class OfferController extends Controller
         $offer = new Offer($request->all());
         $offer->user_id = Auth::user()->id;
         $offer->save();
+        flash()->success('Tu oferta ha sido enviada.');
         Event::fire(new \App\Events\OfferStore($offer));
         return redirect('articulo/' . $article->slug);
     }
@@ -63,6 +64,7 @@ class OfferController extends Controller
         if ($owner_user_id == $logged_user_id) {
             $offer->status = OFFER_STATUS_REJECTED;
             $offer->save();
+            flash()->error('Oferta rechazada.');
             $this->dispatch(new \App\Jobs\SendOfferRejectedEmail($offer));
         }
         return redirect('articulo/' . $article->slug);
@@ -80,6 +82,7 @@ class OfferController extends Controller
             $article->save();
             $offer->status = OFFER_STATUS_ACCEPTED;
             $offer->save();
+            flash()->success('Oferta aceptada.');
             $this->dispatch(new \App\Jobs\SendOfferAcceptedEmail($offer));
         }
         return redirect('articulo/' . $article->slug);
