@@ -153,6 +153,7 @@ return [
         DaveJamesMiller\Breadcrumbs\ServiceProvider::class,
         Ipunkt\LaravelAnalytics\AnalyticsServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
     ],
 
     /*
@@ -210,7 +211,8 @@ return [
         'Cdn'         => App\Facades\Cdn::class,
         'Breadcrumbs' => DaveJamesMiller\Breadcrumbs\Facade::class,
         'Analytics'   => Ipunkt\LaravelAnalytics\AnalyticsFacade::class,
-        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'Socialite'   => Laravel\Socialite\Facades\Socialite::class,
+        'Facebook'    => SammyK\LaravelFacebookSdk\FacebookFacade::class,
     ],
 
     'site_email'      => env('MAIL_FROM', ''),

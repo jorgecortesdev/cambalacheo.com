@@ -22,6 +22,9 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\UserCreated' => [
             'App\Listeners\SendRegistrationEmail',
         ],
+        'App\Events\ArticleCreated' => [
+            'App\Listeners\PostNewArticleFacebook',
+        ],
     ];
 
     /**

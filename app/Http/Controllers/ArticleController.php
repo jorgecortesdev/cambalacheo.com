@@ -48,7 +48,8 @@ class ArticleController extends Controller
 
         flash()->success('Tu artículo ha sido creado.');
 
-        return redirect('/panel');
+        event(new \App\Events\ArticleCreated($article));
+        return redirect()->back();
     }
 
     /**

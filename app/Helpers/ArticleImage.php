@@ -3,14 +3,109 @@
 namespace App\Helpers;
 
 use File;
+use Image;
 use Storage;
-use App\Image;
+use App\Image as AppImage;
 use App\Article;
 use App\Helpers\ArticleImage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ArticleImage
 {
+    /**
+     * Imagen default.
+     *
+     * @var string
+     */
+    protected $defaultImagePath;
+
+    public function __construct()
+    {
+        $this->defaultImagePath = public_path('img/default.png');
+    }
+
+    /**
+     * Regresa el path de la imagen default.
+     *
+     * @return string
+     */
+    public function getDefaultImagePath()
+    {
+        return $this->defaultImagePath;
+    }
+
+    /**
+     * Construye el path de la imagen dado el articulo y la imagen id.
+     *
+     * @param  integer
+     * @param  integer
+     * @return string
+     */
+    public function buildImagePath($article_id, $image_id)
+    {
+        $image_filename = $this->defaultImagePath;
+
+        $image_path = "articles/images/{$article_id}/{$image_id}";
+        if (Storage::exists($image_path)) {
+            $image_filename = storage_path("app/{$image_path}");
+        }
+
+        return $image_filename;
+    }
+
+    /**
+     * Redimensiona y corta la imagen dada con el tamaño especificado.
+     *
+     * @param  Intervention\Image\Image
+     * @param  string
+     *
+     * @return Intervention\Image\Image
+     */
+    public function resizeAndCropImage(\Intervention\Image\Image $image, $size)
+    {
+        $width = 0;
+
+        switch ($size) {
+            case 'thumbnail': $width = 50;   break;
+            case 'list':      $width = 90;   break;
+            case 'profile':   $width = 250;  break;
+            case 'slider':    $width = 600;  break;
+            case 'zoom':      $width = 1200; break;
+        }
+
+        if ($width) {
+            $image = $image->fit($width, $width, function ($constraint) {
+                $constraint->upsize();
+            });
+        }
+
+        return $image;
+    }
+
+    /**
+     * Construye la imagen y la attacha a un nuevo response.
+     *
+     * @param  string
+     * @param  string
+     * @return Illuminate\Support\Facades\Response
+     */
+    public function buildImage($filename, $size)
+    {
+        $image = Image::make($filename);
+        $image = $this->resizeAndCropImage($image, $size);
+        $image->encode('png', 90);
+
+        $data   = $image->getEncoded();
+        $length = strlen($data);
+
+        $response = \Response::make($data);
+        $response->header('Content-Type', 'image/png');
+        $response->header('Content-Length', $length);
+        $response->header('Last-Modified', gmdate('D, d M Y H:i:s T', filemtime($filename)));
+
+        return $response;
+    }
+
     /**
      * Procesa un arrigle de imagenes subidas.
      *
@@ -62,7 +157,7 @@ class ArticleImage
             if (empty($image_id)) {
                continue;
             }
-            Image::destroy($image_id);
+            AppImage::destroy($image_id);
             $this->deleteImage($article, $image_id);
         }
     }
@@ -70,12 +165,12 @@ class ArticleImage
     /**
      * Guarda fisicamente la imagen del articulo dado.
      *
-     * @param  UploadedFile $file
-     * @param  Article      $article
-     * @param  Image        $image
+     * @param  Symfony\Component\HttpFoundation\File\UploadedFile $file
+     * @param  App\Article  $article
+     * @param  App\Image    $image
      * @return App\Helpers\ArticleImage
      */
-    public function storeImage(UploadedFile $file, Article $article, Image $image)
+    public function storeImage(UploadedFile $file, Article $article, AppImage $image)
     {
         Storage::disk('local')->put(
             'articles/images' . '/' . $article->id . '/' . $image->id,

@@ -18,6 +18,32 @@
 @section('footer')
 <script src="{{ Cdn::asset('/js/show.js') }}"></script>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-564d4ed94efe4b27" async="async"></script>
+@can('admin')
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#post-facebook-button').on('click', function (e) {
+            e.preventDefault()
+
+            var $btn = $(this).button('loading');
+            $.ajax({
+                url: '/admin/facebook/post',
+                type: 'post',
+                data: $('#post-facebook').serialize(),
+                success: function (response) {
+                    $btn.button('complete');
+                    $btn.removeClass('btn-danger');
+                    $btn.addClass('btn-success');
+                    setTimeout(function () {
+                        $btn.button('reset');
+                        $btn.addClass('btn-danger');
+                        $btn.removeClass('btn-success');
+                    }, 1800);
+                }
+            })
+        });
+    });
+</script>
+@endcan
 @endsection
 
 
@@ -132,6 +158,22 @@
                         </div>
                     </div>
                 </div>
+                @can('admin')
+                <div class="row">
+                    <div class="col-md-offset-4 col-md-8">
+                        {!! Form::open(['id' => 'post-facebook']) !!}
+                            {!! Form::hidden('article_id', $article->id) !!}
+                            {!! Form::button('<i class="fa fa-facebook-square"></i> Publicar', [
+                                'class'              => 'btn btn-lg btn-danger btn-block',
+                                'type'               => 'submit',
+                                'data-loading-text'  => '<i class="fa fa-cog fa-spin"></i> Enviando...',
+                                'data-complete-text' => '<i class="fa fa-thumbs-o-up"></i> Listo',
+                                'id'                 => 'post-facebook-button'
+                            ]) !!}
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+                @endcan
             </div>
         </div>
     </div>
