@@ -41,7 +41,7 @@ class Post
         $post = [
             "message"     => "Nuevo artículo publicado",
             "link"        => url('/articulo/' . $article->slug),
-            "picture"     => Cdn::image($article->images->first(), 'original'),
+            "picture"     => "http:" . Cdn::image($article->images->first(), 'original'),
             "name"        => $article->title,
             "description" => $article->description,
             "caption"     => "cambalacheo.com",
