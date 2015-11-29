@@ -1,19 +1,12 @@
 <?php
 
-namespace App\Social\Facebook;
+namespace Cambalacheo\Social\Facebook;
 
 use Facebook;
 
 class Token
 {
-    protected $page_id;
-
-    public function __construct()
-    {
-        $this->page_id = 1004556389607584;
-    }
-
-    public function generateUserToken($callback_url)
+    public function requestUserToken($callback_url)
     {
         try {
             $token = Facebook::getAccessTokenFromRedirect($callback_url);
@@ -36,9 +29,9 @@ class Token
         return $token;
     }
 
-    public function generatePageToken($callback_url)
+    public function requestPageToken($page_id, $callback_url)
     {
-        $accessToken = $this->generateUserToken($callback_url);
+        $accessToken = $this->requestUserToken($callback_url);
 
         try {
             $response = Facebook::get('/me/accounts', $accessToken);
@@ -49,7 +42,7 @@ class Token
         $graphEdge = $response->getGraphEdge('GraphPage');
         $pageToken = '';
         foreach ($graphEdge as $graphObject) {
-            if ($graphObject->getId() == $this->page_id) {
+            if ($graphObject->getId() == $page_id) {
                 $pageToken = $graphObject->getAccessToken();
                 break;
             }

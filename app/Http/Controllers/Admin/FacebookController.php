@@ -7,9 +7,9 @@ use App\Article;
 use App\FacebookApp;
 use App\Http\Requests;
 use Illuminate\Http\Request;
-use App\Social\Facebook\Post;
-use App\Social\Facebook\Token;
 use App\Http\Controllers\Controller;
+use Cambalacheo\Social\Facebook\Alert;
+use Cambalacheo\Social\Facebook\Token;
 
 class FacebookController extends Controller
 {
@@ -45,8 +45,8 @@ class FacebookController extends Controller
         $article_id = $request->article_id;
         $article    = Article::find($article_id);
 
-        $post = new Post;
-        $post->create($article);
+        $alert = new Alert(env('FACEBOOK_PAGE_ID'));
+        $alert->send($article);
     }
 
     /**
@@ -58,7 +58,7 @@ class FacebookController extends Controller
     public function store(Request $request)
     {
         $fbToken = new Token;
-        $token = $fbToken->generatePageToken($request->url());
+        $token = $fbToken->requestPageToken(env('FACEBOOK_PAGE_ID'), $request->url());
         $facebookApp = FacebookApp::firstOrNew(['id' => 1]);
         $facebookApp->token = $token;
         $facebookApp->save();

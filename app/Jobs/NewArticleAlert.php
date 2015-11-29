@@ -4,26 +4,27 @@ namespace App\Jobs;
 
 use App\Article;
 use App\Jobs\Job;
-use App\Social\Facebook\Post;
+use Cambalacheo\Social\Facebook\Alert;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Bus\SelfHandling;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class PostNewArticleFacebook extends Job implements SelfHandling, ShouldQueue
+class NewArticleAlert extends Job implements SelfHandling, ShouldQueue
 {
     use InteractsWithQueue, SerializesModels;
 
     protected $article;
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Article $article)
+    public function __construct(Article $article, $queue)
     {
         $this->article = $article;
-        $this->onQueue('facebook');
+        $this->onQueue($queue);
     }
 
     /**
@@ -31,8 +32,8 @@ class PostNewArticleFacebook extends Job implements SelfHandling, ShouldQueue
      *
      * @return void
      */
-    public function handle(Post $post)
+    public function handle(Alert $alert)
     {
-        $post->create($this->article);
+        $alert->send($this->article);
     }
 }
