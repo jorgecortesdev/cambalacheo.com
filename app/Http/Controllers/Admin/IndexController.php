@@ -32,4 +32,11 @@ class IndexController extends Controller
 
         return view('admin.index.articles', compact('articles'));
     }
+
+    public function images()
+    {
+        $images = \App\Image::with('article')->paginate(20);
+
+        return view('admin.index.images', compact('images'));
+    }
 }

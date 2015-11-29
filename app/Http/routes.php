@@ -83,6 +83,7 @@ Route::post('password/reset', 'Auth\PasswordController@postReset');
 Route::get('admin/', 'Admin\IndexController@index');
 Route::get('admin/users', 'Admin\IndexController@users');
 Route::get('admin/articles', 'Admin\IndexController@articles');
+Route::get('admin/images', 'Admin\IndexController@images');
 
 // Facebook stuff
 Route::get('admin/facebook/', 'Admin\FacebookController@index');

@@ -75,6 +75,7 @@
                         <li><a href="{{ url('admin') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
                         <li><a href="{{ url('admin/users') }}"><i class="fa fa-table fa-fw"></i> Usuarios</a></li>
                         <li><a href="{{ url('admin/articles') }}"><i class="fa fa-table fa-fw"></i> Articulos</a></li>
+                        <li><a href="{{ url('admin/images') }}"><i class="fa fa-picture-o"></i> Imágenes</a></li>
                         <li><a href="{{ url('admin/facebook') }}"><i class="fa fa-facebook-official"></i> Facebook</a></li>
                     </ul>
                 </div>
