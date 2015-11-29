@@ -43,6 +43,6 @@ class Cdn
             return asset($asset);
         }
 
-        return "//" . rtrim($cdn, "/") . "/" . ltrim($asset, "/");
+        return rtrim($cdn, "/") . "/" . ltrim($asset, "/");
     }
 }
