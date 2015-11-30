@@ -91,7 +91,7 @@ class ArticleImage
      */
     public function buildImage($filename, $size)
     {
-        $image = Image::make($filename);
+        $image = Image::make($filename)->orientate();
         $image = $this->resizeAndCropImage($image, $size);
         $image->encode('png', 90);
 
