@@ -12,8 +12,11 @@
     <title>Cambalacheo admin - @yield('page_title')</title>
 
     <!--Style -->
-    <link href="{{ elixir('css/all.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url('css/admin.css') }}">
+    <link href="{{ Cdn::asset(elixir('css/all.css')) }}" rel="stylesheet">
+
+    @yield('styles')
+
+    <link rel="stylesheet" href="{{ Cdn::asset('css/admin.css') }}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -101,7 +104,9 @@
     <!-- /#wrapper -->
 
     <!-- Scripts -->
-    <script src="{{ elixir('js/all.js') }}"></script>
+    <script src="{{ Cdn::asset(elixir('js/all.js')) }}"></script>
+
+    @yield('footer')
 
     <script type="text/javascript">
         $(function() {

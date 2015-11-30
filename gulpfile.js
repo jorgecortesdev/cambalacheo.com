@@ -28,5 +28,10 @@ elixir(function(mix) {
     mix.copy('bower_modules/bootstrap/dist/fonts', 'public/build/fonts');
     mix.copy('bower_modules/font-awesome/fonts', 'public/build/fonts');
 
+    mix.copy('bower_modules/morris.js/morris.css', 'public/build/css');
+
+    mix.copy('bower_modules/raphael/raphael-min.js', 'public/build/js');
+    mix.copy('bower_modules/morris.js/morris.min.js', 'public/build/js');
+
     mix.version(['css/all.css', 'js/all.js']);
 });

@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-
+use App\User;
+use App\Offer;
+use App\Article;
+use App\Question;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
@@ -16,7 +19,14 @@ class IndexController extends Controller
 
     public function index()
     {
-        return view('admin.index.index');
+        $users_count     = User::count();
+        $articles_count  = Article::count();
+        $questions_count = Question::count();
+        $offers_count    = Offer::count();
+
+        return view('admin.index.index', compact(
+            'users_count', 'articles_count', 'questions_count', 'offers_count'
+        ));
     }
 
     public function users()

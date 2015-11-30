@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\Inspire::class,
+        \App\Console\Commands\StatsImagesGenerate::class,
     ];
 
     /**
@@ -24,6 +25,11 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        // Queues
         $schedule->command('queue:work --queue=emails --tries=3')->cron('* * * * * *');
+        $schedule->command('queue:work --queue=facebook --tries=3')->cron('* * * * * *');
+
+        // Statistics
+        $schedule->command('stats:images')->cron('* * * * * *');
     }
 }
