@@ -23,7 +23,7 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\SendRegistrationEmail',
         ],
         'App\Events\ArticleCreated' => [
-            'App\Listeners\PostNewArticleFacebook',
+            'App\Listeners\NewArticleAlertFacebook',
         ],
     ];
 
