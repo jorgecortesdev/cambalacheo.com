@@ -15,12 +15,12 @@ class Alert implements AlertInterface
     protected $token;
     protected $facebook;
 
-    public function __construct($page_id)
+    public function __construct()
     {
         $facebookApp = \App\FacebookApp::find(1);
         $this->token = $facebookApp->token;
 
-        $this->page_id = $page_id;
+        $this->page_id = env('FACEBOOK_PAGE_ID');
         $this->facebook = \App::make('SammyK\LaravelFacebookSdk\LaravelFacebookSdk');
     }
 

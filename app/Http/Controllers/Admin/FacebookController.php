@@ -45,7 +45,7 @@ class FacebookController extends Controller
         $article_id = $request->article_id;
         $article    = Article::find($article_id);
 
-        $alert = new Alert(env('FACEBOOK_PAGE_ID'));
+        $alert = new Alert;
         $alert->send($article);
     }
 
