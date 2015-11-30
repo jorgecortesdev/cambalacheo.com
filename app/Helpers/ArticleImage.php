@@ -172,10 +172,28 @@ class ArticleImage
      */
     public function storeImage(UploadedFile $file, Article $article, AppImage $image)
     {
-        Storage::disk('local')->put(
-            'articles/images' . '/' . $article->id . '/' . $image->id,
-            File::get($file)
-        );
+        $imagePath = 'articles/images' . '/' . $article->id . '/' . $image->id;
+        Storage::disk('local')->put($imagePath, File::get($file));
+        $this->resizeImage(storage_path() . '/app/' . $imagePath, 2048, 2048);
+    }
+
+    /**
+     * Redimensiona la imagen proporcionada al tamano especificado,
+     * matiene el ratio y evita que si la imagen es mas pequena se agrande.
+     *
+     * @param  string $file
+     * @param  integer $width
+     * @param  integer $height
+     * @return void
+     */
+    public function resizeImage($file, $width, $height)
+    {
+        Image::make($file)->orientate()
+            ->resize($width, $height, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            })
+            ->save($file);
     }
 
     /**
