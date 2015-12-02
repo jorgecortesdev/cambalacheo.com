@@ -38,7 +38,7 @@ class IndexController extends Controller
 
     public function articles()
     {
-        $articles = \App\Article::paginate(20);
+        $articles = \App\Article::latest()->paginate(20);
 
         return view('admin.index.articles', compact('articles'));
     }
