@@ -31,7 +31,7 @@ class IndexController extends Controller
 
     public function users()
     {
-        $users = \App\User::paginate(20);
+        $users = \App\User::latest()->paginate(20);
 
         return view('admin.index.users', compact('users'));
     }
