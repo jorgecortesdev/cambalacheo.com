@@ -16,7 +16,20 @@
         url: "/admin/stats/images"
     }).done(function(data) {
         Morris.Donut({
-            element: 'morris-donut-chart',
+            element: 'images-donut-chart',
+            data: data,
+            resize: true
+        });
+    }).fail(function() {
+        alert( "error occured" );
+    });
+    $.ajax({
+        type: "GET",
+        dataType: 'json',
+        url: "/admin/stats/users-providers"
+    }).done(function(data) {
+        Morris.Donut({
+            element: 'users-providers-donut-chart',
             data: data,
             resize: true
         });
@@ -72,7 +85,13 @@
     <div class="row">
         <div class="col-lg-3 col-md-6">
             @include('partials.admin.panel_donut', [
-                'id' => 'morris-donut-chart',
+                'id' => 'users-providers-donut-chart',
+                'title' => 'Users by provider'
+            ])
+        </div>
+        <div class="col-lg-3 col-md-6">
+            @include('partials.admin.panel_donut', [
+                'id' => 'images-donut-chart',
                 'title' => 'Imágenes'
             ])
         </div>

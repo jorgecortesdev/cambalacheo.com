@@ -86,6 +86,7 @@ Route::get('admin/articles', 'Admin\IndexController@articles');
 Route::get('admin/images', 'Admin\IndexController@images');
 
 Route::get('admin/stats/images', 'Admin\StatsController@images');
+Route::get('admin/stats/users-providers', 'Admin\StatsController@usersProviders');
 
 // Facebook stuff
 Route::get('admin/facebook/', 'Admin\FacebookController@index');
