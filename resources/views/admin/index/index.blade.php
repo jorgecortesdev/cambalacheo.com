@@ -86,7 +86,7 @@
         <div class="col-lg-3 col-md-6">
             @include('partials.admin.panel_donut', [
                 'id' => 'users-providers-donut-chart',
-                'title' => 'Users by provider'
+                'title' => 'Usuarios por proveedor'
             ])
         </div>
         <div class="col-lg-3 col-md-6">
