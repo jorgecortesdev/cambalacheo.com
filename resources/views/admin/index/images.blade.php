@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="col-md-12">
-    <table class="table table-stripped">
+    <table class="table table-stripped table-hover">
         <thead>
             <tr>
                 <th class="text-center">#</th>

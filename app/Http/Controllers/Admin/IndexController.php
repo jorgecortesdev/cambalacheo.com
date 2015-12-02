@@ -45,7 +45,7 @@ class IndexController extends Controller
 
     public function images()
     {
-        $images = \App\Image::with('article')->paginate(20);
+        $images = \App\Image::latest()->with('article')->paginate(20);
 
         return view('admin.index.images', compact('images'));
     }

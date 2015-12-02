@@ -14,6 +14,7 @@
                 <th class="text-center">Descripción</th>
                 <th class="text-center">Condición</th>
                 <th class="text-center">Estado</th>
+                <th class="text-center">Imágenes</th>
                 <th class="text-center">Preguntas</th>
                 <th class="text-center">Ofertas</th>
                 <th class="text-center">Acciones</th>
@@ -34,6 +35,7 @@
                 <td>{{ $article->description }}</td>
                 <td class="text-center">{{ article_condition($article->condition_id)['name'] }}</td>
                 <td class="text-center">{{ article_status($article->status) }}</td>
+                <td class="text-center">{{ $article->images->count() }}</td>
                 <td class="text-center">{{ $article->questions->count() }}</td>
                 <td class="text-center">{{ $article->offers->count() }}</td>
                 <td class="text-center">
