@@ -14,6 +14,8 @@
                 <th class="text-center">Correo</th>
                 <th class="text-center">Provider</th>
                 <th class="text-center">Ubicación</th>
+                <th class="text-center">Ip</th>
+                <th class="text-center">Ultimo acceso</th>
                 <th class="text-center">Registro</th>
                 <th class="text-center">Publicaciones</th>
             </tr>
@@ -27,6 +29,8 @@
                 <td class="text-center">{{ $user->email }}</td>
                 <td class="text-center">{{ $user->provider }}</td>
                 <td class="text-center">{{ $user->city->name }}, {{ $user->state->short }}</td>
+                <td class="text-center">{{ $user->ip }}</td>
+                <td class="text-center">{{ $user->lastlogin_at }}</td>
                 <td class="text-center">{{ $user->created_at }}</td>
                 <td class="text-center">{{ $user->articles->count() }}</td>
             </tr>

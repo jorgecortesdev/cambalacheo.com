@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -37,6 +38,13 @@ class User extends Model implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token'];
 
+    /**
+     * Usar fechas con Carbon
+     *
+     * @var array
+     */
+    protected $dates = ['created_at', 'updated_at', 'lastlogin_at'];
+
     public function state()
     {
         return $this->belongsTo('App\State');
@@ -60,5 +68,17 @@ class User extends Model implements AuthenticatableContract,
     public function isAdmin()
     {
         return $this->admin == 1;
+    }
+
+    public function getLastloginAtAttribute($date)
+    {
+        $date = new Carbon($date);
+        return $date->setTimezone('America/Hermosillo');
+    }
+
+    public function getCreatedAtAttribute($date)
+    {
+        $date = new Carbon($date);
+        return $date->setTimezone('America/Hermosillo');
     }
 }

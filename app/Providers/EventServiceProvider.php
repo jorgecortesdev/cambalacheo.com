@@ -13,6 +13,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
+        'auth.login' => [
+            'App\Listeners\Authlogin',
+        ],
         'App\Events\ContactSent' => [
             'App\Listeners\SendContactEmail',
         ],
@@ -36,7 +39,5 @@ class EventServiceProvider extends ServiceProvider
     public function boot(DispatcherContract $events)
     {
         parent::boot($events);
-
-        //
     }
 }
