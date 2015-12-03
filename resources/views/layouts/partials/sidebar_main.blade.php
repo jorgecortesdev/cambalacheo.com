@@ -1,5 +1,5 @@
-<h4>Búsqueda</h4>
-<div class="well well-sm">
+<h4 class="hidden-xs">Búsqueda</h4>
+<div class="hidden-xs well well-sm">
     {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
     <div class="input-group @if ($errors->has('query')) has-error @endif">
         {!! Form::text('query', old('query'), ['class' => 'form-control', 'placeholder' => 'Busca por...']) !!}

@@ -1,59 +1,50 @@
 .article .description {
   color: #999;
 }
-
 .dl-horizontal dd.article-status {
   border-radius: 6px;
   font-weight: 700;
   padding: 5px 0;
 }
-
 #main-carousel {
   background-color: #eee;
-  margin-bottom: 4px;
 }
 #main-carousel .carousel-inner div img {
-  margin: auto;
   width: 100%;
-  min-height: 416px;
 }
 #main-carousel .carousel-inner div a:hover,
 #main-carousel .carousel-inner div a:focus {
   cursor: -webkit-zoom-in;
 }
-#main-carousel-thumbs ul {
-  margin-left: 0
+@media (min-width: 768px)
+{
+  .carousel-thumbs {
+    padding: 0px;
+    margin: 0px;
+  }
+  .carousel-big-picture {
+    padding-right: 5px;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 768px)
+{
+  .carousel-thumbs {
+    margin-top: 5px;
+    padding-left: 15px;
+  }
 }
 #main-carousel-thumbs ul li {
   cursor: pointer;
-  padding: 0;
 }
 #main-carousel-thumbs ul li.active img {
   opacity: .5;
 }
-
 .vcenter {
   display: inline-block;
   float: none;
   vertical-align: middle;
 }
-
 .addthis_sharing_toolbox {
   margin-bottom: 10px;
-}
-
-.carousel-big-picture {
-  padding-right: 0;
-}
-
-.carousel-thumbs {
-  padding: 0 5px;
-}
-
-.article > .col-md-8 {
-  padding-right: 0;
-}
-
-.article-detail {
-  padding-left: 0;
 }

@@ -54,9 +54,9 @@
 
 {{-- Article information --}}
 <div class="row article">
-    <div class="col-md-8">
+    <div class="col-xs-12 col-md-8">
         <div class="row">
-            <div class="col-md-10 carousel-big-picture">
+            <div class="col-md-11 carousel-big-picture">
                 <div id="main-carousel" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         @foreach ($article->images as $index => $image)
@@ -80,7 +80,7 @@
                     <a class="right carousel-control" href="#main-carousel" role="button" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
             </div>
-            <div class="col-md-2 carousel-thumbs">
+            <div class="col-md-1 carousel-thumbs">
                 <div id="main-carousel-thumbs">
                     <ul class="list-inline">
                         @foreach ($article->images as $index => $image)
@@ -97,7 +97,7 @@
             </div>
         </div>
     </div>
-    <div class="col-md-4 article-detail">
+    <div class="col-xs-12 col-md-4 article-detail">
         {{--*/
             $article_status_class = 'success';
             switch($article->status) {
@@ -138,8 +138,8 @@
         </table>
         <div class="row">
             <div class="col-md-12">
-                <div style="padding: 5px; font-weight: bold;">Propietario:</div>
-                <div class="well">
+                <div class="hidden-xs hidden-sm" style="padding: 5px; font-weight: bold;">Propietario:</div>
+                <div class="hidden-xs hidden-sm well">
                     <div class="row">
                         <div class="col-sm-4">
                             <img class="avatar" src="{{ profile_picture($article->user, 50) }}" alt="avatar">
