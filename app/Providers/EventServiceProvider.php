@@ -14,7 +14,7 @@ class EventServiceProvider extends ServiceProvider
      */
     protected $listen = [
         'auth.login' => [
-            'App\Listeners\Authlogin',
+            'App\Listeners\AuthLogin',
         ],
         'App\Events\ContactSent' => [
             'App\Listeners\SendContactEmail',
