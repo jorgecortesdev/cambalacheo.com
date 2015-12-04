@@ -1,5 +1,13 @@
 
-<button type="button" class="visible-xs btn btn-primary offcanvas-toggle pull-right" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas">Menú</button>
+<div class="row visible-xs">
+    <div class="col-xs-6">
+        <a href="/panel/article/create" class="btn btn-success btn-lg btn-block" role="button">Publicar</a>
+    </div>
+    <div class="col-xs-6">
+        <button type="button" class="btn btn-primary btn-lg btn-block offcanvas-toggle" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas">Menú</button>
+    </div>
+    </ul>
+</div>
 <nav class="navbar navbar-default navbar-offcanvas navbar-offcanvas-touch navbar-offcanvas-fade" role="navigation"  id="js-bootstrap-offcanvas">
     <div class="row">
         <div class="col-md-12">
