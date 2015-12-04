@@ -13,7 +13,6 @@
 </script>
 @endsection
 
-
 @section('content')
 <h2>Publicar artículo</h2>
 <p>Puedes publicar cuantos artículos o servicios desees, no tienes ningún limite. Sé creativo al momento de publicar un anuncio y recuerda que aunque tu pienses que no sirve puede ser que a alguien si le sirva.</p>

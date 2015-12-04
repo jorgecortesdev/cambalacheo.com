@@ -13,6 +13,7 @@ elixir(function(mix) {
         paths.bower + '/bootstrap-social/bootstrap-social.css',
         paths.bower + '/sweetalert/dist/sweetalert.css',
         paths.bower + '/lity/dist/lity.css',
+        paths.bower + '/bootstrap-offcanvas/dist/css/bootstrap.offcanvas.css',
         'app.css'
     ]);
 
@@ -22,7 +23,8 @@ elixir(function(mix) {
         paths.bower + '/jquery_lazyload/jquery.lazyload.js',
         paths.bower + '/jquery-simply-countable/jquery.simplyCountable.js',
         paths.bower + '/sweetalert/dist/sweetalert-dev.js',
-        paths.bower + '/lity/dist/lity.js'
+        paths.bower + '/lity/dist/lity.js',
+        paths.bower + '/bootstrap-offcanvas/dist/js/bootstrap.offcanvas.js',
     ]);
 
     mix.copy('bower_modules/bootstrap/dist/fonts', 'public/build/fonts');
