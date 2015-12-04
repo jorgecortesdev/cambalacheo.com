@@ -1,7 +1,5 @@
 
-<button type="button" class="visible-xs btn btn-primary offcanvas-toggle pull-right" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas">
-    Menu
-</button>
+<button type="button" class="visible-xs btn btn-primary offcanvas-toggle pull-right" data-toggle="offcanvas" data-target="#js-bootstrap-offcanvas">Menú</button>
 <nav class="navbar navbar-default navbar-offcanvas navbar-offcanvas-touch navbar-offcanvas-fade" role="navigation"  id="js-bootstrap-offcanvas">
     <div class="row">
         <div class="col-md-12">
