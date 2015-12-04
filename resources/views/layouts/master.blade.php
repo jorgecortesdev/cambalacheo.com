@@ -25,6 +25,7 @@
     </head>
 
     <body>{!! Analytics::render() !!}
+        @include('partials.facebook_like')
 
         <div id="main" class="container">
 

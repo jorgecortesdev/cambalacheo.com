@@ -16,7 +16,7 @@
 				</td>
 				<td>
 					<div class="row">
-						<div class="col-md-7">
+						<div class="col-sm-7 col-md-7">
 							<h4><a href="/articulo/{{ $article->slug }}">{{ str_limit($article->title, 45) }}</a></h4>
 							<p class="description">{{ str_limit($article->description, 150) }}</p>
 							<p class="small text-muted"><strong>Publicado:</strong> {{ $article->created_at->formatLocalized('%d/%B/%Y') }}</p>
@@ -24,7 +24,7 @@
 								<a class="btn btn-sm btn-success" href="/articulo/{{ $article->slug }}">Ver detalle</a>
 							</span> --}}
 						</div>
-						<div class="col-md-5 hidden-xs article-attributes">
+						<div class="col-sm-5 col-md-5 hidden-xs article-attributes">
 							<div class="well">
 								<ul class="list">
 {{-- 									<li>
