@@ -27,7 +27,7 @@ class Alert implements AlertInterface
     protected function format(Article $article)
     {
         $post = [
-            "message"     => "Nuevo artículo publicado",
+            "message"     => "Nuevo artículo: {$article->title}\n#cambalacheo #trueque",
             "link"        => url('/articulo/' . $article->slug),
             "picture"     => Cdn::image($article->images->first(), 'original'),
             "name"        => $article->title,

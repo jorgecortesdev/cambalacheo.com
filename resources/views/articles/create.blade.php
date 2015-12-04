@@ -53,7 +53,7 @@
                             {!! Form::select(
                                 'condition_id',
                                 ['' => '--Seleccionar --'] + $conditions,
-                                null,
+                                2,
                                 ['class' => 'form-control'])
                             !!}
                             @if ($errors->has('condition_id'))
