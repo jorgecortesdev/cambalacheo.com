@@ -30,7 +30,7 @@ class Alert implements AlertInterface
             "message"     => "Nuevo artículo: {$article->title}\n#cambalacheo #trueque",
             "link"        => url('/articulo/' . $article->slug),
             "picture"     => Cdn::image($article->images->first(), 'original'),
-            "name"        => $article->title,
+            "name"        => "{$article->title} - Cambalacheo.com",
             "description" => $article->description,
             "caption"     => "cambalacheo.com",
         ];
