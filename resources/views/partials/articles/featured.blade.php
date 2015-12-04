@@ -1,4 +1,4 @@
-<h4>Cambalaches aleatorios</h4>
+<h4>Cambalaches destacados</h4>
 <div class="row selected-classifieds">
     @foreach ($featured_articles as $article)
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 text-center">
