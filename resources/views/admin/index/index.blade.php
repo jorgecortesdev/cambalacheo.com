@@ -44,7 +44,7 @@
 <br>
 <div class="col-md-12">
     <div class="row">
-        <div class="col-lg-3 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-2">
             @include('partials.admin.panel_total', [
                 'type'  => 'primary',
                 'count' => $users_count,
@@ -53,7 +53,7 @@
                 'url'   => '/admin/users'
             ])
         </div>
-        <div class="col-lg-3 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-2">
             @include('partials.admin.panel_total', [
                 'type'  => 'green',
                 'count' => $articles_count,
@@ -62,7 +62,7 @@
                 'url'   => '/admin/articles'
             ])
         </div>
-        <div class="col-lg-3 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-2">
             @include('partials.admin.panel_total', [
                 'type'  => 'yellow',
                 'count' => $questions_count,
@@ -71,7 +71,7 @@
                 'url'   => '#'
             ])
         </div>
-        <div class="col-lg-3 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-2">
             @include('partials.admin.panel_total', [
                 'type'  => 'red',
                 'count' => $offers_count,
@@ -80,19 +80,27 @@
                 'url'   => '#'
             ])
         </div>
+        <div class="col-xs-12 col-sm-6 col-md-2">
+            @include('partials.admin.panel_total', [
+                'type'  => 'purple',
+                'count' => $images_count,
+                'title' => 'Total de imágenes',
+                'icon'  => 'picture-o',
+                'url'   => '/admin/images'
+            ])
+        </div>
     </div>
-
     <div class="row">
-        <div class="col-lg-3 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-2">
             @include('partials.admin.panel_donut', [
                 'id' => 'users-providers-donut-chart',
                 'title' => 'Usuarios por proveedor'
             ])
         </div>
-        <div class="col-lg-3 col-md-6">
+        <div class="col-xs-12 col-sm-6 col-md-2">
             @include('partials.admin.panel_donut', [
                 'id' => 'images-donut-chart',
-                'title' => 'Imágenes'
+                'title' => 'Imágenes por tipo'
             ])
         </div>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\User;
+use App\Image;
 use App\Offer;
 use App\Article;
 use App\Question;
@@ -23,9 +24,10 @@ class IndexController extends Controller
         $articles_count  = Article::count();
         $questions_count = Question::count();
         $offers_count    = Offer::count();
+        $images_count    = Image::count();
 
         return view('admin.index.index', compact(
-            'users_count', 'articles_count', 'questions_count', 'offers_count'
+            'users_count', 'articles_count', 'questions_count', 'offers_count', 'images_count'
         ));
     }
 

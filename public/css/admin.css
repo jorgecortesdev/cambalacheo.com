@@ -1,34 +1,30 @@
-/*!
- * Start Bootstrap - SB Admin 2 Bootstrap Admin Theme (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
-
 body {
-    background-color: #f8f8f8;
+    padding-top: 35px;
 }
 
-#wrapper {
-    width: 100%;
+.navbar-brand {
+    padding: 10px 15px;
 }
 
-#page-wrapper {
-    padding: 0 15px;
-    min-height: 568px;
-    background-color: #fff;
-}
-
-@media(min-width:768px) {
-    #page-wrapper {
-        position: inherit;
-        margin: 0 0 0 250px;
-        padding: 0 30px;
-        border-left: 1px solid #e7e7e7;
+/* xs */
+@media(max-width:767px) {
+    .navbar-brand {
+        padding: 5px 15px;
     }
 }
-.navbar-brand {
-    padding: 0 15px;
+/* sm */
+@media(min-width:768px) {}
+/* md */
+@media(min-width:992px) {
 }
+/* lg */
+@media(min-width:1200px) {}
+
+
+#navbar {
+    margin: 5px;
+}
+
 .navbar-top-links {
     margin-right: 0;
 }
@@ -353,4 +349,22 @@ table.dataTable thead .sorting:after {
 
 .panel-yellow a:hover {
     color: #df8a13;
+}
+
+.panel-purple {
+    border-color: #8a2be2;
+}
+
+.panel-purple .panel-heading {
+    border-color: #8a2be2;
+    color: #fff;
+    background-color: #8a2be2;
+}
+
+.panel-purple a {
+    color: #8a2be2;
+}
+
+.panel-purple a:hover {
+    color: #420f70;
 }
