@@ -40,49 +40,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Cambalacheo</a>
+                <a class="navbar-brand" href="/"><img src="/img/logo-sm-blue.png" alt="Cambalacheo"></a>
             </div>
             <!-- /.navbar-header -->
-
-            <ul class="nav navbar-top-links navbar-right">
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
-                    </a>
-                    <ul class="dropdown-menu dropdown-user">
-                        <li><a href="{{ url('panel') }}"><i class="fa fa-user fa-fw"></i> User panel</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{{ url('auth/logout') }}"><i class="fa fa-sign-out fa-fw"></i> Salir</a>
-                        </li>
-                    </ul>
-                    <!-- /.dropdown-user -->
-                </li>
-                <!-- /.dropdown -->
-            </ul>
-            <!-- /.navbar-top-links -->
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search">
-                            <div class="input-group custom-search-form">
-                                <input type="text" class="form-control" placeholder="Search...">
-                                <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                            </div>
-                            <!-- /input-group -->
-                        </li>
-                        <li><a href="{{ url('admin') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
-                        <li><a href="{{ url('admin/users') }}"><i class="fa fa-table fa-fw"></i> Usuarios</a></li>
-                        <li><a href="{{ url('admin/articles') }}"><i class="fa fa-table fa-fw"></i> Articulos</a></li>
-                        <li><a href="{{ url('admin/images') }}"><i class="fa fa-picture-o"></i> Imágenes</a></li>
-                        <li><a href="{{ url('admin/facebook') }}"><i class="fa fa-facebook-official"></i> Facebook</a></li>
-                    </ul>
-                </div>
-                <!-- /.sidebar-collapse -->
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ url('panel') }}"><i class="fa fa-user fa-fw"></i> User panel</a></li>
+                    <li><a href="{{ url('admin') }}"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a></li>
+                    <li><a href="{{ url('admin/users') }}"><i class="fa fa-table fa-fw"></i> Usuarios</a></li>
+                    <li><a href="{{ url('admin/articles') }}"><i class="fa fa-table fa-fw"></i> Articulos</a></li>
+                    <li><a href="{{ url('admin/images') }}"><i class="fa fa-picture-o"></i> Imágenes</a></li>
+                    <li><a href="{{ url('admin/facebook') }}"><i class="fa fa-facebook-official"></i> Facebook</a></li>
+                </ul>
             </div>
             <!-- /.navbar-static-side -->
         </nav>
