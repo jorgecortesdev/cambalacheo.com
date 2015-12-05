@@ -7,6 +7,10 @@ Route::get('privacidad', 'IndexController@privacy');
 Route::get('/',      'SearchController@index');
 Route::get('search', 'SearchController@search');
 
+// Sitemaps
+Route::get('sitemap-articles', 'SitemapController@articles');
+Route::get('sitemap-categories', 'SitemapController@categories');
+
 // Slugs
 Route::get('categoria/{slug}', 'SearchController@category');
 Route::get('condicion/{slug}', 'SearchController@condition');

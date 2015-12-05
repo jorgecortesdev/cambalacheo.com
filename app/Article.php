@@ -70,4 +70,9 @@ class Article extends Model
             ->orWhere('description', 'LIKE', '%' . $q . '%')
             ->orderBy('created_at', 'desc');
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', ARTICLE_STATUS_OPEN);
+    }
 }

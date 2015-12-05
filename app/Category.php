@@ -30,4 +30,9 @@ class Category extends Model
 
     	return ($related) ? (int) $related->aggregate : 0;
     }
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 1);
+    }
 }
