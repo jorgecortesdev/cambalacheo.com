@@ -3,7 +3,7 @@
         <i class="fa fa-bar-chart-o fa-fw"></i> {{ $title }}
     </div>
     <div class="panel-body">
-        <div id="{{ $id }}"></div>
+        <div id="{{ $id }}" style="height: 225px;"></div>
     </div>
     <!-- /.panel-body -->
 </div>

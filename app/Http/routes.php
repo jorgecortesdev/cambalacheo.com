@@ -89,8 +89,13 @@ Route::get('admin/users', 'Admin\IndexController@users');
 Route::get('admin/articles', 'Admin\IndexController@articles');
 Route::get('admin/images', 'Admin\IndexController@images');
 
-Route::get('admin/stats/images', 'Admin\StatsController@images');
+Route::get('admin/stats/images-mimes', 'Admin\StatsController@imagesMimes');
 Route::get('admin/stats/users-providers', 'Admin\StatsController@usersProviders');
+Route::get('admin/stats/users-states', 'Admin\StatsController@usersStates');
+Route::get('admin/stats/articles-conditions', 'Admin\StatsController@articlesConditions');
+Route::get('admin/stats/articles-categories', 'Admin\StatsController@articlesCategories');
+Route::get('admin/stats/articles-statuses', 'Admin\StatsController@articlesStatuses');
+Route::get('admin/stats/offers-statuses', 'Admin\StatsController@offersStatuses');
 
 // Facebook stuff
 Route::get('admin/facebook/', 'Admin\FacebookController@index');

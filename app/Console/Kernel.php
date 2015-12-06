@@ -14,8 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         \App\Console\Commands\Inspire::class,
-        \App\Console\Commands\StatsImagesGenerate::class,
-        \App\Console\Commands\StatsUsersProvidersGenerate::class,
+        \App\Console\Commands\StatsTotalsGenerate::class
     ];
 
     /**
@@ -31,7 +30,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('queue:work --queue=facebook --tries=3')->cron('* * * * * *');
 
         // Statistics
-        $schedule->command('stats:images')->everyFiveMinutes();
-        $schedule->command('stats:users-providers')->everyFiveMinutes();
+        $schedule->command('stats:totals images file_mime')->everyFiveMinutes();
+        $schedule->command('stats:totals users provider')->everyFiveMinutes();
+        $schedule->command('stats:totals users state_id')->everyFiveMinutes();
+        $schedule->command('stats:totals articles condition_id')->everyFiveMinutes();
+        $schedule->command('stats:totals articles category_id')->everyFiveMinutes();
+        $schedule->command('stats:totals articles status')->everyFiveMinutes();
+        $schedule->command('stats:totals offers status')->everyFiveMinutes();
     }
 }

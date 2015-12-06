@@ -10,12 +10,19 @@ use App\Question;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class IndexController extends Controller
 {
     public function __construct()
     {
-        $this->authorize('admin');
+        $this->middleware('auth');
+
+        try {
+            $this->authorize('admin');
+        } catch(HttpException $e) {
+            return redirect('/panel');
+        }
     }
 
     public function index()
