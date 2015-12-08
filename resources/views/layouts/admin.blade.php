@@ -37,7 +37,9 @@
             </div>
         </div>
         <div class="row">
-            @yield('content')
+            <div class="col-xs-12">
+                @yield('content')
+            </div>
         </div>
     </div>
     <!-- /.container -->
