@@ -28,6 +28,7 @@ class Kernel extends ConsoleKernel
         // Queues
         $schedule->command('queue:work --queue=emails --tries=3')->cron('* * * * * *');
         $schedule->command('queue:work --queue=facebook --tries=3')->cron('* * * * * *');
+        $schedule->command('queue:work --queue=twitter --tries=3')->cron('* * * * * *');
 
         // Statistics
         $schedule->command('stats:totals images file_mime')->everyFiveMinutes();
