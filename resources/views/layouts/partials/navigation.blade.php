@@ -48,6 +48,7 @@
     </div>
 </div>
 
+@if ($menu_active != 'panel')
 <div class="row visible-xs">
     <div class="col-xs-12">
         <div class="btn-add-article">
@@ -55,3 +56,4 @@
         </div>
     </div>
 </div>
+@endif
