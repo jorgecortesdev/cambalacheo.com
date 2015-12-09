@@ -6,25 +6,110 @@ html {
 body {
   margin-bottom: 60px;
   padding-bottom: 30px;
-  padding-top: 15px;
 }
 
-#main {
-  padding-top: 34px;
-  position: relative;
+.header {
+  margin: 15px 3px;
+  display: flex;
+  padding: 0 30px;
 }
 
-.margin-bottom-5 {
-  margin-bottom: 5px;
+.header .logo img {
+  width: 150px;
 }
-.margin-bottom-10 {
-  margin-bottom: 10px;
+
+@media only screen and (max-width : 768px) {
+  .header {
+    margin: 15px 0px;
+  }
+  .header .logo {
+    position: absolute;
+    z-index: 9999;
+    top: 12px;
+  }
+  .btn-add-article {
+    padding: 15px 20px;
+    background-color: #f8f8f8;
+    font-weight: bold;
+    border: 1px solid transparent;
+    border-color: #e7e7e7;
+  }
+  .btn-add-article a {
+    font-weight: bold;
+  }
 }
-.margin-bottom-20 {
-  margin-bottom: 20px;
+
+.header .follow-us {
+  display: flex;
+  flex: 1;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.social {
+  list-style: none;
+  text-align: center;
+}
+
+.social li {
+  margin-top: 22px;
+  float: left;
+  padding: 0px 10px;
+}
+
+.social li a {
+  display: block;
+  background: #999999;
+  color: #efefef;
+  border-radius: 15px;
+  text-decoration: none;
+  line-height: 30px;
+  width: 30px;
+  font-size: 16px;
+}
+
+.social a.tw:hover {
+  background: #00acee
+}
+
+.social a.fb:hover {
+  background: #3b5998
+}
+
+.social a.gp:hover {
+  background: #dd4b39
+}
+
+.btn-article.btn-add {
+  color: #fff;
+  background-color: #5cb85c;
+  border-color: #4cae4c;
+  margin-right: 0;
 }
 
 .offcanvas-toggle {
   background-color: #337ab7;
   border-color: #2e6da4;
+}
+
+/* Categories */
+.categories a i {
+  float: right;
+}
+
+.image-overlay {
+  filter: alpha(opacity=40); /* msie */
+  opacity: 0.4;
+}
+
+.row.summary {
+  margin-top: 25px;
+}
+
+.row.summary dt {
+  width: 73px;
+}
+
+.row.summary dd {
+  margin-left: 90px;
 }

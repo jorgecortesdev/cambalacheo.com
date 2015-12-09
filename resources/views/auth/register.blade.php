@@ -41,7 +41,7 @@
 <p>Registrate de manera <strong>gratuita</strong> y comienza a publicar tus cambalaches inmediatamente, no tienes limite de anuncios a publicar, o si prefieres, puedes
 ofertar a cambalaches ya abiertos.</p>
 
-<hr>
+<hr class="hidden-xs">
 
 <div class="row">
     <div class="col-md-12">

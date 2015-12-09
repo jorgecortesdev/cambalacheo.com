@@ -18,7 +18,7 @@
 <h2>Entrar</h2>
 <p>Introduce tus datos para entrar en el sitio. Si aún no estas registrado, puedes hacerlo totalmente <strong>gratis</strong> <a href="/auth/register">aquí</a>.</p>
 
-<hr>
+<hr class="hidden-xs">
 
 <div class="row">
     <div class="col-md-12">
@@ -54,7 +54,8 @@
         </div>
     </div>
 </div>
-<div class="row margin-bottom-20">
+
+<div class="row">
     <div class="col-md-12 text-center">
         <a href="/password/email">&iquest;Olvidaste tu contraseña?</a>
     </div>
