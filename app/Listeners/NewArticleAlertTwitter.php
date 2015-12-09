@@ -7,7 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 
-class NewArticleAlertFacebook
+class NewArticleAlertTwitter
 {
     use DispatchesJobs;
 
@@ -20,7 +20,7 @@ class NewArticleAlertFacebook
     public function handle(ArticleCreated $event)
     {
         $this->dispatch(
-            new \App\Jobs\NewArticleFacebookAlert($event->article, "facebook")
+            new \App\Jobs\NewArticleTwitterAlert($event->article, "twitter")
         );
     }
 }

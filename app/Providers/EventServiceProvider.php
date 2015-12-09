@@ -27,6 +27,7 @@ class EventServiceProvider extends ServiceProvider
         ],
         'App\Events\ArticleCreated' => [
             'App\Listeners\NewArticleAlertFacebook',
+            'App\Listeners\NewArticleAlertTwitter',
         ],
     ];
 

@@ -31,12 +31,24 @@
                 data: $('#post-facebook').serialize(),
                 success: function (response) {
                     $btn.button('complete');
-                    $btn.removeClass('btn-danger');
-                    $btn.addClass('btn-success');
                     setTimeout(function () {
                         $btn.button('reset');
-                        $btn.addClass('btn-danger');
-                        $btn.removeClass('btn-success');
+                    }, 1800);
+                }
+            })
+        });
+        $('#post-twitter-button').on('click', function (e) {
+            e.preventDefault()
+
+            var $btn = $(this).button('loading');
+            $.ajax({
+                url: '/admin/twitter/post',
+                type: 'post',
+                data: $('#post-twitter').serialize(),
+                success: function (response) {
+                    $btn.button('complete');
+                    setTimeout(function () {
+                        $btn.button('reset');
                     }, 1800);
                 }
             })
@@ -96,6 +108,11 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="addthis_sharing_toolbox"></div>
+            </div>
+        </div>
     </div>
     <div class="col-xs-12 col-md-4 article-detail">
         {{--*/
@@ -138,37 +155,52 @@
         </table>
         <div class="row">
             <div class="col-md-12">
-                <div class="hidden-xs hidden-sm" style="padding: 5px; font-weight: bold;">Propietario:</div>
-                <div class="hidden-xs hidden-sm well">
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <img class="avatar" src="{{ profile_picture($article->user, 50) }}" alt="avatar">
-                        </div>
-                        <div class="col-sm-8">
-                            <span itemprop="author" itemscope itemtype="http://schema.org/Person">
-                            <h4 itemprop="name" style="margin-top: 0">{{ $article->user->name }}</h4>
-                            {{-- <span title="Seller's rating: 4/5">
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </span> --}}
-                            </span>
+                <div class="row">
+                    <div class="hidden-xs hidden-sm" style="padding: 5px; font-weight: bold;">Propietario:</div>
+                    <div class="hidden-xs hidden-sm well">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <img class="avatar" src="{{ profile_picture($article->user, 50) }}" alt="avatar">
+                            </div>
+                            <div class="col-sm-8">
+                                <span itemprop="author" itemscope itemtype="http://schema.org/Person">
+                                <h4 itemprop="name" style="margin-top: 0">{{ $article->user->name }}</h4>
+                                {{-- <span title="Seller's rating: 4/5">
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </span> --}}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 @can('admin')
                 <div class="row">
-                    <div class="col-md-offset-4 col-md-8">
+                    <div class="col-xs-12">
                         {!! Form::open(['id' => 'post-facebook']) !!}
                             {!! Form::hidden('article_id', $article->id) !!}
                             {!! Form::button('<i class="fa fa-facebook-square"></i> Publicar', [
-                                'class'              => 'btn btn-lg btn-danger btn-block',
+                                'class'              => 'btn btn-lg btn-block btn-social btn-facebook',
                                 'type'               => 'submit',
                                 'data-loading-text'  => '<i class="fa fa-cog fa-spin"></i> Enviando...',
                                 'data-complete-text' => '<i class="fa fa-thumbs-o-up"></i> Listo',
-                                'id'                 => 'post-facebook-button'
+                                'id'                 => 'post-facebook-button',
+                                'style'              => 'margin-bottom: 5px;'
+                            ]) !!}
+                        {!! Form::close() !!}
+                    </div>
+                    <div class="col-xs-12">
+                        {!! Form::open(['id' => 'post-twitter']) !!}
+                            {!! Form::hidden('article_id', $article->id) !!}
+                            {!! Form::button('<i class="fa fa-twitter-square"></i> Publicar', [
+                                'class'              => 'btn btn-lg btn-block btn-social btn-twitter',
+                                'type'               => 'submit',
+                                'data-loading-text'  => '<i class="fa fa-cog fa-spin"></i> Enviando...',
+                                'data-complete-text' => '<i class="fa fa-thumbs-o-up"></i> Listo',
+                                'id'                 => 'post-twitter-button'
                             ]) !!}
                         {!! Form::close() !!}
                     </div>
@@ -178,11 +210,7 @@
         </div>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-12">
-        <div class="addthis_sharing_toolbox"></div>
-    </div>
-</div>
+
 {{-- Article description --}}
 <div class="row">
 	<div class="col-md-12">

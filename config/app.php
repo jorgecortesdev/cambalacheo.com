@@ -155,6 +155,7 @@ return [
         Laravel\Socialite\SocialiteServiceProvider::class,
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
         Roumen\Sitemap\SitemapServiceProvider::class,
+        Thujohn\Twitter\TwitterServiceProvider::class,
     ],
 
     /*
@@ -214,6 +215,7 @@ return [
         'Analytics'   => Ipunkt\LaravelAnalytics\AnalyticsFacade::class,
         'Socialite'   => Laravel\Socialite\Facades\Socialite::class,
         'Facebook'    => SammyK\LaravelFacebookSdk\FacebookFacade::class,
+        'Twitter'     => Thujohn\Twitter\Facades\Twitter::class,
     ],
 
     'site_email'      => env('MAIL_FROM', ''),

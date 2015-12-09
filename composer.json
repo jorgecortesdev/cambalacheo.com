@@ -16,7 +16,8 @@
         "ipunkt/laravel-analytics": "~1.1",
         "laravel/socialite": "^2.0",
         "sammyk/laravel-facebook-sdk": "~3.0",
-        "roumen/sitemap": "^2.5"
+        "roumen/sitemap": "^2.5",
+        "thujohn/twitter": "^2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

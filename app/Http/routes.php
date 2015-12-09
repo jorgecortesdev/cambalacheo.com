@@ -102,3 +102,5 @@ Route::get('admin/facebook/', 'Admin\FacebookController@index');
 Route::get('facebook/store', 'Admin\FacebookController@store');
 Route::post('admin/facebook/post', 'Admin\FacebookController@post');
 
+// Twitter stuff
+Route::post('admin/twitter/post', 'Admin\TwitterController@post');
