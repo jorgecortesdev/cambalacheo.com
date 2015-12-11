@@ -19,9 +19,17 @@ class ArticleImage
      */
     protected $defaultImagePath;
 
+    /**
+     * Imagen de marca de agua.
+     *
+     * @var string
+     */
+    protected $watermarkImagePath;
+
     public function __construct()
     {
         $this->defaultImagePath = public_path('img/default.png');
+        $this->watermarkImagePath = public_path('img/watermark/watermark-round.png');
     }
 
     /**
@@ -85,25 +93,61 @@ class ArticleImage
     /**
      * Construye la imagen y la attacha a un nuevo response.
      *
-     * @param  string
+     * @param  Intervention\Image\Image|string
      * @param  string
      * @return Illuminate\Support\Facades\Response
      */
-    public function buildImage($filename, $size)
+    public function buildImage($image, $size)
     {
-        $image = Image::make($filename)->orientate();
-        $image = $this->resizeAndCropImage($image, $size);
-        $image->encode('png', 90);
-
-        $data   = $image->getEncoded();
-        $length = strlen($data);
-
-        $response = \Response::make($data);
-        $response->header('Content-Type', 'image/png');
-        $response->header('Content-Length', $length);
-        $response->header('Last-Modified', gmdate('D, d M Y H:i:s T', filemtime($filename)));
+        if (! $this->isInterventionImage($image)) {
+            $image = $this->make($image);
+        }
+        $image    = $this->resizeAndCropImage($image, $size);
+        $response = $image->response();
+        $response->header('Last-Modified', gmdate('D, d M Y H:i:s T', filemtime($image->basePath())));
 
         return $response;
+    }
+
+    /**
+     * Verifica si la imagen es una instancia de Intervention Image.
+     *
+     * @return boolean
+     */
+    public function isInterventionImage($image)
+    {
+        return is_a($image, \Intervention\Image\Image::class);
+    }
+
+    /**
+     * Imprime la marca de agua en la imagen dada.
+     *
+     * @param  Intervention\Image\Image|string
+     * @return Intervention\Image\Image
+     */
+    public function watermark($image)
+    {
+        if (! $this->isInterventionImage($image)) {
+            $image = $this->make($image);
+        }
+
+        $watermark = $this->watermarkImagePath;
+        $image->fill($watermark);
+
+        return $image;
+    }
+
+    /**
+     * Construye la imagen y la encodea.
+     *
+     * @param  string $filename
+     * @param  string $size
+     * @return Intervention\Image\Image
+     */
+    public function make($filename, $encode = 'png')
+    {
+        $image = Image::make($filename)->orientate();
+        return $image->encode($encode, 90);
     }
 
     /**

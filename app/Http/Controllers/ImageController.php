@@ -32,7 +32,8 @@ class ImageController extends Controller
     public function getArticleImage($article_id, $image_id, $image_size, ArticleImage $articleImage)
     {
         $image_filename = $articleImage->buildImagePath($article_id, $image_id);
-        return $articleImage->buildImage($image_filename, $image_size);
+        $image = $articleImage->watermark($image_filename, $image_size);
+        return $articleImage->buildImage($image, $image_size);
     }
 
     /**
