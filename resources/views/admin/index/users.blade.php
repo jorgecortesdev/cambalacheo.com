@@ -29,7 +29,18 @@
                     <td class="text-center">{{ $user->name }}</td>
                     <td class="text-center">{{ $user->email }}</td>
                     <td class="text-center">{{ $user->provider }}</td>
-                    <td class="text-center">{{ $user->city->name }}, {{ $user->state->short }}</td>
+                    <td class="text-center">
+                        @if ($city = $user->city)
+                            {{ $city->name }}
+                        @else
+                            N/A
+                        @endif,
+                        @if ($state = $user->state)
+                            {{ $state->short }}
+                        @else
+                            N/A
+                        @endif
+                    </td>
                     <td class="text-center">{{ $user->ip }}</td>
                     <td class="text-center">{{ $user->lastlogin_at }}</td>
                     <td class="text-center">{{ $user->created_at }}</td>
