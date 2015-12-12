@@ -69,16 +69,4 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->admin == 1;
     }
-
-    public function getLastloginAtAttribute($date)
-    {
-        $date = new Carbon($date);
-        return $date->setTimezone('America/Hermosillo');
-    }
-
-    public function getCreatedAtAttribute($date)
-    {
-        $date = new Carbon($date);
-        return $date->setTimezone('America/Hermosillo');
-    }
 }
