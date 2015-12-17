@@ -156,6 +156,8 @@ return [
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
         Roumen\Sitemap\SitemapServiceProvider::class,
         Thujohn\Twitter\TwitterServiceProvider::class,
+
+        Cambalacheo\FormField\FormFieldServiceProvider::class,
     ],
 
     /*
@@ -216,6 +218,8 @@ return [
         'Socialite'   => Laravel\Socialite\Facades\Socialite::class,
         'Facebook'    => SammyK\LaravelFacebookSdk\FacebookFacade::class,
         'Twitter'     => Thujohn\Twitter\Facades\Twitter::class,
+
+        'FormField'   => Cambalacheo\FormField\Facades\FormFieldFacade::class,
     ],
 
     'site_email'      => env('MAIL_FROM', ''),
