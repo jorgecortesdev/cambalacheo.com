@@ -13,7 +13,7 @@ class AddColumnUserIp extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('ip', 45)->after('email');
+            $table->string('ip', 45)->after('email')->nullable();
         });
     }
 

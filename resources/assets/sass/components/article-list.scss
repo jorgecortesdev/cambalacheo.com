@@ -1,3 +1,12 @@
+table.table.table-stripped.table-responsive.article-list.article td:last-child {
+  padding-right: 0;
+}
+table.table.table-stripped.table-responsive.article-list.article td:first-child {
+  padding-left: 0;
+}
+table.table.table-stripped.table-responsive.article-list.article td {
+  padding-top: 15px;
+}
 .article .well {
   padding: 5px;
 }

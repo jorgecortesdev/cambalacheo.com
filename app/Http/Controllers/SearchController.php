@@ -32,7 +32,7 @@ class SearchController extends Controller
             ->where('status', ARTICLE_STATUS_OPEN)
             ->paginate($this->limit);
 
-        $featured_articles = Article::with('images')->orderBy(\DB::raw('RAND()'))->take(4)->get();
+        $featured_articles = Article::with('images')->orderBy(\DB::raw('RAND()'))->take(8)->get();
 
         return view('search.index', compact('articles', 'featured_articles'));
     }
