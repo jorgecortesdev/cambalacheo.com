@@ -18,6 +18,8 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'password'       => bcrypt(str_random(10)),
         'state_id'       => 26,
         'city_id'        => 2672,
+        'avatar'         => '',
+        'provider'       => '',
         'remember_token' => str_random(10),
     ];
 });
@@ -42,6 +44,15 @@ $factory->define(App\Image::class, function (Faker\Generator $faker) {
         'user_id'    => 1,
         'file_size'  => 1,
         'file_mime'  => 'image/png'
+    ];
+});
+
+$factory->define(App\Category::class, function (Faker\Generator $faker) {
+    $name = $faker->sentence(2);
+    return [
+        'name'   => $name,
+        'slug'   => str_slug($name),
+        'status' => 1
     ];
 });
 
