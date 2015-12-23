@@ -5,7 +5,7 @@ return [
 	/**
 	 * current selected provider
 	 */
-	'provider' => 'GoogleAnalytics',
+	'provider' => env('GA_DRIVER', ''),
 
 	/**
 	 * configurations for all possible providers
