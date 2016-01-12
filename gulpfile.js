@@ -28,6 +28,7 @@ elixir(function(mix) {
         paths.bower + '/lity/dist/lity.js',
         paths.bower + '/bootstrap-offcanvas/dist/js/bootstrap.offcanvas.js',
         paths.bower + '/slick-carousel/slick/slick.js',
+        'app.js'
     ]);
 
     mix.copy('bower_modules/bootstrap/dist/fonts', 'public/build/fonts');

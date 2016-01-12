@@ -2,17 +2,6 @@
 
 @section('page_title', 'Contacto')
 
-@section('footer')
-<script src="{{ Cdn::asset('/js/contact.js') }}"></script>
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#send-contact-button').on('click', function () {
-            var $btn = $(this).button('loading');
-        });
-    });
-</script>
-@endsection
-
 @section('content')
 {!! Breadcrumbs::render('home') !!}
 
@@ -28,10 +17,10 @@ $name             = '';
 $email            = '';
 $registered       = false;
 /*--}}
-@if (Auth::check())
+@if ($user_signed_in)
 {{--*/
-$name                         = Auth::user()->name;
-$email                        = Auth::user()->email;
+$name                         = $user_signed_in->name;
+$email                        = $user_signed_in->email;
 $extra_attributes['readonly'] = 'readonly';
 $registered                   = true;
 /*--}}
@@ -41,13 +30,12 @@ $registered                   = true;
     <div class="col-md-12">
         <div class="well">
             {!! Form::open(['url' => 'contact', 'class' => 'form-counter']) !!}
-                {!! Form::hidden('user_registered', $user_registered) !!}
+                {!! Form::hidden('user_registered', (boolean) $user_signed_in) !!}
 
                 <div class="form-group @if ($errors->has('name')) has-error @endif">
                     {!! Form::label('name', 'Nombre', ['class' => 'control-label']) !!}
-                    <div class="input-counter">
+                    <div class="input-counter" data-max-count="255">
                         {!! Form::text('name', $name, ['class' => 'form-control'] + $extra_attributes) !!}
-                        <div class="small"><span id="counter-name"></span>/255</div>
                     </div>
                     @if ($errors->has('name'))
                     <span class="help-block">* {{ $errors->first('name') }}</span>
@@ -56,9 +44,8 @@ $registered                   = true;
 
                 <div class="form-group @if ($errors->has('email')) has-error @endif">
                     {!! Form::label('email', 'Correo', ['class' => 'control-label']) !!}
-                    <div class="input-counter">
+                    <div class="input-counter" data-max-count="255">
                         {!! Form::email('email', $email, ['class' => 'form-control'] + $extra_attributes) !!}
-                        <div class="small"><span id="counter-email"></span>/255</div>
                     </div>
                     @if ($errors->has('email'))
                     <span class="help-block">* {{ $errors->first('email') }}</span>
@@ -67,9 +54,8 @@ $registered                   = true;
 
                 <div class="form-group @if ($errors->has('message')) has-error @endif">
                     {!! Form::label('message', 'Mensaje', ['class' => 'control-label']) !!}
-                    <div class="input-counter">
+                    <div class="input-counter" data-max-count="255">
                         {!! Form::textarea('message', null, ['class' => 'form-control', 'rows' => 5]) !!}
-                        <div class="small"><span id="counter-message"></span>/255</div>
                     </div>
                     @if ($errors->has('message'))
                     <span class="help-block">* {{ $errors->first('message') }}</span>
@@ -85,10 +71,9 @@ $registered                   = true;
 
                 <br>
                 {!! Form::button('Enviar', [
-                    'class'             => 'btn btn-lg btn-primary btn-block',
-                    'type'              => 'submit',
-                    'data-loading-text' => '<i class="fa fa-cog fa-spin"></i> Enviando...',
-                    'id'                => 'send-contact-button'
+                    'class' => 'btn btn-lg btn-primary btn-block',
+                    'type'  => 'submit',
+                    'data-spinner'
                 ]) !!}
             {!! Form::close() !!}
         </div>
