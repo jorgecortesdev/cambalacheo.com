@@ -15,14 +15,12 @@ la forma siguiente y mandanos un mensaje.</p>
 $extra_attributes = [];
 $name             = '';
 $email            = '';
-$registered       = false;
 /*--}}
-@if ($user_signed_in)
+@if ($signedIn)
 {{--*/
-$name                         = $user_signed_in->name;
-$email                        = $user_signed_in->email;
+$name                         = $user->name;
+$email                        = $user->email;
 $extra_attributes['readonly'] = 'readonly';
-$registered                   = true;
 /*--}}
 @endif
 
@@ -30,7 +28,7 @@ $registered                   = true;
     <div class="col-md-12">
         <div class="well">
             {!! Form::open(['url' => 'contact', 'class' => 'form-counter']) !!}
-                {!! Form::hidden('user_registered', (boolean) $user_signed_in) !!}
+                {!! Form::hidden('user_registered', $signedIn) !!}
 
                 <div class="form-group @if ($errors->has('name')) has-error @endif">
                     {!! Form::label('name', 'Nombre', ['class' => 'control-label']) !!}

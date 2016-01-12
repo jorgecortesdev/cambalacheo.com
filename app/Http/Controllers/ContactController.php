@@ -16,8 +16,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        $user_signed_in = $this->signedIn;
-        return view('contact.create', compact('user_signed_in'));
+        return view('contact.create');
     }
 
     /**
