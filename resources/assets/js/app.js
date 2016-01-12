@@ -29,7 +29,7 @@
 // Add a counter for the input inside of the div.input-counter class
 // to specify the maxCount number use data-max-count attribute
 (function() {
-    var container = $('div.input-counter');
+    var container = $('div.input-with-counter');
 
     container.each(function() {
         var $this = $(this);

@@ -2,11 +2,13 @@
   padding-right: 60px;
 }
 
-.form-counter .input-counter {
+.form-counter .input-counter,
+.form-counter .input-with-counter {
   position: relative;
 }
 
-.form-counter .input-counter div {
+.form-counter .input-counter div,
+.form-counter .input-with-counter div {
   color: #999999;
   position: absolute;
   right: 10px;

@@ -34,7 +34,7 @@ $registered                   = true;
 
                 <div class="form-group @if ($errors->has('name')) has-error @endif">
                     {!! Form::label('name', 'Nombre', ['class' => 'control-label']) !!}
-                    <div class="input-counter" data-max-count="255">
+                    <div class="input-with-counter" data-max-count="255">
                         {!! Form::text('name', $name, ['class' => 'form-control'] + $extra_attributes) !!}
                     </div>
                     @if ($errors->has('name'))
@@ -44,7 +44,7 @@ $registered                   = true;
 
                 <div class="form-group @if ($errors->has('email')) has-error @endif">
                     {!! Form::label('email', 'Correo', ['class' => 'control-label']) !!}
-                    <div class="input-counter" data-max-count="255">
+                    <div class="input-with-counter" data-max-count="255">
                         {!! Form::email('email', $email, ['class' => 'form-control'] + $extra_attributes) !!}
                     </div>
                     @if ($errors->has('email'))
@@ -54,7 +54,7 @@ $registered                   = true;
 
                 <div class="form-group @if ($errors->has('message')) has-error @endif">
                     {!! Form::label('message', 'Mensaje', ['class' => 'control-label']) !!}
-                    <div class="input-counter" data-max-count="255">
+                    <div class="input-with-counter" data-max-count="255">
                         {!! Form::textarea('message', null, ['class' => 'form-control', 'rows' => 5]) !!}
                     </div>
                     @if ($errors->has('message'))
