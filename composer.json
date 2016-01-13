@@ -17,7 +17,8 @@
         "laravel/socialite": "^2.0",
         "sammyk/laravel-facebook-sdk": "~3.0",
         "roumen/sitemap": "^2.5",
-        "thujohn/twitter": "^2.1"
+        "thujohn/twitter": "^2.1",
+        "laracasts/presenter": "^0.2.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

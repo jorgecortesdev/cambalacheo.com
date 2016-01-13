@@ -3,12 +3,18 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
+use Cambalacheo\Presenter\ArticlePresenter;
 
 class Article extends Model
 {
+    use PresentableTrait;
+
     protected $table = 'articles';
 
     protected $fillable = ['title', 'category_id', 'condition_id', 'user_id', 'description', 'request'];
+
+    protected $presenter = ArticlePresenter::class;
 
     public static function boot()
     {

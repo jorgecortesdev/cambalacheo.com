@@ -3,10 +3,16 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Laracasts\Presenter\PresentableTrait;
+use Cambalacheo\Presenter\CategoryPresenter;
 
 class Category extends Model
 {
+    use PresentableTrait;
+
     protected $table = 'categories';
+
+    protected $presenter = CategoryPresenter::class;
 
     public function articles()
     {
