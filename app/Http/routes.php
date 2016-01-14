@@ -1,7 +1,8 @@
 <?php
-Route::get('acerca', 'IndexController@about');
-Route::get('terminos', 'IndexController@terms');
-Route::get('privacidad', 'IndexController@privacy');
+// Static pages routes
+Route::get('acerca', 'StaticController@about');
+Route::get('terminos', 'StaticController@terms');
+Route::get('privacidad', 'StaticController@privacy');
 
 // Index routes
 Route::get('/',      'SearchController@index');
