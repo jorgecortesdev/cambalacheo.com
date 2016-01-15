@@ -5,7 +5,7 @@ Route::get('terminos', 'StaticController@terms');
 Route::get('privacidad', 'StaticController@privacy');
 
 // Index routes
-Route::get('/',      'SearchController@index');
+Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
 Route::get('search', 'SearchController@search');
 
 // Sitemaps

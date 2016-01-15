@@ -3,7 +3,7 @@
     <div class="col-md-12">
         <div class="featured">
             <div class="featured-items hidden-xs">
-                @foreach ($featured_articles as $article)
+                @foreach ($featured as $article)
                     <div class="text-center">
                         <div class="featured-thumbnail">
                             <a href="/articulo/{{ $article->slug }}">
@@ -21,7 +21,7 @@
                 @endforeach
             </div>
             <div class="featured-items visible-xs">
-                @foreach ($featured_articles as $article)
+                @foreach ($featured as $article)
                     <div class="text-center">
                         <div class="featured-thumbnail">
                             <a href="/articulo/{{ $article->slug }}">

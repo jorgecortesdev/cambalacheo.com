@@ -4,7 +4,7 @@
 
 @section('content')
 
-@if (!empty($featured_articles))
+@if (!empty($featured))
     @include('partials.articles.featured')
 @endif
 

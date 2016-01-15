@@ -26,17 +26,6 @@ class SearchController extends Controller
         )->orderBy('created_at', 'desc');
     }
 
-    public function index()
-    {
-        $articles = $this->article
-            ->where('status', ARTICLE_STATUS_OPEN)
-            ->paginate($this->limit);
-
-        $featured_articles = Article::with('images')->orderBy(\DB::raw('RAND()'))->take(8)->get();
-
-        return view('search.index', compact('articles', 'featured_articles'));
-    }
-
     public function category($slug)
     {
         try {

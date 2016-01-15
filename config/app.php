@@ -158,6 +158,7 @@ return [
         Thujohn\Twitter\TwitterServiceProvider::class,
 
         Cambalacheo\FormField\FormFieldServiceProvider::class,
+        Cambalacheo\Providers\ArticlesServiceProvider::class
     ],
 
     /*
@@ -220,6 +221,7 @@ return [
         'Twitter'     => Thujohn\Twitter\Facades\Twitter::class,
 
         'FormField'   => Cambalacheo\FormField\Facades\FormFieldFacade::class,
+        'Articles'    => Cambalacheo\Facades\Articles::class,
     ],
 
     'site_email'      => env('MAIL_FROM', ''),
