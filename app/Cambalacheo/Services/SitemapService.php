@@ -1,6 +1,6 @@
 <?php
 
-namespace Cambalacheo;
+namespace Cambalacheo\Services;
 
 use App;
 use App\Article;
@@ -22,6 +22,7 @@ class SitemapService
         );
 
         if (!$sitemap->isCached()) {
+            // TODO: move this into articles repository
             $articles = Article::active()->latest()->get();
 
             foreach ($articles as $article) {
@@ -51,6 +52,7 @@ class SitemapService
        );
 
         if (!$sitemap->isCached()) {
+            // TODO: move this into categories repository
             $categories = Category::active()->latest()->get();
             foreach ($categories as $category) {
                 $sitemap->add(

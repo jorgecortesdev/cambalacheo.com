@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Cambalacheo\SitemapService;
+use Cambalacheo\Services\SitemapService;
 use App\Http\Controllers\Controller;
 
 class SitemapController extends Controller
