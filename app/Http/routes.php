@@ -6,6 +6,10 @@ Route::get('privacidad', 'StaticController@privacy');
 
 // Index routes
 Route::get('/', ['as' => 'index', 'uses' => 'IndexController@index']);
+Route::get('ubicacion/{state_slug}/{city_slug}', 'IndexController@location');
+Route::get('categoria/{slug}', 'IndexController@category');
+Route::get('condicion/{slug}', 'IndexController@condition');
+
 Route::get('search', 'SearchController@search');
 
 // Sitemaps
@@ -13,10 +17,7 @@ Route::get('sitemap-articles', 'SitemapController@articles');
 Route::get('sitemap-categories', 'SitemapController@categories');
 
 // Slugs
-Route::get('categoria/{slug}', 'SearchController@category');
-Route::get('condicion/{slug}', 'SearchController@condition');
 Route::get('articulo/{slug}',  'ArticleController@show');
-Route::get('ubicacion/{state_slug}/{city_slug}', 'SearchController@location');
 
 Route::get('contact',  'ContactController@create');
 Route::post('contact', 'ContactController@store');

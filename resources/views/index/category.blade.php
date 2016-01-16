@@ -1,10 +1,10 @@
 @extends('layouts.master')
 
-@section('page_title', 'Categoría: ' . $category->name)
+@section('page_title', 'Categoría: ' . $articles->first()->category->name)
 
 @section('content')
 
-<h4>Mostrando: <span class="text-muted">{{ $category->name }}</span></h4>
+<h4>Mostrando: <span class="text-muted">{{ $articles->first()->category->name }}</span></h4>
 
 @include('partials.articles.list')
 
